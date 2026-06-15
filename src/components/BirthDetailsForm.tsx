@@ -69,7 +69,7 @@ export const BirthDetailsForm: React.FC = () => {
 
     navigate('/generating');
     await submitBirthDetails(birthData);
-    navigate('/report/1');
+    navigate('/report/welcome');
   };
 
   return (
