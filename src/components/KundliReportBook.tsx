@@ -190,7 +190,7 @@ export const KundliReportBook: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-[#FFFDF9] via-[#FAF6F0] to-[#FAF5EE] flex flex-col md:flex-row overflow-hidden relative">
+    <div className="min-h-screen bg-transparent flex flex-col md:flex-row overflow-hidden relative">
       {/* Decorative celestial background sparkles */}
       <div className="absolute inset-0 bg-[radial-gradient(#000000_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
 
@@ -365,7 +365,7 @@ export const KundliReportBook: React.FC = () => {
                   handleScrollToTop();
                 }}
                 disabled={currentPage === 17}
-                className="flex items-center px-6 py-3 rounded-2xl bg-[#FE7950] hover:bg-[#eb6a42] text-white disabled:opacity-30 disabled:cursor-not-allowed text-xs font-black shadow-md tracking-wider transition cursor-pointer"
+                className="flex items-center px-6 py-3 rounded-2xl bg-[#6868f9] hover:bg-[#5252e6] text-white disabled:opacity-30 disabled:cursor-not-allowed text-xs font-black shadow-md tracking-wider transition cursor-pointer"
               >
                 <span>Next</span>
                 <ArrowRight size={14} className="ml-1.5" />

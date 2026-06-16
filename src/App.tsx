@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ReportProvider, useReport } from './context/ReportContext';
 import { BirthDetailsForm } from './components/BirthDetailsForm';
+import { AstrologyBackground } from './components/AstrologyBackground';
 import { KundliReportBook } from './components/KundliReportBook';
 import { Sparkles, Star, Sun, Compass, Play, ChevronDown, Award, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -10,10 +11,7 @@ import * as Pages from './components/pages';
 
 const LoadingScreen: React.FC = () => {
   return (
-    <div className="min-h-screen bg-indigo-950 flex flex-col items-center justify-center p-6 text-center text-white relative overflow-hidden select-none">
-      <div className="absolute top-10 left-10 w-64 h-64 bg-indigo-500/10 rounded-full filter blur-3xl" />
-      <div className="absolute bottom-10 right-10 w-64 h-64 bg-orange-500/10 rounded-full filter blur-3xl" />
-
+    <div className="min-h-screen bg-transparent flex flex-col items-center justify-center p-6 text-center text-white relative overflow-hidden select-none z-10">
       <div className="relative w-72 h-72 flex items-center justify-center">
         <motion.div
           animate={{ rotate: 360 }}
@@ -69,7 +67,7 @@ const LandingScreen: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-[#FFFDF9] via-[#FAF6F0] to-[#FAF5EE] text-slate-800 flex items-center justify-center p-5 md:p-12 relative overflow-hidden">
+    <div className="min-h-screen bg-transparent text-slate-200 flex items-center justify-center p-5 md:p-12 relative overflow-hidden z-10">
       <div className="absolute top-1/2 left-10 -translate-y-1/2 opacity-20 pointer-events-none select-none text-indigo-500/10">
         <Sun size={480} strokeWidth={0.5} />
       </div>
@@ -155,18 +153,25 @@ const LandingScreen: React.FC = () => {
   );
 };
 
-const PageWrapper: React.FC<{ component: React.ComponentType<{pageIdx: number, setPage: (idx: number) => void}>, pageIdx: number }> = ({ component: Component, pageIdx }) => {
+const PageWrapper: React.FC<{ component: React.ComponentType<{ pageIdx: number, setPage: (idx: number) => void }>, pageIdx: number }> = ({ component: Component, pageIdx }) => {
   const { reportData } = useReport();
   if (!reportData) return <Navigate to="/" replace />;
-  return <Component pageIdx={pageIdx} setPage={() => {}} />;
+  return <Component pageIdx={pageIdx} setPage={() => { }} />;
 };
 
 export default function App() {
   return (
     <BrowserRouter>
       <ReportProvider>
-        <main className="min-h-screen bg-slate-50 text-slate-900 font-sans">
-          <Routes>
+        <main className="min-h-screen bg-indigo-950 text-slate-200 font-sans relative overflow-hidden">
+          {/* Global Background from generating page */}
+          <div className="absolute top-10 left-10 w-64 h-64 bg-indigo-500/10 rounded-full filter blur-3xl pointer-events-none" />
+          <div className="absolute bottom-10 right-10 w-64 h-64 bg-orange-500/10 rounded-full filter blur-3xl pointer-events-none" />
+          
+          <AstrologyBackground />
+          
+          <div className="relative z-10 h-full">
+            <Routes>
             <Route path="/" element={<LandingScreen />} />
             <Route path="/generating" element={<LoadingScreen />} />
             <Route path="/report" element={<KundliReportBook />}>
@@ -193,6 +198,7 @@ export default function App() {
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          </div>
         </main>
       </ReportProvider>
     </BrowserRouter>
