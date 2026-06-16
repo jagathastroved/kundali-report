@@ -15,7 +15,7 @@ export const ChakrasMapPage: React.FC<{pageIdx: number, setPage: (idx: number) =
       return (
         <div className="space-y-6">
           <div className="space-y-1">
-            <h2 className="text-2xl font-black text-slate-900  tracking-tight">
+            <h2 className="text-2xl font-semibold text-slate-900  tracking-tight">
               Your Chakras Map
             </h2>
           </div>
@@ -31,18 +31,18 @@ export const ChakrasMapPage: React.FC<{pageIdx: number, setPage: (idx: number) =
                 className="p-4 bg-slate-50  border border-slate-200/50  rounded-2xl flex items-center justify-between"
               >
                 <div className="flex items-center space-x-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-purple-500/10 text-purple-600  font-extrabold text-sm flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-xl bg-purple-500/10 text-purple-600  font-normal text-sm flex items-center justify-center">
                     ☯️
                   </div>
                   <div>
-                    <h4 className="font-extrabold text-slate-900  text-xs">
+                    <h4 className="font-semibold text-slate-900  text-xs">
                       {chakra.name} ({chakra.sanskritName})
                     </h4>
-                    <span className="text-[10px] text-slate-400 font-semibold uppercase">{chakra.status}</span>
+                    <span className="text-[10px] text-slate-400 font-normal uppercase">{chakra.status}</span>
                   </div>
                 </div>
 
-                <div className="font-mono text-xs font-bold text-slate-600 ">
+                <div className="font-mono text-xs font-normal text-slate-600 ">
                   {chakra.percentage}% Energy Focus
                 </div>
               </div>

@@ -93,10 +93,10 @@ export const PieChartComponent: React.FC<{ ratios: { name: string; percentage: n
         {ratios.map((element, idx) => {
           const color = bgColors[element.name] || '#64748B';
           return (
-            <div key={idx} className="flex items-center text-xs font-black text-slate-800">
+            <div key={idx} className="flex items-center text-xs font-normal text-slate-800">
               <span className="w-3.5 h-3.5 rounded-md mr-2.5 transition-colors" style={{ backgroundColor: color }} />
               <span className="min-w-[50px]">{element.name}:</span>
-              <span className={`ml-2 font-mono font-black ${textColors[element.name] || 'text-slate-500'}`}>{element.percentage}%</span>
+              <span className={`ml-2 font-mono font-normal ${textColors[element.name] || 'text-slate-500'}`}>{element.percentage}%</span>
             </div>
           );
         })}
@@ -112,18 +112,18 @@ export const BookletMockup: React.FC = () => {
         <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#F4742E]/15 rounded-full blur-xl" />
         <div className="absolute -bottom-10 -left-10 w-24 h-24 bg-[#6868F9]/15 rounded-full blur-xl" />
 
-        <div className="text-[7.5px] text-[#FDE5A9] font-black uppercase tracking-widest text-center border-b border-white/10 pb-1.5 font-mono">
-          Vedic Rishi
+        <div className="text-[7.5px] text-[#FDE5A9] font-normal uppercase tracking-widest text-center border-b border-white/10 pb-1.5 font-mono">
+          AstroVed
         </div>
 
         <div className="my-auto text-center space-y-1 z-10">
-          <div className="text-[10px] font-black text-white leading-tight tracking-tight drop-shadow-md">
+          <div className="text-[10px] font-normal text-white leading-tight tracking-tight drop-shadow-md">
             Your Personalised
           </div>
-          <div className="text-[12px] font-black tracking-widest text-[#FCAE3B] uppercase bg-white/5 py-1 px-1.5 rounded border border-white/5 drop-shadow">
+          <div className="text-[12px] font-normal tracking-widest text-[#FCAE3B] uppercase bg-white/5 py-1 px-1.5 rounded border border-white/5 drop-shadow">
             Vedic Kundli
           </div>
-          <div className="text-[6.5px] text-indigo-200 font-extrabold tracking-wider uppercase">
+          <div className="text-[6.5px] text-indigo-200 font-normal tracking-wider uppercase">
             Comprehensive Report
           </div>
         </div>
@@ -132,7 +132,7 @@ export const BookletMockup: React.FC = () => {
           <div className="w-4 h-4 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm">
             <div className="w-1.5 h-1.5 rounded-full bg-[#FCAE3B]" />
           </div>
-          <div className="text-[5px] text-indigo-300 font-bold tracking-widest uppercase">
+          <div className="text-[5px] text-indigo-300 font-normal tracking-widest uppercase">
             Encrypted
           </div>
         </div>
@@ -151,15 +151,15 @@ export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies'
 
       <div className="flex-1 space-y-4 relative z-10 flex flex-col justify-center text-center sm:text-left">
         <div>
-          <div className="inline-flex items-center space-x-1.5 bg-orange-500/20 text-orange-300 px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest border border-orange-500/20 mb-3">
+          <div className="inline-flex items-center space-x-1.5 bg-orange-500/20 text-orange-300 px-2.5 py-1 rounded-lg text-[10px] font-normal uppercase tracking-widest border border-orange-500/20 mb-3">
             <Lock size={10} />
             <span>Premium Insight</span>
           </div>
-          <h4 className="text-xl sm:text-2xl font-black text-white leading-tight tracking-tight">
-            {variant === 'combo' ? 'Unlock Full 150+ Page PDF & Gemstone Guide' : 'Get Complete Karmic Remedies & Rituals'}
+          <h4 className="text-xl sm:text-2xl font-semibold text-white leading-tight tracking-tight">
+            {variant === 'combo' ? 'Unlock Personalized Full Kundali Report' : 'Get Complete Karmic Remedies & Rituals'}
           </h4>
-          <p className="text-indigo-200 text-xs sm:text-sm font-semibold mt-2 leading-relaxed max-w-md mx-auto sm:mx-0">
-            {variant === 'combo' 
+          <p className="text-indigo-200 text-xs sm:text-sm font-normal mt-2 leading-relaxed max-w-md mx-auto sm:mx-0">
+            {variant === 'combo'
               ? 'This summary is just 5% of your full profile. Discover precise timings, career peaks, and personalized gemstone recommendations.'
               : 'Discover exact mantras, poojas, and daily rituals scientifically designed to balance your dominant doshas and clear karmic blocks.'}
           </p>
@@ -167,14 +167,14 @@ export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies'
 
         <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
           <Link to="/report/premium-deliverables"
-            className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white px-6 py-3.5 rounded-xl font-black text-sm tracking-wide transition-all shadow-lg shadow-orange-500/25 flex items-center justify-center space-x-2"
+            className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white px-6 py-3.5 rounded-xl font-normal text-sm tracking-wide transition-all shadow-lg shadow-orange-500/25 flex items-center justify-center space-x-2"
           >
             <span>Upgrade Now</span>
             <CreditCard size={16} />
           </Link>
           <button
             onClick={onNext}
-            className="text-xs font-bold text-indigo-300 hover:text-white transition-colors py-2"
+            className="text-xs font-normal text-indigo-300 hover:text-white transition-colors py-2"
           >
             Continue reading summary
           </button>

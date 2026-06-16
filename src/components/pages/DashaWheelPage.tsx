@@ -15,16 +15,16 @@ export const DashaWheelPage: React.FC<{pageIdx: number, setPage: (idx: number) =
   return (
     <div className="space-y-6">
       <div className="space-y-1">
-        <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+        <h2 className="text-2xl font-semibold text-slate-900 tracking-tight">
           Vimshottari Dasha Analysis
         </h2>
       </div>
 
-      <div className="p-4 bg-emerald-500/10 text-emerald-600 text-xs font-black uppercase text-center rounded-xl md:rounded-2xl">
+      <div className="p-4 bg-emerald-500/10 text-emerald-600 text-xs font-normal uppercase text-center rounded-xl md:rounded-2xl">
         🟢 Active Dasha Phase: Rahu Mahadasha & Venus Antardasha
       </div>
 
-      <p className="text-xs text-slate-600 leading-relaxed font-semibold">
+      <p className="text-xs text-slate-600 leading-relaxed font-normal">
         Vedic astrology divides your life journey into structured chronological dasha segments ruled by key planets. The planetary lord ruling your active Mahadasha provides the principal theme for your career developments, wealth, and wellness traits.
       </p>
 
@@ -40,14 +40,14 @@ export const DashaWheelPage: React.FC<{pageIdx: number, setPage: (idx: number) =
 
             <div className="p-4.5 rounded-2xl bg-slate-50 hover:bg-slate-100/50 border border-slate-200/50 transition flex justify-between items-center">
               <div className="space-y-0.5">
-                <span className="text-[9px] font-black text-indigo-600 uppercase tracking-widest block">
+                <span className="text-[9px] font-normal text-indigo-600 uppercase tracking-widest block">
                   {item.levelName}
                 </span>
-                <h4 className="font-extrabold text-slate-900 text-sm">
+                <h4 className="font-semibold text-slate-900 text-sm">
                   Lord: {item.planetName}
                 </h4>
               </div>
-              <div className="text-right text-xs font-mono font-bold text-slate-500">
+              <div className="text-right text-xs font-mono font-normal text-slate-500">
                 <div>{item.startDate}</div>
                 <div className="text-[10px] text-slate-400">until {item.endDate}</div>
               </div>

@@ -83,7 +83,7 @@ export const BirthDetailsForm: React.FC = () => {
       <div className="flex border-b border-indigo-50 ">
         <button
           onClick={() => setActiveTab('kundli')}
-          className={`flex-1 py-4.5 text-center font-bold transition-all duration-300 relative ${activeTab === 'kundli'
+          className={`flex-1 py-4.5 text-center font-normal transition-all duration-300 relative ${activeTab === 'kundli'
             ? 'text-indigo-600  bg-white '
             : 'text-slate-400  hover:text-slate-600 bg-indigo-50/20 '
             }`}
@@ -98,7 +98,7 @@ export const BirthDetailsForm: React.FC = () => {
       <div className="p-6 md:p-8">
         <div className="flex justify-between items-start mb-6">
           <div>
-            <h2 className="text-2xl font-extrabold text-slate-800  tracking-tight">
+            <h2 className="text-2xl font-semibold text-slate-800  tracking-tight">
               {activeTab === 'kundli' ? 'Enter Birth Details' : 'Enter Numerology Profile'}
             </h2>
             <p className="text-sm text-slate-500  mt-1">
@@ -108,13 +108,13 @@ export const BirthDetailsForm: React.FC = () => {
 
           {/* Language Selector */}
           <div className="flex flex-col items-end">
-            <label className="text-[10px] font-bold text-indigo-500 uppercase tracking-widest mb-1.5 flex items-center">
+            <label className="text-[10px] font-normal text-indigo-500 uppercase tracking-widest mb-1.5 flex items-center">
               <Globe2 size={11} className="mr-1" /> Language
             </label>
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value as 'english' | 'hindi')}
-              className="bg-indigo-50/50  border-0 text-slate-700  text-xs rounded-xl px-3 py-1.5 font-bold focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+              className="bg-indigo-50/50  border-0 text-slate-700  text-xs rounded-xl px-3 py-1.5 font-normal focus:ring-2 focus:ring-indigo-400 focus:outline-none"
             >
               <option value="english">English</option>
               <option value="hindi">हिन्दी (Hindi)</option>
@@ -125,7 +125,7 @@ export const BirthDetailsForm: React.FC = () => {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Full Name */}
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-slate-600  uppercase tracking-wider flex items-center">
+            <label className="text-xs font-normal text-slate-600  uppercase tracking-wider flex items-center">
               <User size={14} className="mr-1.5 text-indigo-500" /> Full Name
             </label>
             <div className="relative">
@@ -144,13 +144,13 @@ export const BirthDetailsForm: React.FC = () => {
           <div className="grid grid-cols-2 gap-4">
             {/* Gender */}
             <div className="space-y-1.5 col-span-2 sm:col-span-1">
-              <label className="text-xs font-bold text-slate-600  uppercase tracking-wider">
+              <label className="text-xs font-normal text-slate-600  uppercase tracking-wider">
                 Gender
               </label>
               <select
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
-                className="w-full bg-slate-50  border border-slate-200/85  focus:border-indigo-500 :border-indigo-400 rounded-2xl py-3 px-4 text-slate-800  font-semibold focus:ring-0 focus:outline-none transition-all"
+                className="w-full bg-slate-50  border border-slate-200/85  focus:border-indigo-500 :border-indigo-400 rounded-2xl py-3 px-4 text-slate-800  font-normal focus:ring-0 focus:outline-none transition-all"
               >
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -162,14 +162,14 @@ export const BirthDetailsForm: React.FC = () => {
 
           {/* Date of Birth Grid */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-600  uppercase tracking-wider flex items-center">
+            <label className="text-xs font-normal text-slate-600  uppercase tracking-wider flex items-center">
               <Calendar size={14} className="mr-1.5 text-indigo-500" /> Date of Birth
             </label>
             <div className="grid grid-cols-3 gap-3">
               <select
                 value={day}
                 onChange={(e) => setDay(Number(e.target.value))}
-                className="bg-slate-50  border border-slate-200/85  rounded-xl py-3 px-3.5 text-center text-slate-800  font-semibold focus:ring-0 focus:outline-none"
+                className="bg-slate-50  border border-slate-200/85  rounded-xl py-3 px-3.5 text-center text-slate-800  font-normal focus:ring-0 focus:outline-none"
               >
                 {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
                   <option key={d} value={d}>{d}</option>
@@ -179,7 +179,7 @@ export const BirthDetailsForm: React.FC = () => {
               <select
                 value={month}
                 onChange={(e) => setMonth(Number(e.target.value))}
-                className="bg-slate-50  border border-slate-200/85  rounded-xl py-3 px-3 text-slate-800  font-semibold focus:ring-0 focus:outline-none"
+                className="bg-slate-50  border border-slate-200/85  rounded-xl py-3 px-3 text-slate-800  font-normal focus:ring-0 focus:outline-none"
               >
                 {[
                   'January', 'February', 'March', 'April', 'May', 'June',
@@ -192,7 +192,7 @@ export const BirthDetailsForm: React.FC = () => {
               <select
                 value={year}
                 onChange={(e) => setYear(Number(e.target.value))}
-                className="bg-slate-50  border border-slate-200/85  rounded-xl py-3 px-3 text-slate-800  font-semibold focus:ring-0 focus:outline-none"
+                className="bg-slate-50  border border-slate-200/85  rounded-xl py-3 px-3 text-slate-800  font-normal focus:ring-0 focus:outline-none"
               >
                 {Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i).map((y) => (
                   <option key={y} value={y}>{y}</option>
@@ -203,16 +203,16 @@ export const BirthDetailsForm: React.FC = () => {
 
           {/* Time of Birth Grid */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-600  uppercase tracking-wider flex items-center">
+            <label className="text-xs font-normal text-slate-600  uppercase tracking-wider flex items-center">
               <Clock size={14} className="mr-1.5 text-indigo-500" /> Time of Birth (24hr clock format)
             </label>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex items-center space-x-2 bg-slate-50  border border-slate-200/85  rounded-2xl px-3 py-1">
-                <span className="text-xs font-bold text-slate-400">Hour</span>
+                <span className="text-xs font-normal text-slate-400">Hour</span>
                 <select
                   value={hour}
                   onChange={(e) => setHour(Number(e.target.value))}
-                  className="w-full bg-transparent border-0 text-slate-800  font-bold focus:ring-0 focus:outline-none py-2"
+                  className="w-full bg-transparent border-0 text-slate-800  font-normal focus:ring-0 focus:outline-none py-2"
                 >
                   {Array.from({ length: 24 }, (_, i) => i).map((h) => (
                     <option key={h} value={h}>{String(h).padStart(2, '0')}</option>
@@ -221,11 +221,11 @@ export const BirthDetailsForm: React.FC = () => {
               </div>
 
               <div className="flex items-center space-x-2 bg-slate-50  border border-slate-200/85  rounded-2xl px-3 py-1">
-                <span className="text-xs font-bold text-slate-400">Minute</span>
+                <span className="text-xs font-normal text-slate-400">Minute</span>
                 <select
                   value={minute}
                   onChange={(e) => setMinute(Number(e.target.value))}
-                  className="w-full bg-transparent border-0 text-slate-800  font-bold focus:ring-0 focus:outline-none py-2"
+                  className="w-full bg-transparent border-0 text-slate-800  font-normal focus:ring-0 focus:outline-none py-2"
                 >
                   {Array.from({ length: 60 }, (_, i) => i).map((m) => (
                     <option key={m} value={m}>{String(m).padStart(2, '0')}</option>
@@ -237,7 +237,7 @@ export const BirthDetailsForm: React.FC = () => {
 
           {/* Place of Birth */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-600  uppercase tracking-wider flex items-center">
+            <label className="text-xs font-normal text-slate-600  uppercase tracking-wider flex items-center">
               <MapPin size={14} className="mr-1.5 text-indigo-500" /> Place of Birth
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 relative z-40">
@@ -248,7 +248,7 @@ export const BirthDetailsForm: React.FC = () => {
                   setCityInput('');
                   setCity('');
                 }}
-                className="w-full bg-slate-50  border border-slate-200/85  rounded-2xl py-3 px-4 text-slate-800  font-semibold focus:ring-0 focus:outline-none"
+                className="w-full bg-slate-50  border border-slate-200/85  rounded-2xl py-3 px-4 text-slate-800  font-normal focus:ring-0 focus:outline-none"
               >
                 <option value="">Select Country</option>
                 {allCountries.map((c) => (
@@ -269,7 +269,7 @@ export const BirthDetailsForm: React.FC = () => {
                   onFocus={() => setShowSuggestions(true)}
                   onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                   placeholder="Type your City..."
-                  className="w-full bg-slate-50  border border-slate-200/85  focus:border-indigo-500 :border-indigo-400 rounded-2xl py-3 px-4 text-slate-800  placeholder:text-slate-450 focus:ring-0 transition-all font-semibold"
+                  className="w-full bg-slate-50  border border-slate-200/85  focus:border-indigo-500 :border-indigo-400 rounded-2xl py-3 px-4 text-slate-800  placeholder:text-slate-450 focus:ring-0 transition-all font-normal"
                 />
                 <AnimatePresence>
                   {showSuggestions && filteredCities.length > 0 && (
@@ -287,7 +287,7 @@ export const BirthDetailsForm: React.FC = () => {
                             setCity(c.name);
                             setShowSuggestions(false);
                           }}
-                          className="px-4 py-2 text-sm text-slate-700 font-semibold hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer transition-colors"
+                          className="px-4 py-2 text-sm text-slate-700 font-normal hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer transition-colors"
                         >
                           {c.name}
                         </li>
@@ -304,7 +304,7 @@ export const BirthDetailsForm: React.FC = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 py-4.5 rounded-2xl font-extrabold text-base tracking-wide flex items-center justify-center space-x-2 transition-all duration-300 shadow-lg shadow-orange-500/25 active:scale-[0.98] disabled:opacity-75 disabled:cursor-not-allowed cursor-pointer"
+              className="w-full text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 py-4.5 rounded-2xl font-normal text-base tracking-wide flex items-center justify-center space-x-2 transition-all duration-300 shadow-lg shadow-orange-500/25 active:scale-[0.98] disabled:opacity-75 disabled:cursor-not-allowed cursor-pointer"
             >
               {isLoading ? (
                 <>

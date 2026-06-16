@@ -15,7 +15,7 @@ export const DominantChakraPage: React.FC<{pageIdx: number, setPage: (idx: numbe
       return (
         <div className="space-y-6">
           <div className="space-y-1">
-            <h2 className="text-2xl font-black text-slate-900  tracking-tight">
+            <h2 className="text-2xl font-semibold text-slate-900  tracking-tight">
               Dominant Chakra Details
             </h2>
           </div>
@@ -41,23 +41,23 @@ export const DominantChakraPage: React.FC<{pageIdx: number, setPage: (idx: numbe
               </div>
             </div>
 
-            <h3 className="text-lg font-black text-slate-900 ">
+            <h3 className="text-lg font-semibold text-slate-900 ">
               {data.chakraAnalysis.dominantChakra.name} Chakra
             </h3>
-            <span className="px-3.5 py-1 bg-emerald-500/10 text-emerald-600  border border-emerald-500/10 text-[10px] uppercase font-mono rounded-full font-bold">
+            <span className="px-3.5 py-1 bg-emerald-500/10 text-emerald-600  border border-emerald-500/10 text-[10px] uppercase font-mono rounded-full font-normal">
               {data.chakraAnalysis.dominantChakra.status} ({data.chakraAnalysis.dominantChakra.percentage}% Strength)
             </span>
           </div>
 
-          <p className="text-xs text-slate-600  leading-relaxed font-semibold italic text-center max-w-md mx-auto">
+          <p className="text-xs text-slate-600  leading-relaxed font-normal italic text-center max-w-md mx-auto">
             {data.chakraAnalysis.dominantChakra.description}
           </p>
 
           <div className="p-4 bg-indigo-50/30  rounded-xl space-y-1.5 border border-indigo-50 ">
-            <span className="text-[10px] font-black uppercase text-indigo-600  tracking-wider block">
+            <span className="text-[10px] font-normal uppercase text-indigo-600  tracking-wider block">
               💡 Soothing Spiritual Remedy:
             </span>
-            <p className="text-xs text-slate-600  leading-relaxed font-semibold">
+            <p className="text-xs text-slate-600  leading-relaxed font-normal">
               {data.chakraAnalysis.dominantChakra.remedy}
             </p>
           </div>

@@ -22,10 +22,10 @@ export const WelcomePage: React.FC<{pageIdx: number, setPage: (idx: number) => v
             🕉️
           </motion.div>
           <div className="space-y-1">
-            <h1 className="text-3xl md:text-4xl font-black text-slate-900  tracking-tight leading-tight">
+            <h1 className="text-3xl md:text-4xl font-semibold text-slate-900  tracking-tight leading-tight">
               Namaste, <span className="text-indigo-600 ">{data.birthDetails.name}</span>
             </h1>
-            <p className="text-base font-bold text-orange-500 ">
+            <p className="text-base font-normal text-orange-500 ">
               Welcome to Your Pristine Vedic Blueprint
             </p>
           </div>
@@ -36,7 +36,7 @@ export const WelcomePage: React.FC<{pageIdx: number, setPage: (idx: number) => v
           </p>
 
           <div className="bg-indigo-50/50  p-5 rounded-2xl border border-indigo-50/80  text-left space-y-3.5 max-w-md mx-auto">
-            <ul className="text-xs text-slate-600  space-y-2.5 font-semibold">
+            <ul className="text-xs text-slate-600  space-y-2.5 font-normal">
               <li className="flex items-center"><CheckCircle size={12} className="text-emerald-500 mr-2" /> Your Big 3 core sign breakdown</li>
               <li className="flex items-center"><CheckCircle size={12} className="text-emerald-500 mr-2" /> Five Elements balance (Tattvas ratios)</li>
               <li className="flex items-center"><CheckCircle size={12} className="text-emerald-500 mr-2" /> Karmic Focal Points & Spiritual lessons</li>

@@ -84,10 +84,10 @@ const PieChartComponent: React.FC<{ ratios: { name: string; percentage: number }
         {ratios.map((element, idx) => {
           const color = bgColors[element.name] || '#64748B';
           return (
-            <div key={idx} className="flex items-center text-xs font-black text-slate-800">
+            <div key={idx} className="flex items-center text-xs font-normal text-slate-800">
               <span className="w-3.5 h-3.5 rounded-md mr-2.5 transition-colors" style={{ backgroundColor: color }} />
               <span className="min-w-[50px]">{element.name}:</span>
-              <span className={`ml-2 font-mono font-black ${textColors[element.name] || 'text-slate-500'}`}>{element.percentage}%</span>
+              <span className={`ml-2 font-mono font-normal ${textColors[element.name] || 'text-slate-500'}`}>{element.percentage}%</span>
             </div>
           );
         })}
@@ -106,27 +106,27 @@ const BookletMockup: React.FC = () => {
         <div className="absolute -bottom-10 -left-10 w-24 h-24 bg-[#6868F9]/15 rounded-full blur-xl" />
 
         {/* Top Header */}
-        <div className="text-[7.5px] text-[#FDE5A9] font-black uppercase tracking-widest text-center border-b border-white/10 pb-1.5 font-mono">
-          Vedic Rishi
+        <div className="text-[7.5px] text-[#FDE5A9] font-normal uppercase tracking-widest text-center border-b border-white/10 pb-1.5 font-mono">
+          AstroVed
         </div>
 
         {/* Dynamic Title Text */}
         <div className="my-auto text-center space-y-1 z-10">
-          <div className="text-[10px] font-black text-white leading-tight tracking-tight drop-shadow-md">
+          <div className="text-[10px] font-normal text-white leading-tight tracking-tight drop-shadow-md">
             Your Personalised
           </div>
-          <div className="text-[12px] font-black tracking-widest text-[#FCAE3B] uppercase bg-white/5 py-1 px-1.5 rounded border border-white/5 drop-shadow">
+          <div className="text-[12px] font-normal tracking-widest text-[#FCAE3B] uppercase bg-white/5 py-1 px-1.5 rounded border border-white/5 drop-shadow">
             Vedic Kundli
           </div>
-          <div className="text-[6.5px] text-indigo-200 font-extrabold tracking-wider uppercase">
+          <div className="text-[6.5px] text-indigo-200 font-normal tracking-wider uppercase">
             145+ Pages Report
           </div>
         </div>
 
         {/* Footer Pt. Rishiraj */}
         <div className="text-center pt-1.5 border-t border-white/10 z-10">
-          <span className="text-[6px] text-slate-300 block font-semibold">Compiled by</span>
-          <span className="text-[7px] text-[#F96D6D] font-extrabold uppercase tracking-widest">Pt. Rishiraj</span>
+          <span className="text-[6px] text-slate-300 block font-normal">Compiled by</span>
+          <span className="text-[7px] text-[#F96D6D] font-normal uppercase tracking-widest">Pt. Rishiraj</span>
         </div>
       </div>
     </div>
@@ -211,7 +211,7 @@ export const KundliReportBook: React.FC = () => {
         <div className="p-5 border-b border-slate-200/80 flex justify-between items-center bg-slate-50/60">
           <div className="flex items-center space-x-2">
             <BookOpen className="text-indigo-600" size={20} />
-            <span className="font-extrabold text-sm uppercase tracking-wider text-slate-800">
+            <span className="font-semibold text-sm uppercase tracking-wider text-slate-800">
               Report Index
             </span>
           </div>
@@ -234,13 +234,16 @@ export const KundliReportBook: React.FC = () => {
                 onClick={() => {
                   setPage(idx);
                   handleScrollToTop();
+                  if (window.innerWidth < 768) {
+                    setIsSidebarOpen(false);
+                  }
                 }}
-                className={`w-full flex items-center px-4 py-2.5 rounded-xl text-left text-xs font-semibold transition-all group ${isActive
+                className={`w-full flex items-center px-4 py-2.5 rounded-xl text-left text-xs font-normal transition-all group ${isActive
                   ? 'bg-[#FE7950] text-white shadow-md shadow-[#FE7950]/15'
                   : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                   }`}
               >
-                <div className={`w-5 h-5 rounded-full mr-3 text-[10px] flex items-center justify-center font-bold border transition-colors ${isActive
+                <div className={`w-5 h-5 rounded-full mr-3 text-[10px] flex items-center justify-center font-normal border transition-colors ${isActive
                   ? 'border-white/40 bg-white/20 text-white'
                   : isCompleted
                     ? 'border-indigo-200 bg-indigo-50/40 text-indigo-500'
@@ -250,7 +253,7 @@ export const KundliReportBook: React.FC = () => {
                 </div>
                 <span className="flex-1 truncate">{title}</span>
                 {idx === 17 && (
-                  <span className={`px-1.5 py-0.5 rounded text-[8px] uppercase font-black font-mono ml-2 tracking-wider ${isActive ? 'bg-orange-500 text-white' : 'bg-orange-500 text-white animate-pulse'
+                  <span className={`px-1.5 py-0.5 rounded text-[8px] uppercase font-normal font-mono ml-2 tracking-wider ${isActive ? 'bg-orange-500 text-white' : 'bg-orange-500 text-white animate-pulse'
                     }`}>
                     PRO
                   </span>
@@ -264,7 +267,7 @@ export const KundliReportBook: React.FC = () => {
         <div className="p-4 border-t border-slate-200/80 bg-slate-50/60 flex justify-center">
           <button
             onClick={handleResetReport}
-            className="text-xs font-bold text-slate-500 hover:text-orange-500 hover:text-orange-600 flex items-center space-x-1.5 transition-colors focus:outline-none"
+            className="text-xs font-normal text-slate-500 hover:text-orange-500 hover:text-orange-600 flex items-center space-x-1.5 transition-colors focus:outline-none"
           >
             <RefreshCw size={12} />
             <span>Enter Different Details</span>
@@ -278,7 +281,7 @@ export const KundliReportBook: React.FC = () => {
         {!isSidebarOpen && (
           <button
             onClick={() => setIsSidebarOpen(true)}
-            className="absolute top-4 left-4 z-30 p-2 px-3 bg-[#FE7950] hover:bg-[#eb6a42] text-white text-xs font-extrabold rounded-lg transition-colors flex items-center shadow-lg"
+            className="absolute top-4 left-4 z-30 p-2 px-3 bg-[#FE7950] hover:bg-[#eb6a42] text-white text-xs font-normal rounded-lg transition-colors flex items-center shadow-lg"
           >
             <BookOpen size={13} className="mr-1.5" />
             <span>Show Index</span>
@@ -317,12 +320,12 @@ export const KundliReportBook: React.FC = () => {
 
                 {/* Center Section Title */}
                 <div className="flex-[2] sm:flex-none flex flex-col items-center justify-center text-center px-2">
-                  <div className="flex items-center mb-1 text-[#FE7950] opacity-80">
+                  <div className="flex items-center space-x-3 text-slate-400">
                     <div className="hidden sm:block w-6 h-px bg-gradient-to-r from-transparent to-[#FE7950] mr-2"></div>
                     <Compass size={14} className="animate-spin" style={{ animationDuration: '25s' }} />
                     <div className="hidden sm:block w-6 h-px bg-gradient-to-l from-transparent to-[#FE7950] ml-2"></div>
                   </div>
-                  <span className="text-[10px] sm:text-xs font-black text-slate-800 tracking-[0.15em] sm:tracking-[0.2em] uppercase text-center break-words">
+                  <span className="text-[10px] sm:text-xs font-semibold text-slate-800 tracking-[0.15em] sm:tracking-[0.2em] uppercase text-center break-words">
                     {PAGE_TITLES[currentPage]}
                   </span>
                 </div>
@@ -359,17 +362,19 @@ export const KundliReportBook: React.FC = () => {
                 <ArrowLeft size={16} className="text-slate-700" />
               </button>
 
-              <button
-                onClick={() => {
-                  nextPage();
-                  handleScrollToTop();
-                }}
-                disabled={currentPage === 17}
-                className="flex items-center px-6 py-3 rounded-2xl bg-[#6868f9] hover:bg-[#5252e6] text-white disabled:opacity-30 disabled:cursor-not-allowed text-xs font-black shadow-md tracking-wider transition cursor-pointer"
-              >
-                <span>Next</span>
-                <ArrowRight size={14} className="ml-1.5" />
-              </button>
+              {currentPage < PAGE_TITLES.length - 1 && (
+                <button
+                  onClick={() => {
+                    nextPage();
+                    handleScrollToTop();
+                  }}
+                  disabled={currentPage === 19}
+                  className="flex items-center px-6 py-3 rounded-2xl bg-[#6868f9] hover:bg-[#5252e6] text-white disabled:opacity-30 disabled:cursor-not-allowed text-xs font-normal shadow-md tracking-wider transition cursor-pointer"
+                >
+                  <span>Next</span>
+                  <ArrowRight size={14} className="ml-1.5" />
+                </button>
+              )}
             </footer>
 
           </div>

@@ -38,13 +38,13 @@ const LoadingScreen: React.FC = () => {
         transition={{ delay: 0.3 }}
         className="mt-10 space-y-3"
       >
-        <h2 className="text-2xl font-black tracking-tight bg-gradient-to-r from-orange-200 via-white to-orange-200 bg-clip-text text-transparent">
+        <h2 className="text-2xl font-semibold tracking-tight bg-gradient-to-r from-orange-200 via-white to-orange-200 bg-clip-text text-transparent">
           Calculating Your Cosmic Alignments
         </h2>
         <motion.p
           animate={{ opacity: [0.6, 1, 0.6] }}
           transition={{ duration: 1.8, repeat: Infinity }}
-          className="text-xs tracking-widest uppercase font-mono font-bold text-slate-400"
+          className="text-xs tracking-widest uppercase font-mono font-normal text-slate-400"
         >
           Connecting to Lahiri coordinates library...
         </motion.p>
@@ -79,12 +79,12 @@ const LandingScreen: React.FC = () => {
         <div className="space-y-6 text-center lg:text-left">
           <div className="inline-flex items-center space-x-2 bg-indigo-50/70 border border-indigo-100 rounded-full px-4.5 py-2">
             <Sparkles size={14} className="text-indigo-600 animate-pulse" />
-            <span className="text-indigo-950 font-black text-xs uppercase tracking-wider">
+            <span className="text-indigo-950 font-normal text-xs uppercase tracking-wider">
               AstroVed
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-indigo-950 tracking-tight leading-[1.08] lg:-mt-2">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-indigo-950 tracking-tight leading-[1.08] lg:-mt-2">
             Get All Your <br />
             <span className="bg-gradient-to-r from-orange-500 via-orange-600 to-indigo-600 bg-clip-text text-transparent">
               Questions Answered
@@ -92,18 +92,18 @@ const LandingScreen: React.FC = () => {
             — Right Here
           </h1>
 
-          <p className="text-slate-500 text-sm md:text-base max-w-md mx-auto lg:mx-0 leading-relaxed font-semibold">
+          <p className="text-slate-500 text-sm md:text-base max-w-md mx-auto lg:mx-0 leading-relaxed font-normal">
             Unlock professional planetary degree charts, sub-period timelines, chakra progress scores, and targeted life remediation in one pristine digital booklet.
           </p>
 
           <div className="relative inline-block w-full max-w-sm text-left mx-auto lg:mx-0">
-            <label className="text-[10px] font-black text-indigo-500 uppercase tracking-widest mb-1.5 block">
+            <label className="text-[10px] font-normal text-indigo-500 uppercase tracking-widest mb-1.5 block">
               Select Your Focus Area
             </label>
             <button
               type="button"
               onClick={() => setIsFocusOpen(!isFocusOpen)}
-              className="w-full bg-white border border-slate-200/80 hover:border-indigo-400 py-3.5 px-5 rounded-2xl flex items-center justify-between font-extrabold text-sm text-slate-800 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-indigo-200"
+              className="w-full bg-white border border-slate-200/80 hover:border-indigo-400 py-3.5 px-5 rounded-2xl flex items-center justify-between font-normal text-sm text-slate-800 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-indigo-200"
             >
               <span>{focusArea}</span>
               <ChevronDown size={16} className="text-orange-500 ml-2" />
@@ -125,7 +125,7 @@ const LandingScreen: React.FC = () => {
                           setFocusArea(area);
                           setIsFocusOpen(false);
                         }}
-                        className="w-full text-left py-3 px-5 text-xs font-bold text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 border-b border-slate-50 last:border-0 transition-colors"
+                        className="w-full text-left py-3 px-5 text-xs font-normal text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 border-b border-slate-50 last:border-0 transition-colors"
                       >
                         {area}
                       </button>
@@ -138,7 +138,7 @@ const LandingScreen: React.FC = () => {
 
           <div className="h-0.5 w-16 bg-orange-400 rounded-full mx-auto lg:mx-0 my-3" />
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 text-slate-400 text-xs font-bold">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 text-slate-400 text-xs font-normal">
             <span className="flex items-center"><Award size={14} className="text-orange-500 mr-1.5" /> Sidereal Lahiri Ayanamsha</span>
             <span className="hidden md:inline text-slate-300">•</span>
             <span className="flex items-center"><Shield size={14} className="text-indigo-500 mr-1.5" /> High Encryption Privacy</span>

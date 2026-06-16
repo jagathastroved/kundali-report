@@ -15,8 +15,8 @@ export const CorePersonalityPage: React.FC<{pageIdx: number, setPage: (idx: numb
       return (
         <div className="space-y-6">
           <div className="space-y-1">
-            <span className="text-[10px] font-black uppercase text-[#FE7950] tracking-widest block">Chapter 03</span>
-            <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+            <span className="text-[10px] font-normal uppercase text-[#FE7950] tracking-widest block">Chapter 03</span>
+            <h2 className="text-2xl font-semibold text-slate-900 tracking-tight">
               Core Personality Profile
             </h2>
           </div>
@@ -32,10 +32,10 @@ export const CorePersonalityPage: React.FC<{pageIdx: number, setPage: (idx: numb
                 ☀️
               </div>
               <div className="flex-1">
-                <span className="font-extrabold text-slate-800 text-sm block">
+                <span className="font-normal text-slate-800 text-sm block">
                   Sun Sign (Surya)
                 </span>
-                <span className="text-xs text-slate-500 font-semibold leading-relaxed">
+                <span className="text-xs text-slate-500 font-normal leading-relaxed">
                   The essence of your core self, representational ego, spark of truth and spiritual willpower in this incarnation.
                 </span>
               </div>
@@ -47,10 +47,10 @@ export const CorePersonalityPage: React.FC<{pageIdx: number, setPage: (idx: numb
                 🌕
               </div>
               <div className="flex-1">
-                <span className="font-extrabold text-[#1E3A8A] text-sm block">
+                <span className="font-normal text-[#1E3A8A] text-sm block">
                   Moon Sign (Chandra)
                 </span>
-                <span className="text-xs text-slate-500 font-semibold leading-relaxed">
+                <span className="text-xs text-slate-500 font-normal leading-relaxed">
                   An insight into your emotional self, inner instincts, gut feelings, safety needs and intuitive processes.
                 </span>
               </div>
@@ -58,21 +58,21 @@ export const CorePersonalityPage: React.FC<{pageIdx: number, setPage: (idx: numb
 
             {/* Rising Sign Pill */}
             <div className="p-4 bg-[#FFF5F5] border border-[#FAD0C4] rounded-2xl flex items-center space-x-4">
-              <div className="w-10 h-10 rounded-full bg-[#FEEAEA] border-[#F9B4A3] flex items-center justify-center text-xs font-black text-[#991B1B] shadow-sm font-sans tracking-tight">
+              <div className="w-10 h-10 rounded-full bg-[#FEEAEA] border-[#F9B4A3] flex items-center justify-center text-xs font-normal text-[#991B1B] shadow-sm font-sans tracking-tight">
                 ASC
               </div>
               <div className="flex-1">
-                <span className="font-extrabold text-[#991B1B] text-sm block">
+                <span className="font-normal text-[#991B1B] text-sm block">
                   Rising Sign (Lagna)
                 </span>
-                <span className="text-xs text-slate-500 font-semibold leading-relaxed">
+                <span className="text-xs text-slate-500 font-normal leading-relaxed">
                   Your outward persona and social mask. This represents how you naturally express yourself to strangers.
                 </span>
               </div>
             </div>
           </div>
 
-          <p className="text-xs text-slate-500 leading-relaxed font-semibold italic border-l-2 border-slate-300 pl-3">
+          <p className="text-xs text-slate-500 leading-relaxed font-normal italic border-l-2 border-slate-300 pl-3">
             "{data.personality.description}"
           </p>
 

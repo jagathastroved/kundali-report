@@ -15,7 +15,7 @@ export const IshtaDevataPage: React.FC<{pageIdx: number, setPage: (idx: number) 
       return (
         <div className="space-y-6">
           <div className="space-y-1">
-            <h2 className="text-2xl font-black text-slate-900  tracking-tight">
+            <h2 className="text-2xl font-semibold text-slate-900  tracking-tight">
               Favorable Ishta Devata
             </h2>
           </div>
@@ -24,9 +24,9 @@ export const IshtaDevataPage: React.FC<{pageIdx: number, setPage: (idx: number) 
           </p>
 
           <div className="bg-indigo-700  p-5 rounded-3xl text-white space-y-3 relative overflow-hidden shadow-xl">
-            <div className="absolute right-0 bottom-0 opacity-10 font-bold select-none text-9xl">🕉️</div>
-            <h3 className="font-black text-lg text-indigo-100">Favorable Archetypes:</h3>
-            <div className="text-xl font-bold bg-white/10 p-2.5 rounded-xl border border-white/10 w-fit text-orange-200">
+            <div className="absolute right-0 bottom-0 opacity-10 font-normal select-none text-9xl">🕉️</div>
+            <h3 className="font-semibold text-lg text-indigo-100">Favorable Archetypes:</h3>
+            <div className="text-xl font-normal bg-white/10 p-2.5 rounded-xl border border-white/10 w-fit text-orange-200">
               {data.spiritualProfile.ishtaDevata.name}
             </div>
             <p className="text-xs text-indigo-200 leading-relaxed">
@@ -44,7 +44,7 @@ export const IshtaDevataPage: React.FC<{pageIdx: number, setPage: (idx: number) 
                 <div className="w-16 h-16 rounded-full bg-white  flex items-center justify-center text-3xl mx-auto shadow-md">
                   {deity.emoji}
                 </div>
-                <h4 className="font-extrabold text-slate-900  text-xs">
+                <h4 className="font-semibold text-slate-900  text-xs">
                   {deity.name}
                 </h4>
               </div>

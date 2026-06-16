@@ -15,7 +15,7 @@ export const FutureForecastsPage: React.FC<{pageIdx: number, setPage: (idx: numb
       return (
         <div className="space-y-6">
           <div className="space-y-1">
-            <h2 className="text-2xl font-black text-slate-900  tracking-tight">
+            <h2 className="text-2xl font-semibold text-slate-900  tracking-tight">
               Future Predictions & specialized predictions
             </h2>
           </div>
@@ -40,24 +40,24 @@ export const FutureForecastsPage: React.FC<{pageIdx: number, setPage: (idx: numb
                   className={`p-5 rounded-2xl bg-slate-50  hover:bg-slate-100/50 border border-slate-200/50  border-l-4 ${categoryColors[val.category as keyof typeof categoryColors] || 'border-l-indigo-500'} space-y-3 shadow-sm transition`}
                 >
                   <div className="flex justify-between items-center border-b border-indigo-50/60  pb-2">
-                    <h4 className="font-extrabold text-sm text-slate-950  flex items-center">
+                    <h4 className="font-semibold text-sm text-slate-950  flex items-center">
                       <span className="text-base mr-2">{icons[val.category as keyof typeof icons] || '✦'}</span>
                       {val.category} Assessment
                     </h4>
 
                     {/* Visual Score rings/pills */}
-                    <div className="px-3 py-1 bg-indigo-500/10 text-indigo-600  font-bold font-mono text-xs rounded-xl shadow-inner">
+                    <div className="px-3 py-1 bg-indigo-500/10 text-indigo-600  font-normal font-mono text-xs rounded-xl shadow-inner">
                       Score: {val.score}%
                     </div>
                   </div>
 
-                  <p className="text-xs text-slate-700  leading-relaxed font-semibold">
+                  <p className="text-xs text-slate-700  leading-relaxed font-normal">
                     "{val.text}"
                   </p>
 
                   <div className="pt-1.5 text-[11px] text-slate-500  leading-normal flex items-start space-x-1.5">
                     <span className="text-xs mt-0.5">💡</span>
-                    <span className="font-semibold italic">Remedy: {val.remedy}</span>
+                    <span className="font-normal italic">Remedy: {val.remedy}</span>
                   </div>
                 </div>
               );

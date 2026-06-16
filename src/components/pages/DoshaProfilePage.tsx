@@ -15,7 +15,7 @@ export const DoshaProfilePage: React.FC<{pageIdx: number, setPage: (idx: number)
   return (
     <div className="space-y-6">
       <div className="space-y-1">
-        <h2 className="text-2xl font-black text-slate-900  tracking-tight">
+        <h2 className="text-2xl font-semibold text-slate-900  tracking-tight">
           What's your Ayurvedic body type?
         </h2>
       </div>
@@ -26,15 +26,15 @@ export const DoshaProfilePage: React.FC<{pageIdx: number, setPage: (idx: number)
       </p>
 
       <div className="p-4 bg-slate-50 border border-slate-200/50 rounded-2xl space-y-3">
-        <h3 className="font-bold text-sm text-slate-800">What can happen if you have the dominance of one dosha in you</h3>
-        <ul className="space-y-2 text-xs text-slate-600 font-semibold leading-relaxed">
+        <h3 className="font-semibold text-sm text-slate-800">What can happen if you have the dominance of one dosha in you</h3>
+        <ul className="space-y-2 text-xs text-slate-600 font-normal leading-relaxed">
           <li>💨 <b>Vata:</b> If you have a dominant Vata dosha, you're likely to be energetic and creative but may struggle with anxiety, digestive issues, and insomnia.</li>
           <li>🔥 <b>Pitta:</b> If your dominant dosha is Pitta, you tend to be intelligent and focused, yet could face issues like irritability, inflammation, and a tendency towards anger.</li>
           <li>🌍 <b>Kapha:</b> If Kapha is your dominant dosha, you're probably calm and nurturing but might have challenges with weight, lethargy, and resistance to change.</li>
         </ul>
       </div>
 
-      <div className="p-4 rounded-xl bg-orange-500/10 text-orange-600 text-xs font-black uppercase text-center mt-4">
+      <div className="p-4 rounded-xl bg-orange-500/10 text-orange-600 text-xs font-normal uppercase text-center mt-4">
         🌌 Primary Constitution: {data.doshaAnalysis.dominantDosha}
       </div>
 
@@ -54,8 +54,8 @@ export const DoshaProfilePage: React.FC<{pageIdx: number, setPage: (idx: number)
               className={`p-5 rounded-2xl border text-center space-y-2 ${colors[dosha.name as keyof typeof colors] || 'bg-slate-100'}`}
             >
               <span className="text-3xl">{icons[dosha.name as keyof typeof icons] || '🌀'}</span>
-              <h4 className="font-extrabold text-sm text-slate-900 ">{dosha.name}</h4>
-              <div className="text-xl font-extrabold font-mono text-slate-800 ">{dosha.percentage}%</div>
+              <h4 className="font-semibold text-sm text-slate-900 ">{dosha.name}</h4>
+              <div className="text-xl font-normal font-mono text-slate-800 ">{dosha.percentage}%</div>
             </div>
           );
         })}
@@ -64,10 +64,10 @@ export const DoshaProfilePage: React.FC<{pageIdx: number, setPage: (idx: number)
       <div className="space-y-4">
         {data.doshaAnalysis.doshas.map((dosha, idx) => (
           <div key={idx} className="p-4 bg-slate-50  border border-slate-200/50 rounded-2xl space-y-1.5">
-            <h5 className="font-black text-xs text-slate-900 ">
+            <h5 className="font-semibold text-xs text-slate-900 ">
               {dosha.name} Dosha Context:
             </h5>
-            <p className="text-xs text-slate-600  leading-relaxed font-semibold">
+            <p className="text-xs text-slate-600  leading-relaxed font-normal">
               {dosha.description}
             </p>
           </div>
@@ -75,10 +75,10 @@ export const DoshaProfilePage: React.FC<{pageIdx: number, setPage: (idx: number)
       </div>
 
       <div className="p-4 bg-indigo-50/30  rounded-xl space-y-2 border border-indigo-50 ">
-        <span className="text-[10px] font-black uppercase text-indigo-600  tracking-wider block">
+        <span className="text-[10px] font-normal uppercase text-indigo-600  tracking-wider block">
           💡 Balancing Remedies for Daily Living:
         </span>
-        <p className="text-xs text-slate-700  leading-relaxed font-semibold">
+        <p className="text-xs text-slate-700  leading-relaxed font-normal">
           {data.doshaAnalysis.balanceRemedy}
         </p>
       </div>

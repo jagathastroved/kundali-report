@@ -15,21 +15,21 @@ export const BirthStarPage: React.FC<{pageIdx: number, setPage: (idx: number) =>
       return (
         <div className="space-y-6">
           <div className="space-y-1">
-            <h2 className="text-2xl font-black text-slate-900  tracking-tight">
+            <h2 className="text-2xl font-semibold text-slate-900  tracking-tight">
               Your Birth Star Details
             </h2>
           </div>
 
           <div className="p-5 rounded-2xl bg-gradient-to-r from-orange-500/5 to-indigo-500/5 border border-indigo-50  flex items-center justify-between">
             <div className="space-y-1">
-              <h3 className="text-lg font-extrabold text-slate-900 ">
+              <h3 className="text-lg font-semibold text-slate-900 ">
                 {data.birthStar.nkName} Nakshatra
               </h3>
-              <p className="text-xs font-semibold text-slate-500 ">
-                Ruling Deity: <span className="text-indigo-600  font-bold">{data.birthStar.associatedDeity}</span>
+              <p className="text-xs font-normal text-slate-500 ">
+                Ruling Deity: <span className="text-indigo-600  font-normal">{data.birthStar.associatedDeity}</span>
               </p>
             </div>
-            <div className="px-4 py-2 bg-indigo-600 text-white font-heavy text-xs uppercase font-extrabold rounded-xl shadow-md">
+            <div className="px-4 py-2 bg-indigo-600 text-white font-heavy text-xs uppercase font-normal rounded-xl shadow-md">
               Ruler: {data.birthStar.rulingPlanet}
             </div>
           </div>
@@ -37,7 +37,7 @@ export const BirthStarPage: React.FC<{pageIdx: number, setPage: (idx: number) =>
           {/* Icon placeholder context */}
           <div className="p-4 rounded-xl bg-indigo-50  text-center flex flex-col items-center">
             <span className="text-4xl filter drop-shadow-md mb-2">⭐</span>
-            <p className="text-[11px] font-bold text-indigo-700  uppercase tracking-widest">
+            <p className="text-[11px] font-normal text-indigo-700  uppercase tracking-widest">
               Associated Zodiac: {data.birthStar.zodiacSign}
             </p>
           </div>
@@ -50,18 +50,18 @@ export const BirthStarPage: React.FC<{pageIdx: number, setPage: (idx: number) =>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="p-4 rounded-xl border border-emerald-100  bg-emerald-50/10 space-y-2">
-              <span className="text-[10px] font-black uppercase text-emerald-600  tracking-wider block">
+              <span className="text-[10px] font-normal uppercase text-emerald-600  tracking-wider block">
                 ✓ Character Strengths
               </span>
-              <p className="text-xs text-slate-600  leading-relaxed font-semibold">
+              <p className="text-xs text-slate-600  leading-relaxed font-normal">
                 {data.birthStar.strengths}
               </p>
             </div>
             <div className="p-4 rounded-xl border border-orange-100  bg-orange-50/10 space-y-2">
-              <span className="text-[10px] font-black uppercase text-orange-600  tracking-wider block">
+              <span className="text-[10px] font-normal uppercase text-orange-600  tracking-wider block">
                 ⚡ Karmic Vulnerabilities
               </span>
-              <p className="text-xs text-slate-600  leading-relaxed font-semibold">
+              <p className="text-xs text-slate-600  leading-relaxed font-normal">
                 {data.birthStar.weaknesses}
               </p>
             </div>
