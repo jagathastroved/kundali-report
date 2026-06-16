@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { BirthDetails } from '../types';
 import { useReport } from '../context/ReportContext';
-import { Sparkles, Calendar, Clock, MapPin, User, Globe2 } from 'lucide-react';
+import { Sparkles, Calendar, Clock, MapPin, User, Globe2, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { Country, City } from 'country-state-city';
@@ -13,12 +13,15 @@ export const BirthDetailsForm: React.FC = () => {
 
   // Form local states
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [gender, setGender] = useState('Male');
   const [day, setDay] = useState(new Date().getDate());
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [year, setYear] = useState(2000);
-  const [hour, setHour] = useState(12);
+  const [hour12, setHour12] = useState(12);
   const [minute, setMinute] = useState(0);
+  const [ampm, setAmpm] = useState<'AM' | 'PM'>('PM');
   const [country, setCountry] = useState('India');
   const [city, setCity] = useState('');
   const [language, setLanguage] = useState<'english' | 'hindi'>('english');
@@ -53,14 +56,25 @@ export const BirthDetailsForm: React.FC = () => {
     e.preventDefault();
     if (!name.trim()) return;
 
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setEmailError('Please enter a valid email address.');
+      return;
+    }
+    setEmailError('');
+
+    let finalHour = hour12;
+    if (ampm === 'PM' && hour12 < 12) finalHour += 12;
+    if (ampm === 'AM' && hour12 === 12) finalHour = 0;
+
     // Package into BirthDetails interface
     const birthData: BirthDetails = {
       name: name.trim(),
+      email: email.trim(),
       gender,
       day: Number(day),
       month: Number(month),
       year: Number(year),
-      hour: Number(hour),
+      hour: finalHour,
       minute: Number(minute),
       country,
       city: city.trim() || 'New Delhi',
@@ -68,7 +82,7 @@ export const BirthDetailsForm: React.FC = () => {
     };
 
     navigate('/generating');
-    
+
     const minLoadingTime = new Promise(resolve => setTimeout(resolve, 3000));
     await Promise.all([
       submitBirthDetails(birthData),
@@ -122,8 +136,8 @@ export const BirthDetailsForm: React.FC = () => {
               onChange={(e) => setLanguage(e.target.value as 'english' | 'hindi')}
               className="bg-indigo-50/50  border-0 text-slate-700  text-xs rounded-xl px-3 py-1.5 font-normal focus:ring-2 focus:ring-indigo-400 focus:outline-none"
             >
-              <option value="english">English</option>
-              <option value="hindi">हिन्दी (Hindi)</option>
+              <option className="bg-white text-slate-800" value="english">English</option>
+              <option className="bg-white text-slate-800" value="hindi">हिन्दी (Hindi)</option>
             </select>
           </div>
         </div>
@@ -147,23 +161,41 @@ export const BirthDetailsForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            {/* Gender */}
-            <div className="space-y-1.5 col-span-2 sm:col-span-1">
-              <label className="text-xs font-normal text-slate-600  uppercase tracking-wider">
-                Gender
-              </label>
-              <select
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-                className="w-full bg-slate-50  border border-slate-200/85  focus:border-indigo-500 :border-indigo-400 rounded-2xl py-3 px-4 text-slate-800  font-normal focus:ring-0 focus:outline-none transition-all"
-              >
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other / Neutral</option>
-              </select>
+          {/* Email Address */}
+          <div className="space-y-1.5">
+            <label className="text-xs font-normal text-slate-600  uppercase tracking-wider flex items-center">
+              <Mail size={14} className="mr-1.5 text-indigo-500" /> Email Address
+            </label>
+            <div className="relative">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (emailError) setEmailError('');
+                }}
+                placeholder="Enter Your Email"
+                className={`w-full bg-slate-50 border ${emailError ? 'border-red-400 focus:border-red-500' : 'border-slate-200/85 focus:border-indigo-500'} rounded-2xl py-3.5 pl-4 pr-11 text-slate-800 placeholder:text-slate-400 focus:ring-0 transition-all font-medium`}
+              />
+              {emailError && <p className="text-[10px] text-red-500 mt-1 pl-2">{emailError}</p>}
             </div>
+          </div>
 
+          {/* Gender */}
+          <div className="space-y-1.5">
+            <label className="text-xs font-normal text-slate-600 uppercase tracking-wider">
+              Gender
+            </label>
+            <select
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              className="w-full bg-slate-50 border border-slate-200/85 focus:border-indigo-500 rounded-2xl py-3.5 px-4 text-slate-800 font-normal focus:ring-0 focus:outline-none transition-all"
+            >
+              <option className="bg-white text-slate-800" value="Male">Male</option>
+              <option className="bg-white text-slate-800" value="Female">Female</option>
+              <option className="bg-white text-slate-800" value="Other">Other</option>
+            </select>
           </div>
 
           {/* Date of Birth Grid */}
@@ -178,7 +210,7 @@ export const BirthDetailsForm: React.FC = () => {
                 className="bg-slate-50  border border-slate-200/85  rounded-xl py-3 px-3.5 text-center text-slate-800  font-normal focus:ring-0 focus:outline-none"
               >
                 {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
-                  <option key={d} value={d}>{d}</option>
+                  <option className="bg-white text-slate-800" key={d} value={d}>{d}</option>
                 ))}
               </select>
 
@@ -191,7 +223,7 @@ export const BirthDetailsForm: React.FC = () => {
                   'January', 'February', 'March', 'April', 'May', 'June',
                   'July', 'August', 'September', 'October', 'November', 'December'
                 ].map((m, idx) => (
-                  <option key={m} value={idx + 1}>{m}</option>
+                  <option className="bg-white text-slate-800" key={m} value={idx + 1}>{m}</option>
                 ))}
               </select>
 
@@ -201,7 +233,7 @@ export const BirthDetailsForm: React.FC = () => {
                 className="bg-slate-50  border border-slate-200/85  rounded-xl py-3 px-3 text-slate-800  font-normal focus:ring-0 focus:outline-none"
               >
                 {Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i).map((y) => (
-                  <option key={y} value={y}>{y}</option>
+                  <option className="bg-white text-slate-800" key={y} value={y}>{y}</option>
                 ))}
               </select>
             </div>
@@ -210,33 +242,50 @@ export const BirthDetailsForm: React.FC = () => {
           {/* Time of Birth Grid */}
           <div className="space-y-2">
             <label className="text-xs font-normal text-slate-600  uppercase tracking-wider flex items-center">
-              <Clock size={14} className="mr-1.5 text-indigo-500" /> Time of Birth (24hr clock format)
+              <Clock size={14} className="mr-1.5 text-indigo-500" /> Time of Birth
             </label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-3 gap-3">
               <div className="flex items-center space-x-2 bg-slate-50  border border-slate-200/85  rounded-2xl px-3 py-1">
-                <span className="text-xs font-normal text-slate-400">Hour</span>
+                <span className="text-xs font-normal text-slate-400">Hr</span>
                 <select
-                  value={hour}
-                  onChange={(e) => setHour(Number(e.target.value))}
-                  className="w-full bg-transparent border-0 text-slate-800  font-normal focus:ring-0 focus:outline-none py-2"
+                  value={hour12}
+                  onChange={(e) => setHour12(Number(e.target.value))}
+                  className="w-full bg-transparent border-0 text-slate-800  font-normal focus:ring-0 focus:outline-none py-2 px-1"
                 >
-                  {Array.from({ length: 24 }, (_, i) => i).map((h) => (
-                    <option key={h} value={h}>{String(h).padStart(2, '0')}</option>
+                  {Array.from({ length: 12 }, (_, i) => i === 0 ? 12 : i).map((h) => (
+                    <option className="bg-white text-slate-800" key={h} value={h}>{String(h).padStart(2, '0')}</option>
                   ))}
                 </select>
               </div>
 
               <div className="flex items-center space-x-2 bg-slate-50  border border-slate-200/85  rounded-2xl px-3 py-1">
-                <span className="text-xs font-normal text-slate-400">Minute</span>
+                <span className="text-xs font-normal text-slate-400">Min</span>
                 <select
                   value={minute}
                   onChange={(e) => setMinute(Number(e.target.value))}
-                  className="w-full bg-transparent border-0 text-slate-800  font-normal focus:ring-0 focus:outline-none py-2"
+                  className="w-full bg-transparent border-0 text-slate-800  font-normal focus:ring-0 focus:outline-none py-2 px-1"
                 >
                   {Array.from({ length: 60 }, (_, i) => i).map((m) => (
-                    <option key={m} value={m}>{String(m).padStart(2, '0')}</option>
+                    <option className="bg-white text-slate-800" key={m} value={m}>{String(m).padStart(2, '0')}</option>
                   ))}
                 </select>
+              </div>
+
+              <div className="flex bg-slate-50 border border-slate-200/85 rounded-2xl overflow-hidden p-1">
+                <button
+                  type="button"
+                  onClick={() => setAmpm('AM')}
+                  className={`flex-1 text-xs font-semibold rounded-xl transition-all ${ampm === 'AM' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                >
+                  AM
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setAmpm('PM')}
+                  className={`flex-1 text-xs font-semibold rounded-xl transition-all ${ampm === 'PM' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                >
+                  PM
+                </button>
               </div>
             </div>
           </div>

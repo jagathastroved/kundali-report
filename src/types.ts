@@ -1,5 +1,6 @@
 export interface BirthDetails {
   name: string;
+  email?: string;
   gender: string;
   day: number;
   month: number;

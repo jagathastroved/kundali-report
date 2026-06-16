@@ -140,12 +140,10 @@ export const KundliReportBook: React.FC = () => {
 
   const routes = [
     'welcome',
-    'birth-coordinates',
     'birth-star',
     'core-personality',
     'big-three-signs',
     'five-great-elements',
-    'elemental-balance',
     'stored-karmic-path',
     'chakras-map',
     'dominant-chakra',
@@ -156,7 +154,6 @@ export const KundliReportBook: React.FC = () => {
     'atmakaraka',
     'lagna-chart',
     'dasha-wheel',
-    'future-forecasts',
     'premium-deliverables'
   ];
 
@@ -311,11 +308,16 @@ export const KundliReportBook: React.FC = () => {
               <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#EBE4D5]/60 relative">
                 {/* Left Logo */}
                 <div className="flex-1 flex justify-start">
-                  <img
-                    src="https://cdn.astroved.com/images/images-av/AstroVed-Logo.svg"
-                    alt="Astroved-logo"
-                    className="h-6 sm:h-8 w-auto object-contain"
-                  />
+                  <button
+                    onClick={() => { setPage(0); handleScrollToTop(); }}
+                    className="cursor-pointer focus:outline-none hover:opacity-80 transition-opacity"
+                  >
+                    <img
+                      src="https://cdn.astroved.com/images/images-av/AstroVed-Logo.svg"
+                      alt="Astroved-logo"
+                      className="h-6 sm:h-8 w-auto object-contain"
+                    />
+                  </button>
                 </div>
 
                 {/* Center Section Title */}
@@ -368,7 +370,7 @@ export const KundliReportBook: React.FC = () => {
                     nextPage();
                     handleScrollToTop();
                   }}
-                  disabled={currentPage === 19}
+                  disabled={currentPage === 15}
                   className="flex items-center px-6 py-3 rounded-2xl bg-[#6868f9] hover:bg-[#5252e6] text-white disabled:opacity-30 disabled:cursor-not-allowed text-xs font-normal shadow-md tracking-wider transition cursor-pointer"
                 >
                   <span>Next</span>

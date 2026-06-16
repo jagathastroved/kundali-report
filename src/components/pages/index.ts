@@ -1,10 +1,8 @@
 export * from './WelcomePage';
-export * from './BirthCoordinatesPage';
 export * from './BirthStarPage';
 export * from './CorePersonalityPage';
 export * from './BigThreeSignsPage';
 export * from './FiveGreatElementsPage';
-export * from './ElementalBalancePage';
 export * from './StoredKarmicPathPage';
 export * from './ChakrasMapPage';
 export * from './DominantChakraPage';
@@ -15,5 +13,4 @@ export * from './IshtaDevataPage';
 export * from './AtmakarakaPage';
 export * from './LagnaChartPage';
 export * from './DashaWheelPage';
-export * from './FutureForecastsPage';
 export * from './PremiumDeliverablesPage';

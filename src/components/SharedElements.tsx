@@ -5,12 +5,10 @@ import { Link } from 'react-router-dom';
 
 export const PAGE_TITLES = [
   'Namaste Welcome',
-  'Birth Coordinates',
   'Your Birth Star',
   'Core Personality',
   'Your Big Three Signs',
   'Five Great Elements',
-  'Elemental Balance',
   'Stored Karmic Path',
   'Your Chakras Map',
   'Dominant Chakra Insight',
@@ -21,7 +19,6 @@ export const PAGE_TITLES = [
   'Atmakaraka Soul Focal',
   'Kundli Lagna Chart',
   'Vimshottari Dasha Wheel',
-  'Cosmic Future Forecasts',
   'Your Premium Deliverables'
 ];
 
@@ -143,41 +140,38 @@ export const BookletMockup: React.FC = () => {
 
 export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies' = 'combo') => {
   return (
-    <div className="mt-8 bg-gradient-to-r from-slate-900 to-indigo-950 rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden border border-indigo-500/20 shadow-2xl flex flex-col sm:flex-row items-center sm:items-stretch gap-6">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full filter blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500/20 rounded-full filter blur-3xl pointer-events-none" />
+    <div className="mt-8 bg-gradient-to-br from-[#1E1B4B] via-[#312E81] to-[#1E1B4B] rounded-[2rem] p-6 sm:p-8 text-white relative overflow-hidden border border-orange-500/30 shadow-[0_20px_50px_rgba(249,115,22,0.15)] flex flex-col sm:flex-row items-center sm:items-stretch gap-6 group">
+      {/* Glossy overlay effect */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-orange-500/20 rounded-full filter blur-3xl pointer-events-none group-hover:bg-orange-500/30 transition-all duration-700" />
+      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-indigo-500/30 rounded-full filter blur-3xl pointer-events-none group-hover:bg-indigo-500/40 transition-all duration-700" />
 
       <BookletMockup />
 
-      <div className="flex-1 space-y-4 relative z-10 flex flex-col justify-center text-center sm:text-left">
+      <div className="flex-1 space-y-5 relative z-10 flex flex-col justify-center text-center">
         <div>
-          <div className="inline-flex items-center space-x-1.5 bg-orange-500/20 text-orange-300 px-2.5 py-1 rounded-lg text-[10px] font-normal uppercase tracking-widest border border-orange-500/20 mb-3">
-            <Lock size={10} />
+          <div className="inline-flex items-center space-x-1.5 bg-orange-500/20 text-orange-300 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-orange-500/40 mb-4 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
+            <Lock size={12} />
             <span>Premium Insight</span>
           </div>
-          <h4 className="text-xl sm:text-2xl font-semibold text-white leading-tight tracking-tight">
+          <h4 className="text-xl sm:text-2xl font-bold text-white leading-tight tracking-tight drop-shadow-sm">
             {variant === 'combo' ? 'Unlock Personalized Full Kundali Report' : 'Get Complete Karmic Remedies & Rituals'}
           </h4>
-          <p className="text-indigo-200 text-xs sm:text-sm font-normal mt-2 leading-relaxed max-w-md mx-auto sm:mx-0">
+          <p className="text-indigo-200 text-xs sm:text-sm font-normal mt-2.5 leading-relaxed max-w-md mx-auto">
             {variant === 'combo'
               ? 'This summary is just 5% of your full profile. Discover precise timings, career peaks, and personalized gemstone recommendations.'
               : 'Discover exact mantras, poojas, and daily rituals scientifically designed to balance your dominant doshas and clear karmic blocks.'}
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          {/* Primary Action - Buy Now */}
           <Link to="/report/premium-deliverables"
-            className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white px-6 py-3.5 rounded-xl font-normal text-sm tracking-wide transition-all shadow-lg shadow-orange-500/25 flex items-center justify-center space-x-2"
+            className="w-full sm:w-auto bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 hover:from-orange-400 hover:to-yellow-400 text-slate-900 px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(249,115,22,0.4)] flex items-center justify-center space-x-2 transform hover:-translate-y-0.5"
           >
-            <span>Upgrade Now</span>
-            <CreditCard size={16} />
+            <span>Buy Now</span>
+            <CreditCard size={30} />
           </Link>
-          <button
-            onClick={onNext}
-            className="text-xs font-normal text-indigo-300 hover:text-white transition-colors py-2"
-          >
-            Continue reading summary
-          </button>
         </div>
       </div>
     </div>

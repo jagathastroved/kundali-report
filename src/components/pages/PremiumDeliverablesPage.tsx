@@ -4,8 +4,10 @@ import {
   CheckCircle2, Star, Edit, CreditCard, Wallet, Smartphone, Building,
   ChevronRight, Circle, CheckCircle, ShieldCheck
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
+  const navigate = useNavigate();
   const { birthDetails } = useReport();
 
   const [selectedOffer, setSelectedOffer] = useState('combo');
@@ -63,8 +65,8 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
         <p className="text-slate-600 max-w-sm">
           Thank you for your purchase. Your premium comprehensive report is currently being generated and will be sent to <strong>{email}</strong> shortly.
         </p>
-        <button className="mt-8 bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition">
-          Download Invoice
+        <button onClick={() => navigate('/report/welcome')} className="mt-8 bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition">
+          Home
         </button>
       </div>
     );
@@ -156,7 +158,7 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
       {/* Trust Badges & Reviews */}
       <div className="space-y-4 pt-2">
         <div className="flex items-center justify-center space-x-1 text-xs font-semibold text-slate-800">
-          <span className="mr-1">20,000+ purchased users</span>
+          <span className="mr-1">1000+ purchased users</span>
           {[1, 2, 3, 4, 5].map(i => <Star key={i} size={10} className="text-[#FCAE3B] fill-[#FCAE3B]" />)}
           <span className="ml-1 text-[#FCAE3B]">(4.8)</span>
         </div>
@@ -186,43 +188,22 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
         </div>
       </div>
 
-      {/* Birth Details & Chart Selection */}
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <h4 className="text-[11px] font-semibold text-slate-800 mb-2">Review Birth Details</h4>
-          <div className="bg-[#FFFDF4] border border-[#FDE0A3] rounded-xl p-3 relative h-24 shadow-sm">
-            <button className="absolute top-2 right-2 bg-[#FDE0A3] text-orange-800 text-[8px] font-semibold px-2 py-0.5 rounded shadow-sm">
-              EDIT
-            </button>
-            <div className="flex items-center space-x-2 mb-2">
-              <div className="w-6 h-6 rounded bg-[#FDE0A3] text-orange-800 flex items-center justify-center text-xs font-semibold">
-                {birthDetails?.name.substring(0, 2).toUpperCase() || 'US'}
+      {/* Chart Selection */}
+      <div className="max-w-[240px] mx-auto">
+        <h4 className="text-[11px] font-semibold text-slate-800 mb-2 text-center">Select chart type</h4>
+        <div className="grid grid-cols-2 gap-3">
+          {['NORTH', 'SOUTH'].map(type => (
+            <button
+              key={type}
+              onClick={() => setSelectedChart(type.toLowerCase())}
+              className={`aspect-square rounded-xl border flex flex-col items-center justify-center transition-colors ${selectedChart === type.toLowerCase() ? 'border-[#FCAE3B] bg-[#FFF8EE]' : 'border-slate-200 bg-white hover:bg-slate-50'}`}
+            >
+              <div className="w-6 h-6 border border-slate-300 opacity-50 mb-1 grid place-items-center">
+                <div className="w-4 h-4 border-x border-slate-300 transform rotate-45" />
               </div>
-            </div>
-            <div className="space-y-1">
-              <p className="text-[9px] text-slate-700"><strong>Gender:</strong> {birthDetails?.gender || 'N/A'}</p>
-              <p className="text-[9px] text-slate-700">{birthDetails?.day || '--'} {birthDetails?.month || '--'} {birthDetails?.year || '----'} &nbsp; {birthDetails?.hour || '00'}:{birthDetails?.minute || '00'} {Number(birthDetails?.hour) >= 12 ? 'PM' : 'AM'}</p>
-              <p className="text-[9px] text-slate-700 truncate">{birthDetails?.city || 'Unknown Location'}</p>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h4 className="text-[11px] font-semibold text-slate-800 mb-2">Select chart type</h4>
-          <div className="flex space-x-2">
-            {['NORTH', 'SOUTH', 'EAST'].map(type => (
-              <button
-                key={type}
-                onClick={() => setSelectedChart(type.toLowerCase())}
-                className={`flex-1 aspect-square rounded-xl border flex flex-col items-center justify-center transition-colors ${selectedChart === type.toLowerCase() ? 'border-[#FCAE3B] bg-[#FFF8EE]' : 'border-slate-200 bg-white hover:bg-slate-50'}`}
-              >
-                <div className="w-6 h-6 border border-slate-300 opacity-50 mb-1 grid place-items-center">
-                  <div className="w-4 h-4 border-x border-slate-300 transform rotate-45" />
-                </div>
-                <span className="text-[8px] font-semibold text-slate-600">{type}</span>
-              </button>
-            ))}
-          </div>
+              <span className="text-[9px] font-semibold text-slate-600">{type}</span>
+            </button>
+          ))}
         </div>
       </div>
 
