@@ -68,7 +68,13 @@ export const BirthDetailsForm: React.FC = () => {
     };
 
     navigate('/generating');
-    await submitBirthDetails(birthData);
+    
+    const minLoadingTime = new Promise(resolve => setTimeout(resolve, 3000));
+    await Promise.all([
+      submitBirthDetails(birthData),
+      minLoadingTime
+    ]);
+
     navigate('/report/welcome');
   };
 
