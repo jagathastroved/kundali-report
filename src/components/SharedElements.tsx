@@ -10,12 +10,11 @@ export const PAGE_TITLES = [
   'Your Big Three Signs',
   'Five Great Elements',
   'Stored Karmic Path',
+  'Why Get This Report?',
   'Your Chakras Map',
   'Dominant Chakra Insight',
-  'Ayurvedic Dosha Profile',
   'Planetary Shield Strengths',
   'Planetary Profiles',
-  'Favorable Ishta Devata',
   'Atmakaraka Soul Focal',
   'Kundli Lagna Chart',
   'Vimshottari Dasha Wheel',
@@ -166,7 +165,7 @@ export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies'
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
           {/* Primary Action - Buy Now */}
-          <Link to="/report/premium-deliverables"
+          <Link to="/report/report-features"
             className="w-full sm:w-auto bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 hover:from-orange-400 hover:to-yellow-400 text-slate-900 px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(249,115,22,0.4)] flex items-center justify-center space-x-2 transform hover:-translate-y-0.5"
           >
             <span>Buy Now</span>

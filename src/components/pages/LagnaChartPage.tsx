@@ -55,7 +55,7 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
           <div>Birth: <span className="text-indigo-700 ">{data.birthDetails.name}</span> ({data.birthDetails.gender})</div>
           <div className="text-[11px] text-slate-400">Date {data.birthDetails.day}/{data.birthDetails.month}/{data.birthDetails.year}
             <div>
-              Time : {String(data.birthDetails.hour).padStart(2, '0')}:{String(data.birthDetails.minute).padStart(2, '0')}
+              Time : {String(data.birthDetails.hour % 12 || 12).padStart(2, '0')}:{String(data.birthDetails.minute).padStart(2, '0')} {data.birthDetails.hour >= 12 ? 'PM' : 'AM'}
             </div>
           </div>
         </div>

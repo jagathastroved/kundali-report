@@ -181,16 +181,15 @@ export default function App() {
                 <Route path="big-three-signs" element={<PageWrapper component={Pages.BigThreeSignsPage} pageIdx={3} />} />
                 <Route path="five-great-elements" element={<PageWrapper component={Pages.FiveGreatElementsPage} pageIdx={4} />} />
                 <Route path="stored-karmic-path" element={<PageWrapper component={Pages.StoredKarmicPathPage} pageIdx={5} />} />
-                <Route path="chakras-map" element={<PageWrapper component={Pages.ChakrasMapPage} pageIdx={6} />} />
-                <Route path="dominant-chakra" element={<PageWrapper component={Pages.DominantChakraPage} pageIdx={7} />} />
-                <Route path="dosha-profile" element={<PageWrapper component={Pages.DoshaProfilePage} pageIdx={8} />} />
+                <Route path="report-features" element={<PageWrapper component={Pages.ReportFeaturesPage} pageIdx={6} />} />
+                <Route path="chakras-map" element={<PageWrapper component={Pages.ChakrasMapPage} pageIdx={7} />} />
+                <Route path="dominant-chakra" element={<PageWrapper component={Pages.DominantChakraPage} pageIdx={8} />} />
                 <Route path="planetary-strengths" element={<PageWrapper component={Pages.PlanetaryStrengthsPage} pageIdx={9} />} />
                 <Route path="planetary-profiles" element={<PageWrapper component={Pages.PlanetaryProfilesPage} pageIdx={10} />} />
-                <Route path="ishta-devata" element={<PageWrapper component={Pages.IshtaDevataPage} pageIdx={11} />} />
-                <Route path="atmakaraka" element={<PageWrapper component={Pages.AtmakarakaPage} pageIdx={12} />} />
-                <Route path="lagna-chart" element={<PageWrapper component={Pages.LagnaChartPage} pageIdx={13} />} />
-                <Route path="dasha-wheel" element={<PageWrapper component={Pages.DashaWheelPage} pageIdx={14} />} />
-                <Route path="premium-deliverables" element={<PageWrapper component={Pages.PremiumDeliverablesPage} pageIdx={15} />} />
+                <Route path="atmakaraka" element={<PageWrapper component={Pages.AtmakarakaPage} pageIdx={11} />} />
+                <Route path="lagna-chart" element={<PageWrapper component={Pages.LagnaChartPage} pageIdx={12} />} />
+                <Route path="dasha-wheel" element={<PageWrapper component={Pages.DashaWheelPage} pageIdx={13} />} />
+                <Route path="premium-deliverables" element={<PageWrapper component={Pages.PremiumDeliverablesPage} pageIdx={14} />} />
                 <Route index element={<Navigate to="welcome" replace />} />
               </Route>
               <Route path="*" element={<Navigate to="/" replace />} />

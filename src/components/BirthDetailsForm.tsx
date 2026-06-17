@@ -21,7 +21,7 @@ export const BirthDetailsForm: React.FC = () => {
   const [year, setYear] = useState(2000);
   const [hour12, setHour12] = useState(12);
   const [minute, setMinute] = useState(0);
-  const [ampm, setAmpm] = useState<'AM' | 'PM'>('PM');
+  const [ampm, setAmpm] = useState<'AM' | 'PM'>('AM');
   const [country, setCountry] = useState('India');
   const [city, setCity] = useState('');
   const [language, setLanguage] = useState<'english' | 'hindi'>('english');
