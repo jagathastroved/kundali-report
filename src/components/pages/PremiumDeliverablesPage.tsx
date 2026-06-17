@@ -47,6 +47,14 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
       alert("Please enter your email and mobile number to proceed.");
       return;
     }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+    if (!/^[6-9]\d{9}$/.test(mobile)) {
+      alert("Please enter a valid 10-digit Indian mobile number (e.g. 9876543210).");
+      return;
+    }
     setIsProcessing(true);
     // Simulate API call for payment
     setTimeout(() => {
@@ -250,7 +258,10 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
             <input
               type="tel"
               value={mobile}
-              onChange={(e) => setMobile(e.target.value)}
+              onChange={(e) => {
+                const val = e.target.value.replace(/\D/g, '').slice(0, 10);
+                setMobile(val);
+              }}
               placeholder="Enter Your Mobile Number"
               className="flex-1 border border-slate-300 rounded-lg py-2.5 px-3 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-slate-400"
             />

@@ -62,6 +62,17 @@ export const BirthDetailsForm: React.FC = () => {
     }
     setEmailError('');
 
+    if (!city.trim() || !/^[A-Za-z\s]+$/.test(city.trim())) {
+      alert("Please enter a valid city name (only alphabets and spaces are allowed).");
+      return;
+    }
+
+    const isValidCity = cities.some(c => c.name.toLowerCase() === city.trim().toLowerCase());
+    if (!isValidCity) {
+      alert("The entered city is not found in the selected country. Please select a valid city from the suggestions.");
+      return;
+    }
+
     let finalHour = hour12;
     if (ampm === 'PM' && hour12 < 12) finalHour += 12;
     if (ampm === 'AM' && hour12 === 12) finalHour = 0;
@@ -317,8 +328,9 @@ export const BirthDetailsForm: React.FC = () => {
                   required
                   value={cityInput}
                   onChange={(e) => {
-                    setCityInput(e.target.value);
-                    setCity(e.target.value);
+                    const val = e.target.value.replace(/[^A-Za-z\s]/g, '');
+                    setCityInput(val);
+                    setCity(val);
                     setShowSuggestions(true);
                   }}
                   onFocus={() => setShowSuggestions(true)}
