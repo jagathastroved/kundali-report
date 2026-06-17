@@ -54,20 +54,8 @@ const LoadingScreen: React.FC = () => {
 };
 
 const LandingScreen: React.FC = () => {
-  const [focusArea, setFocusArea] = useState('My General Destiny');
-  const [isFocusOpen, setIsFocusOpen] = useState(false);
-
-  const focusAreas = [
-    'My General Destiny',
-    'Career & Wealth Prosperity',
-    'Marriage & Love Harmony',
-    'Family Welfare & Harmony',
-    'Higher Spiritual Path',
-    'Dosha Remedies & Gems'
-  ];
-
   return (
-    <div className="min-h-screen bg-transparent text-slate-200 flex items-center justify-center p-5 md:p-12 relative overflow-hidden z-10">
+    <div className="min-h-[100dvh] lg:h-screen w-full bg-transparent text-slate-200 flex items-center justify-center px-4 py-10 lg:py-4 md:px-12 relative overflow-y-auto overflow-x-hidden lg:overflow-hidden z-10">
       <div className="absolute top-1/2 left-10 -translate-y-1/2 opacity-20 pointer-events-none select-none text-indigo-500/10">
         <Sun size={480} strokeWidth={0.5} />
       </div>
@@ -75,73 +63,76 @@ const LandingScreen: React.FC = () => {
         <Star size={320} strokeWidth={0.5} />
       </div>
 
-      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center z-10 py-6">
-        <div className="space-y-6 text-center lg:text-left">
-          <div className="inline-flex items-center space-x-2 bg-indigo-50/70 border border-indigo-100 rounded-full px-4.5 py-2">
-            <Sparkles size={14} className="text-indigo-600 animate-pulse" />
-            <span className="text-indigo-950 font-normal text-xs uppercase tracking-wider">
-              AstroVed
-            </span>
-          </div>
-
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-indigo-950 tracking-tight leading-[1.08] lg:-mt-2">
-            Get All Your <br />
-            <span className="bg-gradient-to-r from-orange-500 via-orange-600 to-indigo-600 bg-clip-text text-transparent">
-              Questions Answered
-            </span> <br />
-            — Right Here
+      <div className="w-full max-w-6xl h-auto lg:h-full mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-14 items-center z-10 py-2">
+        <div className="space-y-6 text-left max-w-xl mt-8 lg:mt-0 w-full">
+          <h1 className="text-4xl md:text-[44px] lg:text-[50px] font-semibold text-white tracking-tight leading-[1.1]">
+            Discover Your True Path<br />Through Kundali
           </h1>
 
-          <p className="text-slate-500 text-sm md:text-base max-w-md mx-auto lg:mx-0 leading-relaxed font-normal">
-            Unlock professional planetary degree charts, sub-period timelines, chakra progress scores, and targeted life remediation in one pristine digital booklet.
+          <p className="text-indigo-100/90 text-[15px] max-w-md leading-relaxed font-normal">
+            Unlock the hidden meanings of your birth chart. Gain deep insights into your personality, destiny, and life's true purpose.
           </p>
 
-          <div className="relative inline-block w-full max-w-sm text-left mx-auto lg:mx-0">
-            <label className="text-[10px] font-normal text-indigo-500 uppercase tracking-widest mb-1.5 block">
-              Select Your Focus Area
-            </label>
-            <button
-              type="button"
-              onClick={() => setIsFocusOpen(!isFocusOpen)}
-              className="w-full bg-white border border-slate-200/80 hover:border-indigo-400 py-3.5 px-5 rounded-2xl flex items-center justify-between font-normal text-sm text-slate-800 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-indigo-200"
-            >
-              <span>{focusArea}</span>
-              <ChevronDown size={16} className="text-orange-500 ml-2" />
-            </button>
+          <div className="space-y-4 pt-4">
+            <div className="flex items-start">
+              <div className="mt-0.5 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-0.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div>
+                <h4 className="text-white font-medium text-[15px]">Birth Star & Core Personality</h4>
+                <p className="text-indigo-200/70 text-sm mt-1">Discover your Nakshatra and understand your deepest traits.</p>
+              </div>
+            </div>
 
-            <AnimatePresence>
-              {isFocusOpen && (
-                <motion.ul
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 5 }}
-                  className="absolute left-0 right-0 mt-2 bg-white border border-slate-100 rounded-2xl shadow-xl z-20 overflow-hidden"
-                >
-                  {focusAreas.map((area) => (
-                    <li key={area}>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setFocusArea(area);
-                          setIsFocusOpen(false);
-                        }}
-                        className="w-full text-left py-3 px-5 text-xs font-normal text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 border-b border-slate-50 last:border-0 transition-colors"
-                      >
-                        {area}
-                      </button>
-                    </li>
-                  ))}
-                </motion.ul>
-              )}
-            </AnimatePresence>
-          </div>
+            <div className="flex items-start">
+              <div className="mt-0.5 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-0.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div>
+                <h4 className="text-white font-medium text-[15px]">Influential Signs</h4>
+                <p className="text-indigo-200/70 text-sm mt-1">Reveal the most important zodiac signs shaping your destiny.</p>
+              </div>
+            </div>
 
-          <div className="h-0.5 w-16 bg-orange-400 rounded-full mx-auto lg:mx-0 my-3" />
+            <div className="flex items-start">
+              <div className="mt-0.5 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-0.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div>
+                <h4 className="text-white font-medium text-[15px]">Nature's Blessings</h4>
+                <p className="text-indigo-200/70 text-sm mt-1">Learn how your qualities connect to the elements of nature.</p>
+              </div>
+            </div>
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 text-slate-400 text-xs font-normal">
-            <span className="flex items-center"><Award size={14} className="text-orange-500 mr-1.5" /> Sidereal Lahiri Ayanamsha</span>
-            <span className="hidden md:inline text-slate-300">•</span>
-            <span className="flex items-center"><Shield size={14} className="text-indigo-500 mr-1.5" /> High Encryption Privacy</span>
+            <div className="flex items-start">
+              <div className="mt-0.5 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-0.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div>
+                <h4 className="text-white font-medium text-[15px]">Karmic Path</h4>
+                <p className="text-indigo-200/70 text-sm mt-1">Unveil the stored karmic journey you are destined to follow.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start">
+              <div className="mt-0.5 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-0.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div>
+                <h4 className="text-white font-medium text-[15px]">Planetary Positions</h4>
+                <p className="text-indigo-200/70 text-sm mt-1">Gain insights from the precise alignment of all planets at your birth.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start">
+              <div className="mt-0.5 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-0.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div>
+                <h4 className="text-white font-medium text-[15px]">Vimshottari Dasha</h4>
+                <p className="text-indigo-200/70 text-sm mt-1">Get actionable predictions through comprehensive Dasha analysis.</p>
+              </div>
+            </div>
           </div>
         </div>
 

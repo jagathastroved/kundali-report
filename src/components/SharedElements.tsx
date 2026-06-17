@@ -4,10 +4,10 @@ import { Lock, CreditCard } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const PAGE_TITLES = [
-  'Namaste Welcome',
-  'Your Birth Star',
+  'Welcome ',
+  'Birth Star Analysis',
   'Core Personality',
-  'Your Big Three Signs',
+  'Three Most Influential Signs',
   'Five Great Elements',
   'Stored Karmic Path',
   'Why Get This Report?',

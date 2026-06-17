@@ -16,9 +16,9 @@ export const BirthDetailsForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [gender, setGender] = useState('Male');
-  const [day, setDay] = useState(new Date().getDate());
-  const [month, setMonth] = useState(new Date().getMonth() + 1);
-  const [year, setYear] = useState(2000);
+  const [day, setDay] = useState(1);
+  const [month, setMonth] = useState(1);
+  const [year, setYear] = useState(2026);
   const [hour12, setHour12] = useState(12);
   const [minute, setMinute] = useState(0);
   const [ampm, setAmpm] = useState<'AM' | 'PM'>('AM');
@@ -108,76 +108,90 @@ export const BirthDetailsForm: React.FC = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="w-full max-w-xl bg-white/95  backdrop-blur-xl border border-white/20  shadow-2xl rounded-3xl overflow-hidden self-center"
+      className="w-full max-w-xl bg-white shadow-2xl rounded-[1.5rem] overflow-hidden flex flex-col max-h-full self-center"
     >
-      {/* Form Tabs */}
-      <div className="flex border-b border-indigo-50 ">
-        <button
-          onClick={() => setActiveTab('kundli')}
-          className={`flex-1 py-4.5 text-center font-normal transition-all duration-300 relative ${activeTab === 'kundli'
-            ? 'text-indigo-600  bg-white '
-            : 'text-slate-400  hover:text-slate-600 bg-indigo-50/20 '
-            }`}
-        >
-          {activeTab === 'kundli' && (
-            <motion.div layoutId="tabLine" className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 " />
-          )}
-          Kundali
-        </button>
+      <div className="bg-orange-500 py-3 text-center">
+        <h3 className="text-white font-semibold text-[17px] tracking-wide uppercase">Kundali</h3>
       </div>
 
-      <div className="p-6 md:p-8">
-        <div className="flex justify-between items-start mb-6">
+      <div className="p-5 md:p-8 space-y-5 relative flex-1">
+        <div className="flex justify-between items-start mb-4">
           <div>
-            <h2 className="text-2xl font-semibold text-slate-800  tracking-tight">
-              {activeTab === 'kundli' ? 'Enter Birth Details' : 'Enter Numerology Profile'}
+            <h2 className="text-xl font-serif font-normal text-gray-800 tracking-tight leading-none">
+              Enter Your Birth Details
             </h2>
-            <p className="text-sm text-slate-500  mt-1">
-              Provides highly precise astronomical coordinates & predictions.
+            <p className="text-[13px] text-gray-500 mt-2 font-medium">
+              Get your personalized Kundali report with accurate predictions.
             </p>
           </div>
 
           {/* Language Selector */}
-          <div className="flex flex-col items-end">
-            <label className="text-[10px] font-normal text-indigo-500 uppercase tracking-widest mb-1.5 flex items-center">
-              <Globe2 size={11} className="mr-1" /> Language
+          <div className="relative mt-1">
+            <label className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+              Language
             </label>
-            <select
-              value={language}
-              onChange={(e) => setLanguage(e.target.value as 'english' | 'hindi')}
-              className="bg-indigo-50/50  border-0 text-slate-700  text-xs rounded-xl px-3 py-1.5 font-normal focus:ring-2 focus:ring-indigo-400 focus:outline-none"
-            >
-              <option className="bg-white text-slate-800" value="english">English</option>
-              <option className="bg-white text-slate-800" value="hindi">हिन्दी (Hindi)</option>
-            </select>
+            <div className="relative">
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as 'english' | 'hindi')}
+                className="pl-3 pr-8 py-2 text-sm font-normal text-gray-700 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+              >
+                <option value="english">English</option>
+                <option value="hindi">Hindi</option>
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+              </div>
+            </div>
           </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Full Name */}
-          <div className="space-y-1.5">
-            <label className="text-xs font-normal text-slate-600  uppercase tracking-wider flex items-center">
-              <User size={14} className="mr-1.5 text-indigo-500" /> Full Name
-            </label>
-            <div className="relative">
+          
+          <div className="grid grid-cols-2 gap-4 pt-2">
+            {/* Full Name */}
+            <div className="relative mt-2">
+              <label className="absolute -top-2 left-3 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+                Full Name
+              </label>
               <input
                 type="text"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Enter Full Name"
-                className="w-full bg-slate-50  border border-slate-200/85  focus:border-indigo-500 :border-indigo-400 rounded-2xl py-3.5 pl-4 pr-11 text-slate-800  placeholder:text-slate-400 focus:ring-0 transition-all font-medium"
+                placeholder="Your Name"
+                className="w-full px-4 py-3 text-sm text-gray-800 font-medium placeholder-gray-500 border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
               />
-              <Sparkles size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-orange-400 animate-pulse" />
+            </div>
+
+            {/* Gender */}
+            <div className="relative mt-2">
+              <label className="absolute -top-2 left-3 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+                Gender
+              </label>
+              <div className="relative">
+                <select
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  className="w-full pl-4 pr-8 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                >
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-500 z-10">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Email Address */}
-          <div className="space-y-1.5">
-            <label className="text-xs font-normal text-slate-600  uppercase tracking-wider flex items-center">
-              <Mail size={14} className="mr-1.5 text-indigo-500" /> Email Address
-            </label>
-            <div className="relative">
+          <div className="grid grid-cols-1 gap-4 pt-2">
+            <div className="relative mt-1">
+              <label className="absolute -top-2 left-3 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+                Email Address
+              </label>
               <input
                 type="email"
                 required
@@ -186,142 +200,172 @@ export const BirthDetailsForm: React.FC = () => {
                   setEmail(e.target.value);
                   if (emailError) setEmailError('');
                 }}
-                placeholder="Enter Your Email"
-                className={`w-full bg-slate-50 border ${emailError ? 'border-red-400 focus:border-red-500' : 'border-slate-200/85 focus:border-indigo-500'} rounded-2xl py-3.5 pl-4 pr-11 text-slate-800 placeholder:text-slate-400 focus:ring-0 transition-all font-medium`}
+                placeholder="Your Email"
+                className={`w-full px-4 py-3 text-sm text-gray-800 font-medium placeholder-gray-500 border ${emailError ? 'border-red-400 focus:border-red-500' : 'border-gray-200 focus:border-indigo-400'} rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-400`}
               />
-              {emailError && <p className="text-[10px] text-red-500 mt-1 pl-2">{emailError}</p>}
+              {emailError && <p className="text-[10px] text-red-500 absolute -bottom-4 left-2">{emailError}</p>}
             </div>
           </div>
 
-          {/* Gender */}
-          <div className="space-y-1.5">
-            <label className="text-xs font-normal text-slate-600 uppercase tracking-wider">
-              Gender
-            </label>
-            <select
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-              className="w-full bg-slate-50 border border-slate-200/85 focus:border-indigo-500 rounded-2xl py-3.5 px-4 text-slate-800 font-normal focus:ring-0 focus:outline-none transition-all"
-            >
-              <option className="bg-white text-slate-800" value="Male">Male</option>
-              <option className="bg-white text-slate-800" value="Female">Female</option>
-              <option className="bg-white text-slate-800" value="Other">Other</option>
-            </select>
-          </div>
-
           {/* Date of Birth Grid */}
-          <div className="space-y-2">
-            <label className="text-xs font-normal text-slate-600  uppercase tracking-wider flex items-center">
-              <Calendar size={14} className="mr-1.5 text-indigo-500" /> Date of Birth
-            </label>
-            <div className="grid grid-cols-3 gap-3">
-              <select
-                value={day}
-                onChange={(e) => setDay(Number(e.target.value))}
-                className="bg-slate-50  border border-slate-200/85  rounded-xl py-3 px-3.5 text-center text-slate-800  font-normal focus:ring-0 focus:outline-none"
-              >
-                {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
-                  <option className="bg-white text-slate-800" key={d} value={d}>{d}</option>
-                ))}
-              </select>
+          <div className="grid grid-cols-3 gap-4 pt-2">
+            <div className="relative">
+              <label className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+                Day
+              </label>
+              <div className="relative">
+                <select
+                  value={day}
+                  onChange={(e) => setDay(Number(e.target.value))}
+                  className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                >
+                  {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
+                    <option key={d} value={d}>{d}</option>
+                  ))}
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+              </div>
+            </div>
 
-              <select
-                value={month}
-                onChange={(e) => setMonth(Number(e.target.value))}
-                className="bg-slate-50  border border-slate-200/85  rounded-xl py-3 px-3 text-slate-800  font-normal focus:ring-0 focus:outline-none"
-              >
-                {[
-                  'January', 'February', 'March', 'April', 'May', 'June',
-                  'July', 'August', 'September', 'October', 'November', 'December'
-                ].map((m, idx) => (
-                  <option className="bg-white text-slate-800" key={m} value={idx + 1}>{m}</option>
-                ))}
-              </select>
+            <div className="relative">
+              <label className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+                Month
+              </label>
+              <div className="relative">
+                <select
+                  value={month}
+                  onChange={(e) => setMonth(Number(e.target.value))}
+                  className="w-full pl-2 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                >
+                  {[
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                  ].map((m, idx) => (
+                    <option key={m} value={idx + 1}>{m}</option>
+                  ))}
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+              </div>
+            </div>
 
-              <select
-                value={year}
-                onChange={(e) => setYear(Number(e.target.value))}
-                className="bg-slate-50  border border-slate-200/85  rounded-xl py-3 px-3 text-slate-800  font-normal focus:ring-0 focus:outline-none"
-              >
-                {Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i).map((y) => (
-                  <option className="bg-white text-slate-800" key={y} value={y}>{y}</option>
-                ))}
-              </select>
+            <div className="relative">
+              <label className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+                Year
+              </label>
+              <div className="relative">
+                <select
+                  value={year}
+                  onChange={(e) => setYear(Number(e.target.value))}
+                  className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                >
+                  {Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i).map((y) => (
+                    <option key={y} value={y}>{y}</option>
+                  ))}
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Time of Birth Grid */}
-          <div className="space-y-2">
-            <label className="text-xs font-normal text-slate-600  uppercase tracking-wider flex items-center">
-              <Clock size={14} className="mr-1.5 text-indigo-500" /> Time of Birth
-            </label>
-            <div className="grid grid-cols-3 gap-3">
-              <div className="flex items-center space-x-2 bg-slate-50  border border-slate-200/85  rounded-2xl px-3 py-1">
-                <span className="text-xs font-normal text-slate-400">Hr</span>
+          <div className="grid grid-cols-3 gap-4 pt-2">
+            <div className="relative">
+              <label className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+                Hour
+              </label>
+              <div className="relative">
                 <select
                   value={hour12}
                   onChange={(e) => setHour12(Number(e.target.value))}
-                  className="w-full bg-transparent border-0 text-slate-800  font-normal focus:ring-0 focus:outline-none py-2 px-1"
+                  className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                 >
                   {Array.from({ length: 12 }, (_, i) => i === 0 ? 12 : i).map((h) => (
-                    <option className="bg-white text-slate-800" key={h} value={h}>{String(h).padStart(2, '0')}</option>
+                    <option key={h} value={h}>{String(h).padStart(2, '0')}</option>
                   ))}
                 </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
               </div>
+            </div>
 
-              <div className="flex items-center space-x-2 bg-slate-50  border border-slate-200/85  rounded-2xl px-3 py-1">
-                <span className="text-xs font-normal text-slate-400">Min</span>
+            <div className="relative">
+              <label className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+                Minute
+              </label>
+              <div className="relative">
                 <select
                   value={minute}
                   onChange={(e) => setMinute(Number(e.target.value))}
-                  className="w-full bg-transparent border-0 text-slate-800  font-normal focus:ring-0 focus:outline-none py-2 px-1"
+                  className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                 >
                   {Array.from({ length: 60 }, (_, i) => i).map((m) => (
-                    <option className="bg-white text-slate-800" key={m} value={m}>{String(m).padStart(2, '0')}</option>
+                    <option key={m} value={m}>{String(m).padStart(2, '0')}</option>
                   ))}
                 </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
               </div>
+            </div>
 
-              <div className="flex bg-slate-50 border border-slate-200/85 rounded-2xl overflow-hidden p-1">
-                <button
-                  type="button"
-                  onClick={() => setAmpm('AM')}
-                  className={`flex-1 text-xs font-semibold rounded-xl transition-all ${ampm === 'AM' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+            <div className="relative">
+              <label className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+                AM / PM
+              </label>
+              <div className="relative">
+                <select
+                  value={ampm}
+                  onChange={(e) => setAmpm(e.target.value as 'AM' | 'PM')}
+                  className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                 >
-                  AM
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setAmpm('PM')}
-                  className={`flex-1 text-xs font-semibold rounded-xl transition-all ${ampm === 'PM' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-                >
-                  PM
-                </button>
+                  <option value="AM">AM</option>
+                  <option value="PM">PM</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Place of Birth */}
-          <div className="space-y-2">
-            <label className="text-xs font-normal text-slate-600  uppercase tracking-wider flex items-center">
-              <MapPin size={14} className="mr-1.5 text-indigo-500" /> Place of Birth
-            </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 relative z-40">
-              <select
-                value={country}
-                onChange={(e) => {
-                  setCountry(e.target.value);
-                  setCityInput('');
-                  setCity('');
-                }}
-                className="w-full bg-slate-50  border border-slate-200/85  rounded-2xl py-3 px-4 text-slate-800  font-normal focus:ring-0 focus:outline-none"
-              >
-                <option value="">Select Country</option>
-                {allCountries.map((c) => (
-                  <option key={c.isoCode} value={c.name}>{c.name}</option>
-                ))}
-              </select>
+          {/* Place of Birth Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 relative z-40">
+            <div className="relative">
+              <label className="absolute -top-2 left-3 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+                Country
+              </label>
+              <div className="relative">
+                <select
+                  value={country}
+                  onChange={(e) => {
+                    setCountry(e.target.value);
+                    setCityInput('');
+                    setCity('');
+                  }}
+                  className="w-full pl-4 pr-8 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                >
+                  <option value="">Select Country</option>
+                  {allCountries.map((c) => (
+                    <option key={c.isoCode} value={c.name}>{c.name}</option>
+                  ))}
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-500 z-10">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+              </div>
+            </div>
 
+            <div className="relative">
+              <label className="absolute -top-2 left-3 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+                City
+              </label>
               <div className="relative">
                 <input
                   type="text"
@@ -335,8 +379,8 @@ export const BirthDetailsForm: React.FC = () => {
                   }}
                   onFocus={() => setShowSuggestions(true)}
                   onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-                  placeholder="Type your City..."
-                  className="w-full bg-slate-50  border border-slate-200/85  focus:border-indigo-500 :border-indigo-400 rounded-2xl py-3 px-4 text-slate-800  placeholder:text-slate-450 focus:ring-0 transition-all font-normal"
+                  placeholder="Type your city"
+                  className="w-full px-4 py-3 text-sm text-gray-800 font-medium placeholder-gray-500 border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
                 />
                 <AnimatePresence>
                   {showSuggestions && filteredCities.length > 0 && (
@@ -344,7 +388,7 @@ export const BirthDetailsForm: React.FC = () => {
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -5 }}
-                      className="absolute left-0 right-0 top-full z-50 mt-1 max-h-48 overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-xl py-1 custom-scrollbar"
+                      className="absolute left-0 right-0 top-full z-50 mt-1 max-h-48 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-xl py-1 custom-scrollbar"
                     >
                       {filteredCities.map((c, idx) => (
                         <li
@@ -354,7 +398,7 @@ export const BirthDetailsForm: React.FC = () => {
                             setCity(c.name);
                             setShowSuggestions(false);
                           }}
-                          className="px-4 py-2 text-sm text-slate-700 font-normal hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer transition-colors"
+                          className="px-4 py-2 text-sm text-gray-700 font-medium hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer transition-colors"
                         >
                           {c.name}
                         </li>
@@ -366,12 +410,11 @@ export const BirthDetailsForm: React.FC = () => {
             </div>
           </div>
 
-          {/* Submit Action */}
-          <div className="mt-4 pt-2">
+          <div className="pt-4">
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 py-4.5 rounded-2xl font-normal text-base tracking-wide flex items-center justify-center space-x-2 transition-all duration-300 shadow-lg shadow-orange-500/25 active:scale-[0.98] disabled:opacity-75 disabled:cursor-not-allowed cursor-pointer"
+              className="w-full py-4 px-6 bg-orange-500 hover:bg-orange-600 active:scale-[0.98] text-white font-medium text-[15px] tracking-wide rounded-xl shadow-lg transition-all duration-200 cursor-pointer text-center flex items-center justify-center space-x-2"
             >
               {isLoading ? (
                 <>
@@ -379,12 +422,11 @@ export const BirthDetailsForm: React.FC = () => {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                   </svg>
-                  <span>Sychronizing Cosmic Grid...</span>
+                  <span>Generating...</span>
                 </>
               ) : (
                 <>
-                  <span>Generate Kundali Now</span>
-                  <Sparkles size={16} />
+                  <span>Create Your Kundali Report Now</span>
                 </>
               )}
             </button>
