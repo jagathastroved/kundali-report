@@ -56,27 +56,18 @@ export const ReportProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setBirthDetails(details);
 
     try {
-      const response = await fetch('/api/generate-kundli', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(details),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to reach calculation coordinates.');
-      }
-
-      const data = await response.json();
-      setReportData(data);
-    } catch (err: any) {
-      console.warn('API connection failed. Resorting to premium default calculations...', err);
-      // Construct a tailored local report
+      // Construct a tailored local report using static data
       const localData = JSON.parse(JSON.stringify(fallbackReport));
       localData.birthDetails = details;
       localData.birthStar.description = `Hello, ${details.name}! Based on your birth details of ${details.day}/${details.month}/${details.year} in ${details.city}, ${localData.birthStar.description}`;
+      
+      // Simulate network delay for UI consistency
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
       setReportData(localData);
+    } catch (err: any) {
+      console.error('Error generating report:', err);
+      setError('An error occurred while generating the report.');
     } finally {
       setIsLoading(false);
     }

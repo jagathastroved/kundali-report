@@ -1,77 +1,112 @@
 import React from 'react';
 import { useReport } from '../../context/ReportContext';
 import { PlanetPosition } from '../../types';
-import { renderPromoBox } from '../SharedElements';
+import { planetImages } from '../../data/planetImages';
+import { Lightbulb } from 'lucide-react';
 
-export const PlanetaryProfilesPage: React.FC<{pageIdx: number, setPage: (idx: number) => void}> = ({pageIdx, setPage}) => {
+export const PlanetaryProfilesPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
   const { reportData: data } = useReport();
-  if(!data) return null;
+  if (!data) return null;
 
   const planetKeys = ['sun', 'moon', 'mercury', 'jupiter', 'venus', 'mars', 'saturn', 'rahu', 'ketu'];
-  const emojis: Record<string, string> = {
-    sun: '☀️', moon: '🌙', mercury: '☿️', jupiter: '♃', venus: '♀️',
-    mars: '♂️', saturn: '♄', rahu: '☊', ketu: '☋'
+
+  // A mapping to get the correct image key. For keys like 'mercury', it maps to 'buddha'
+  const imageKeyMap: Record<string, string> = {
+    sun: 'surya', moon: 'moon', mercury: 'buddha', jupiter: 'guru', venus: 'sukra',
+    mars: 'mars', saturn: 'sani', rahu: 'rahu', ketu: 'ketu'
   };
 
   return (
-    <div className="space-y-10">
-      <div className="space-y-1 border-b border-slate-200 pb-4">
-        <span className="text-[10px] font-normal uppercase text-indigo-500 tracking-widest block">Planet Profiles</span>
-        <h2 className="text-2xl font-semibold text-slate-900 tracking-tight">
+    <div className="space-y-8 pb-6">
+
+      {/* Title Section */}
+      <div className="text-center space-y-3 mt-4">
+        <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
           All Planetary Positions
         </h2>
-        <p className="text-xs text-slate-500">
-          A comprehensive view of all 9 planetary bodies in your Kundli.
+        <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
+      </div>
+
+      <div className="px-2">
+        <p className="text-slate-600 text-[14px] leading-relaxed font-medium text-center max-w-2xl mx-auto">
+          A comprehensive view of all 9 planetary bodies in your Kundli and how they shape your life's path.
         </p>
       </div>
 
-      {planetKeys.map((key) => {
-        const planet: PlanetPosition = data.planetaryStrengths.planets[key];
-        if (!planet) return null;
+      <div className="space-y-6 pt-4 font-sans px-1">
+        {planetKeys.map((key) => {
+          const planet: PlanetPosition = data.planetaryStrengths.planets[key];
+          if (!planet) return null;
 
-        return (
-          <div key={key} className="space-y-4 pb-6 border-b border-slate-100 last:border-0">
-            <h3 className="text-xl font-semibold text-slate-800 flex items-center">
-              <span className="text-2xl mr-2.5 drop-shadow">{emojis[key] || '🪐'}</span>
-              {planet.name}
-            </h3>
+          const imgKey = imageKeyMap[key] || 'surya';
+          const imgSrc = planetImages[imgKey];
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-1 text-center">
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/50">
-                <span className="text-[10px] uppercase font-normal text-slate-400 tracking-wider block">Natal Sign</span>
-                <span className="font-normal text-slate-800 text-sm">{planet.sign}</span>
+          return (
+            <div key={key} className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm relative overflow-hidden flex flex-col gap-5 group hover:shadow-md transition-shadow">
+
+              {/* Header: Image + Name */}
+              <div className="flex items-center gap-4 border-b border-slate-100 pb-4">
+                <div className="w-14 h-14 flex-shrink-0 rounded-full overflow-hidden border border-slate-200 shadow-sm bg-slate-50 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  {imgSrc ? (
+                    <img src={imgSrc} alt={planet.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-2xl">🪐</span>
+                  )}
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900 tracking-tight">
+                    {planet.name}
+                  </h3>
+                  <span className="text-[11px] uppercase tracking-widest text-indigo-500 font-semibold">
+                    {key}
+                  </span>
+                </div>
               </div>
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/50">
-                <span className="text-[10px] uppercase font-normal text-slate-400 tracking-wider block">Cusp Position</span>
-                <span className="font-normal text-slate-800 text-xs font-mono">{planet.degree}</span>
+
+              {/* Data Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="p-3 bg-slate-50/50 rounded-2xl border border-slate-100 flex flex-col justify-center">
+                  <span className="text-[10px] uppercase font-semibold text-slate-400 tracking-wider mb-0.5">Natal Sign</span>
+                  <span className="font-semibold text-slate-800 text-[13px]">{planet.sign}</span>
+                </div>
+                <div className="p-3 bg-slate-50/50 rounded-2xl border border-slate-100 flex flex-col justify-center">
+                  <span className="text-[10px] uppercase font-semibold text-slate-400 tracking-wider mb-0.5">Degree</span>
+                  <span className="font-semibold text-slate-800 text-[13px] font-mono">{planet.degree}</span>
+                </div>
+                <div className="p-3 bg-slate-50/50 rounded-2xl border border-slate-100 flex flex-col justify-center">
+                  <span className="text-[10px] uppercase font-semibold text-slate-400 tracking-wider mb-0.5">Nakshatra</span>
+                  <span className="font-semibold text-slate-800 text-[13px]">{planet.nakshatra}</span>
+                </div>
+                <div className="p-3 bg-slate-50/50 rounded-2xl border border-slate-100 flex flex-col justify-center">
+                  <span className="text-[10px] uppercase font-semibold text-slate-400 tracking-wider mb-0.5">House</span>
+                  <span className="font-semibold text-slate-800 text-[13px]">{planet.house} House</span>
+                </div>
               </div>
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/50">
-                <span className="text-[10px] uppercase font-normal text-slate-400 tracking-wider block">Nakshatra</span>
-                <span className="font-normal text-slate-800 text-xs">{planet.nakshatra}</span>
+
+              {/* Description */}
+              <div className="text-[13px] text-slate-600 leading-relaxed font-medium bg-indigo-50/30 p-4 rounded-2xl border border-indigo-100/50 italic">
+                "{planet.description}"
               </div>
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/50">
-                <span className="text-[10px] uppercase font-normal text-slate-400 tracking-wider block">Occupied House</span>
-                <span className="font-normal text-slate-800 text-sm">{planet.house} House</span>
+
+              {/* Remediation */}
+              <div className="p-4 bg-orange-50/50 rounded-2xl border border-orange-100/50 flex gap-3 items-start">
+                <div className="mt-0.5 text-orange-500">
+                  <Lightbulb size={18} />
+                </div>
+                <div className="space-y-1">
+                  <span className="text-[11px] font-bold uppercase text-orange-700 tracking-wider block">
+                    Corrective Jyotish Remediation
+                  </span>
+                  <p className="text-[13px] text-slate-700 leading-relaxed font-medium">
+                    {planet.remediation}
+                  </p>
+                </div>
               </div>
+
             </div>
-
-            <p className="text-xs text-slate-700 leading-relaxed font-normal p-4 bg-indigo-50/15 border border-indigo-200/30 rounded-xl italic">
-              "{planet.description}"
-            </p>
-
-            <div className="p-4 bg-orange-50/30 rounded-xl space-y-1.5 border border-orange-100">
-              <span className="text-[10px] font-normal uppercase text-orange-600 tracking-wider block">
-                💡 Corrective Jyotish Remediation:
-              </span>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                {planet.remediation}
-              </p>
-            </div>
-          </div>
-        );
-      })}
-
-      {renderPromoBox(() => setPage(pageIdx + 1), 'combo')}
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -108,13 +108,13 @@ export const BirthDetailsForm: React.FC = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="w-full max-w-xl bg-white shadow-2xl rounded-[1.5rem] overflow-hidden flex flex-col max-h-full self-center"
+      className="w-full max-w-lg bg-white shadow-2xl rounded-[1.5rem] overflow-hidden flex flex-col max-h-full self-center"
     >
       <div className="bg-orange-500 py-3 text-center">
         <h3 className="text-white font-semibold text-[17px] tracking-wide uppercase">Kundali</h3>
       </div>
 
-      <div className="p-5 md:p-8 space-y-5 relative flex-1">
+      <div className="p-4 md:p-6 space-y-4 relative flex-1">
         <div className="flex justify-between items-start mb-4">
           <div>
             <h2 className="text-xl font-serif font-normal text-gray-800 tracking-tight leading-none">
@@ -146,8 +146,8 @@ export const BirthDetailsForm: React.FC = () => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          
+        <form onSubmit={handleSubmit} className="space-y-4">
+
           <div className="grid grid-cols-2 gap-4 pt-2">
             {/* Full Name */}
             <div className="relative mt-2">
@@ -160,7 +160,7 @@ export const BirthDetailsForm: React.FC = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Your Name"
-                className="w-full px-4 py-3 text-sm text-gray-800 font-medium placeholder-gray-500 border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
+                className="w-full px-4 py-2.5 text-sm text-gray-800 font-medium placeholder-gray-500 border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
               />
             </div>
 
@@ -173,7 +173,7 @@ export const BirthDetailsForm: React.FC = () => {
                 <select
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
-                  className="w-full pl-4 pr-8 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                  className="w-full pl-4 pr-8 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -201,7 +201,7 @@ export const BirthDetailsForm: React.FC = () => {
                   if (emailError) setEmailError('');
                 }}
                 placeholder="Your Email"
-                className={`w-full px-4 py-3 text-sm text-gray-800 font-medium placeholder-gray-500 border ${emailError ? 'border-red-400 focus:border-red-500' : 'border-gray-200 focus:border-indigo-400'} rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-400`}
+                className={`w-full px-4 py-2.5 text-sm text-gray-800 font-medium placeholder-gray-500 border ${emailError ? 'border-red-400 focus:border-red-500' : 'border-gray-200 focus:border-indigo-400'} rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-400`}
               />
               {emailError && <p className="text-[10px] text-red-500 absolute -bottom-4 left-2">{emailError}</p>}
             </div>
@@ -217,7 +217,7 @@ export const BirthDetailsForm: React.FC = () => {
                 <select
                   value={day}
                   onChange={(e) => setDay(Number(e.target.value))}
-                  className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                  className="w-full pl-3 pr-8 py-2.5 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                 >
                   {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
                     <option key={d} value={d}>{d}</option>
@@ -237,7 +237,7 @@ export const BirthDetailsForm: React.FC = () => {
                 <select
                   value={month}
                   onChange={(e) => setMonth(Number(e.target.value))}
-                  className="w-full pl-2 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                  className="w-full pl-2 pr-8 py-2.5 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                 >
                   {[
                     'January', 'February', 'March', 'April', 'May', 'June',
@@ -260,7 +260,7 @@ export const BirthDetailsForm: React.FC = () => {
                 <select
                   value={year}
                   onChange={(e) => setYear(Number(e.target.value))}
-                  className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                  className="w-full pl-3 pr-8 py-2.5 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                 >
                   {Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i).map((y) => (
                     <option key={y} value={y}>{y}</option>
@@ -283,7 +283,7 @@ export const BirthDetailsForm: React.FC = () => {
                 <select
                   value={hour12}
                   onChange={(e) => setHour12(Number(e.target.value))}
-                  className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                  className="w-full pl-3 pr-8 py-2.5 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                 >
                   {Array.from({ length: 12 }, (_, i) => i === 0 ? 12 : i).map((h) => (
                     <option key={h} value={h}>{String(h).padStart(2, '0')}</option>
@@ -303,7 +303,7 @@ export const BirthDetailsForm: React.FC = () => {
                 <select
                   value={minute}
                   onChange={(e) => setMinute(Number(e.target.value))}
-                  className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                  className="w-full pl-3 pr-8 py-2.5 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                 >
                   {Array.from({ length: 60 }, (_, i) => i).map((m) => (
                     <option key={m} value={m}>{String(m).padStart(2, '0')}</option>
@@ -323,7 +323,7 @@ export const BirthDetailsForm: React.FC = () => {
                 <select
                   value={ampm}
                   onChange={(e) => setAmpm(e.target.value as 'AM' | 'PM')}
-                  className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                  className="w-full pl-3 pr-8 py-2.5 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                 >
                   <option value="AM">AM</option>
                   <option value="PM">PM</option>
@@ -349,7 +349,7 @@ export const BirthDetailsForm: React.FC = () => {
                     setCityInput('');
                     setCity('');
                   }}
-                  className="w-full pl-4 pr-8 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                  className="w-full pl-4 pr-8 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                 >
                   <option value="">Select Country</option>
                   {allCountries.map((c) => (
@@ -380,7 +380,7 @@ export const BirthDetailsForm: React.FC = () => {
                   onFocus={() => setShowSuggestions(true)}
                   onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                   placeholder="Type your city"
-                  className="w-full px-4 py-3 text-sm text-gray-800 font-medium placeholder-gray-500 border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
+                  className="w-full px-4 py-2.5 text-sm text-gray-800 font-medium placeholder-gray-500 border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
                 />
                 <AnimatePresence>
                   {showSuggestions && filteredCities.length > 0 && (
@@ -414,7 +414,7 @@ export const BirthDetailsForm: React.FC = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-4 px-6 bg-orange-500 hover:bg-orange-600 active:scale-[0.98] text-white font-medium text-[15px] tracking-wide rounded-xl shadow-lg transition-all duration-200 cursor-pointer text-center flex items-center justify-center space-x-2"
+              className="w-full py-3.5 px-6 bg-orange-500 hover:bg-orange-600 active:scale-[0.98] text-white font-medium text-[15px] tracking-wide rounded-xl shadow-lg transition-all duration-200 cursor-pointer text-center flex items-center justify-center space-x-2"
             >
               {isLoading ? (
                 <>

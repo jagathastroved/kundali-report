@@ -63,79 +63,40 @@ const LandingScreen: React.FC = () => {
         <Star size={320} strokeWidth={0.5} />
       </div>
 
-      <div className="w-full max-w-6xl h-auto lg:h-full mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-14 items-center z-10 py-2">
-        <div className="space-y-6 text-left max-w-xl mt-8 lg:mt-0 w-full">
-          <h1 className="text-4xl md:text-[44px] lg:text-[50px] font-semibold text-white tracking-tight leading-[1.1]">
+      <div className="w-full max-w-6xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center z-10">
+
+        {/* Left Side - Content */}
+        <div className="space-y-4 text-left max-w-xl w-full mt-8 lg:mt-0">
+          <h1 className="text-3xl md:text-4xl lg:text-[42px] font-semibold text-white tracking-tight leading-[1.1]">
             Discover Your True Path<br />Through Kundali
           </h1>
-
-          <p className="text-indigo-100/90 text-[15px] max-w-md leading-relaxed font-normal">
+          <p className="text-sm md:text-[15px] text-indigo-100/90 font-medium leading-relaxed max-w-md">
             Unlock the hidden meanings of your birth chart. Gain deep insights into your personality, destiny, and life's true purpose.
           </p>
 
-          <div className="space-y-4 pt-4">
-            <div className="flex items-start">
-              <div className="mt-0.5 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-0.5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8 pt-6">
+            {[
+              { title: "Personalized Kundali Chart", desc: "Access your detailed birth chart based on precise birth details." },
+              { title: "Core Personality", desc: "Reveal your strengths, challenges, talents, and true life potential." },
+              { title: "Dasha Timeline", desc: "Understand current and future planetary periods shaping your journey." },
+              { title: "Karmic Chakra Analysis", desc: "Uncover karmic patterns and the spiritual lessons guiding your growth." },
+              { title: "Planetary Profiles", desc: "Gain insights into how each planet influences different areas of life." },
+              { title: "Influential Signs", desc: "Learn how key zodiac signs affect your personality and life path." }
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-start">
+                <div className="mt-1 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-1.5 border border-indigo-700/50">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#818CF8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div>
+                  <h4 className="text-white font-medium text-[15px]">{item.title}</h4>
+                  <p className="text-indigo-200/80 text-[13px] mt-1.5 leading-relaxed">{item.desc}</p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-white font-medium text-[15px]">Birth Star & Core Personality</h4>
-                <p className="text-indigo-200/70 text-sm mt-1">Discover your Nakshatra and understand your deepest traits.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start">
-              <div className="mt-0.5 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-0.5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-              </div>
-              <div>
-                <h4 className="text-white font-medium text-[15px]">Influential Signs</h4>
-                <p className="text-indigo-200/70 text-sm mt-1">Reveal the most important zodiac signs shaping your destiny.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start">
-              <div className="mt-0.5 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-0.5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-              </div>
-              <div>
-                <h4 className="text-white font-medium text-[15px]">Nature's Blessings</h4>
-                <p className="text-indigo-200/70 text-sm mt-1">Learn how your qualities connect to the elements of nature.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start">
-              <div className="mt-0.5 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-0.5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-              </div>
-              <div>
-                <h4 className="text-white font-medium text-[15px]">Karmic Path</h4>
-                <p className="text-indigo-200/70 text-sm mt-1">Unveil the stored karmic journey you are destined to follow.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start">
-              <div className="mt-0.5 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-0.5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-              </div>
-              <div>
-                <h4 className="text-white font-medium text-[15px]">Planetary Positions</h4>
-                <p className="text-indigo-200/70 text-sm mt-1">Gain insights from the precise alignment of all planets at your birth.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start">
-              <div className="mt-0.5 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-0.5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-              </div>
-              <div>
-                <h4 className="text-white font-medium text-[15px]">Vimshottari Dasha</h4>
-                <p className="text-indigo-200/70 text-sm mt-1">Get actionable predictions through comprehensive Dasha analysis.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
+        {/* Right Side - Form */}
         <div className="w-full flex justify-center lg:justify-end">
           <BirthDetailsForm />
         </div>
@@ -169,18 +130,16 @@ export default function App() {
                 <Route path="welcome" element={<PageWrapper component={Pages.WelcomePage} pageIdx={0} />} />
                 <Route path="birth-star" element={<PageWrapper component={Pages.BirthStarPage} pageIdx={1} />} />
                 <Route path="core-personality" element={<PageWrapper component={Pages.CorePersonalityPage} pageIdx={2} />} />
-                <Route path="big-three-signs" element={<PageWrapper component={Pages.BigThreeSignsPage} pageIdx={3} />} />
-                <Route path="five-great-elements" element={<PageWrapper component={Pages.FiveGreatElementsPage} pageIdx={4} />} />
-                <Route path="stored-karmic-path" element={<PageWrapper component={Pages.StoredKarmicPathPage} pageIdx={5} />} />
-                <Route path="report-features" element={<PageWrapper component={Pages.ReportFeaturesPage} pageIdx={6} />} />
-                <Route path="chakras-map" element={<PageWrapper component={Pages.ChakrasMapPage} pageIdx={7} />} />
-                <Route path="dominant-chakra" element={<PageWrapper component={Pages.DominantChakraPage} pageIdx={8} />} />
-                <Route path="planetary-strengths" element={<PageWrapper component={Pages.PlanetaryStrengthsPage} pageIdx={9} />} />
-                <Route path="planetary-profiles" element={<PageWrapper component={Pages.PlanetaryProfilesPage} pageIdx={10} />} />
-                <Route path="atmakaraka" element={<PageWrapper component={Pages.AtmakarakaPage} pageIdx={11} />} />
-                <Route path="lagna-chart" element={<PageWrapper component={Pages.LagnaChartPage} pageIdx={12} />} />
-                <Route path="dasha-wheel" element={<PageWrapper component={Pages.DashaWheelPage} pageIdx={13} />} />
-                <Route path="premium-deliverables" element={<PageWrapper component={Pages.PremiumDeliverablesPage} pageIdx={14} />} />
+                <Route path="influential-signs" element={<PageWrapper component={Pages.BigThreeSignsPage} pageIdx={3} />} />
+                <Route path="dominant-element" element={<PageWrapper component={Pages.FiveGreatElementsPage} pageIdx={4} />} />
+                <Route path="lagna-chart" element={<PageWrapper component={Pages.LagnaChartPage} pageIdx={5} />} />
+                <Route path="why-get-report" element={<PageWrapper component={Pages.ReportFeaturesPage} pageIdx={6} />} />
+                <Route path="karmic-chakra" element={<PageWrapper component={Pages.KarmicChakra} pageIdx={7} />} />
+                <Route path="planetary-strengths" element={<PageWrapper component={Pages.PlanetaryStrengthsPage} pageIdx={8} />} />
+                <Route path="planetary-profiles" element={<PageWrapper component={Pages.PlanetaryProfilesPage} pageIdx={9} />} />
+                <Route path="atmakaraka" element={<PageWrapper component={Pages.AtmakarakaPage} pageIdx={10} />} />
+                <Route path="dasha-timeline" element={<PageWrapper component={Pages.DashaWheelPage} pageIdx={11} />} />
+                <Route path="premium-deliverables" element={<PageWrapper component={Pages.PremiumDeliverablesPage} pageIdx={12} />} />
                 <Route index element={<Navigate to="welcome" replace />} />
               </Route>
               <Route path="*" element={<Navigate to="/" replace />} />

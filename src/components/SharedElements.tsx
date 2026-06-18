@@ -8,16 +8,14 @@ export const PAGE_TITLES = [
   'Birth Star Analysis',
   'Core Personality',
   'Three Most Influential Signs',
-  'Five Great Elements',
-  'Stored Karmic Path',
+  'Your Dominant Element',
+  'Kundli Lagna Chart',
   'Why Get This Report?',
-  'Your Chakras Map',
-  'Dominant Chakra Insight',
-  'Planetary Shield Strengths',
+  'Karmic Chakra',
+  'Planetary Strengths',
   'Planetary Profiles',
   'Atmakaraka Soul Focal',
-  'Kundli Lagna Chart',
-  'Vimshottari Dasha Wheel',
+  'Current Dasha Timeline',
   'Your Premium Deliverables'
 ];
 
@@ -137,9 +135,9 @@ export const BookletMockup: React.FC = () => {
   );
 };
 
-export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies' = 'combo') => {
+export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies' | 'element' | 'planetary' = 'combo') => {
   return (
-    <div className="mt-8 bg-gradient-to-br from-[#1E1B4B] via-[#312E81] to-[#1E1B4B] rounded-[2rem] p-6 sm:p-8 text-white relative overflow-hidden border border-orange-500/30 shadow-[0_20px_50px_rgba(249,115,22,0.15)] flex flex-col sm:flex-row items-center sm:items-stretch gap-6 group">
+    <div className="mt-8 bg-gradient-to-br from-[#1E1B4B] via-[#312E81] to-[#1E1B4B] rounded-[2rem] p-6 sm:p-8 text-white relative overflow-hidden border border-orange-500/30 shadow-[0_20px_50px_rgba(249,115,22,0.15)] flex flex-col sm:flex-row items-center gap-8 group">
       {/* Glossy overlay effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
       <div className="absolute -top-24 -right-24 w-64 h-64 bg-orange-500/20 rounded-full filter blur-3xl pointer-events-none group-hover:bg-orange-500/30 transition-all duration-700" />
@@ -147,29 +145,35 @@ export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies'
 
       <BookletMockup />
 
-      <div className="flex-1 space-y-5 relative z-10 flex flex-col justify-center text-center">
+      <div className="flex-1 space-y-5 relative z-10 flex flex-col justify-center text-center sm:text-left">
         <div>
           <div className="inline-flex items-center space-x-1.5 bg-orange-500/20 text-orange-300 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-orange-500/40 mb-4 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
             <Lock size={12} />
             <span>Premium Insight</span>
           </div>
           <h4 className="text-xl sm:text-2xl font-bold text-white leading-tight tracking-tight drop-shadow-sm">
-            {variant === 'combo' ? 'Unlock Personalized Full Kundali Report' : 'Get Complete Karmic Remedies & Rituals'}
+            {variant === 'combo' ? 'Unlock Personalized Full Kundali Report'
+              : variant === 'element' ? 'Unlock Your Complete Astrological Destiny'
+                : variant === 'planetary' ? 'Unlock Your Premium Kundali Report'
+                  : 'Get Complete Karmic Remedies & Rituals'}
           </h4>
-          <p className="text-indigo-200 text-xs sm:text-sm font-normal mt-2.5 leading-relaxed max-w-md mx-auto">
+          <p className="text-indigo-200 text-xs sm:text-sm font-normal mt-2.5 leading-relaxed max-w-md sm:mx-0 mx-auto">
             {variant === 'combo'
               ? 'This summary is just 5% of your full profile. Discover precise timings, career peaks, and personalized gemstone recommendations.'
-              : 'Discover exact mantras, poojas, and daily rituals scientifically designed to balance your dominant doshas and clear karmic blocks.'}
+              : variant === 'element'
+                ? 'Your Dominant Element reveals so much about you, but it\'s only the beginning! Buy the full premium report to unlock crucial insights into your future, wealth, health, and much more important cosmic secrets.'
+                : variant === 'planetary'
+                  ? 'Your planetary shield strengths reveal key cosmic forces, but it\'s only the beginning! Buy the full premium report to unlock deep insights into your destiny, wealth, and life paths.'
+                  : 'Discover exact mantras, poojas, and daily rituals scientifically designed to balance your dominant doshas and clear karmic blocks.'}
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-3 pt-2">
           {/* Primary Action - Buy Now */}
           <Link to="/report/report-features"
             className="w-full sm:w-auto bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 hover:from-orange-400 hover:to-yellow-400 text-slate-900 px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(249,115,22,0.4)] flex items-center justify-center space-x-2 transform hover:-translate-y-0.5"
           >
-            <span>Buy Now</span>
-            <CreditCard size={30} />
+            <span>Book Your Kundali Report Now</span>
           </Link>
         </div>
       </div>

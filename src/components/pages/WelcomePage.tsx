@@ -14,7 +14,7 @@ export const WelcomePage: React.FC<{ pageIdx: number, setPage: (idx: number) => 
 
   return (
     <div className="space-y-8 pt-6 pb-8 text-center px-2">
-      
+
       {/* Icon and Greeting */}
       <div className="space-y-6">
         <motion.div
@@ -41,45 +41,34 @@ export const WelcomePage: React.FC<{ pageIdx: number, setPage: (idx: number) => 
 
       {/* Introductory Text */}
       <p className="text-slate-600 text-[14.5px] max-w-lg mx-auto leading-relaxed font-medium">
-        We have looked at your details. You have a special birth chart, your Kundli is unique.
-        We have prepared a deeply personalized, beautiful, API-driven astrological report matching your cosmic coordinates.
+        Your cosmic coordinates align uniquely. We've mapped the exact celestial forces present at your birth to create this deeply personalized Kundali report, offering profound insights into your life's true journey.
       </p>
 
-      {/* Features List Card */}
-      <div className="relative bg-gradient-to-b from-white to-indigo-50/30 p-6 sm:p-8 rounded-[2rem] border border-indigo-50 shadow-sm text-left max-w-xl mx-auto mt-4 overflow-hidden group hover:shadow-md transition-all">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-orange-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 group-hover:opacity-70 transition-opacity" />
-        <div className="absolute bottom-0 left-0 w-32 h-32 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 group-hover:opacity-70 transition-opacity" />
-        
-        <ul className="text-[13px] text-slate-600 space-y-4 font-medium relative z-10">
-          <li className="flex items-start">
-            <CheckCircle size={16} className="text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong className="font-semibold text-slate-800">Birth Star & Core Personality:</strong> Discover your Nakshatra and understand your deepest traits.</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle size={16} className="text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong className="font-semibold text-slate-800">Influential Signs:</strong> Reveal the most important zodiac signs shaping your destiny.</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle size={16} className="text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong className="font-semibold text-slate-800">Planetary Strengths:</strong> Understand the strengths of each planet in your horoscope.</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle size={16} className="text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong className="font-semibold text-slate-800">Nature's Blessings:</strong> Learn how your qualities connect to the elements of nature.</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle size={16} className="text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong className="font-semibold text-slate-800">Karmic Path:</strong> Unveil the stored karmic journey you are destined to follow.</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle size={16} className="text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong className="font-semibold text-slate-800">Planetary Positions:</strong> Gain insights from the precise alignment of all planets at your birth.</span>
-          </li>
-          <li className="flex items-start">
-            <CheckCircle size={16} className="text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-            <span><strong className="font-semibold text-slate-800">Dasha:</strong> Get actionable predictions through comprehensive Dasha analysis.</span>
-          </li>
-        </ul>
+      <div className="pt-8 w-full max-w-3xl mx-auto">
+        <h3 className="text-[12px] font-semibold text-slate-400 uppercase tracking-[0.15em] mb-8 text-center">
+          Inside Your Report
+        </h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 text-left">
+          {[
+            { title: "Personalized Kundali Chart", desc: "Access your detailed birth chart based on precise birth details.", icon: <Star size={16} /> },
+            { title: "Core Personality", desc: "Reveal your strengths, challenges, talents, and true life potential.", icon: <Sparkles size={16} /> },
+            { title: "Dasha Timeline", desc: "Understand current and future planetary periods shaping your journey.", icon: <Clock size={16} /> },
+            { title: "Karmic Chakra Analysis", desc: "Uncover karmic patterns and the spiritual lessons guiding your growth.", icon: <RefreshCw size={16} /> },
+            { title: "Planetary Profiles", desc: "Gain insights into how each planet influences different areas of life.", icon: <Globe2 size={16} /> },
+            { title: "Influential Signs", desc: "Learn how key zodiac signs affect your personality and life path.", icon: <Compass size={16} /> }
+          ].map((item, idx) => (
+            <div key={idx} className="flex items-start gap-4 group">
+              <div className="w-9 h-9 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-500 flex-shrink-0 mt-0.5 group-hover:bg-indigo-500 group-hover:text-white transition-colors duration-300">
+                {item.icon}
+              </div>
+              <div>
+                <h4 className="text-[14px] font-semibold text-slate-800">{item.title}</h4>
+                <p className="text-[13px] text-slate-500 mt-1 leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
     </div>

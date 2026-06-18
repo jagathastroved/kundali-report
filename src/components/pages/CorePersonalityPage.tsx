@@ -7,6 +7,8 @@ import {
   Clock, Flame, Wind, Droplets, RefreshCw, CreditCard, ChevronRight, Lock, Printer, Download
 } from 'lucide-react';
 import { PieChartComponent, BookletMockup } from '../SharedElements';
+import { planetImages } from '../../data/planetImages';
+import { zodiacSignImages } from '../../data/zodiacSigns';
 
 export const CorePersonalityPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
   const { reportData: data } = useReport();
@@ -17,8 +19,8 @@ export const CorePersonalityPage: React.FC<{ pageIdx: number, setPage: (idx: num
 
       {/* Title Section */}
       <div className="text-center space-y-3 mt-4">
-
-        <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight">
+        <p className="text-[12px] text-slate-500 font-medium uppercase tracking-widest">Chapter 02: Core Framework</p>
+        <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
           Core Personality Profile
         </h2>
         <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
@@ -30,15 +32,15 @@ export const CorePersonalityPage: React.FC<{ pageIdx: number, setPage: (idx: num
         </p>
       </div>
 
-      <div className="space-y-5 px-1 pt-2">
+      <div className="space-y-4 px-1 pt-2">
 
         {/* Sun Sign Card */}
-        <div className="relative p-5 md:p-6 bg-gradient-to-br from-orange-50/50 to-white rounded-3xl shadow-sm hover:shadow-md transition-all border border-orange-100 flex flex-col md:flex-row md:items-center gap-4">
-          <div className="flex-shrink-0 w-14 h-14 rounded-full bg-gradient-to-tr from-orange-200 to-orange-100 flex items-center justify-center text-2xl shadow-inner border border-white">
-            ☀️
+        <div className="relative p-5 md:p-6 bg-gradient-to-r from-orange-50/80 to-white rounded-3xl shadow-sm hover:shadow-md transition-all border border-orange-100 flex flex-col md:flex-row md:items-center gap-4 group hover:-translate-y-1">
+          <div className="flex-shrink-0 w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center shadow-inner border border-white overflow-hidden p-2 group-hover:scale-105 transition-transform duration-300">
+            <img src={planetImages.surya} alt="Sun" className="w-full h-full object-cover rounded-full" />
           </div>
           <div className="flex-1 space-y-1">
-            <h3 className="font-semibold text-orange-900 text-base">
+            <h3 className="font-bold text-orange-900 text-base">
               Sun Sign (Surya)
             </h3>
             <p className="text-[13px] text-slate-600 font-medium leading-relaxed">
@@ -48,12 +50,12 @@ export const CorePersonalityPage: React.FC<{ pageIdx: number, setPage: (idx: num
         </div>
 
         {/* Moon Sign Card */}
-        <div className="relative p-5 md:p-6 bg-gradient-to-br from-indigo-50/50 to-white rounded-3xl shadow-sm hover:shadow-md transition-all border border-indigo-100 flex flex-col md:flex-row md:items-center gap-4">
-          <div className="flex-shrink-0 w-14 h-14 rounded-full bg-gradient-to-tr from-indigo-200 to-indigo-100 flex items-center justify-center text-2xl shadow-inner border border-white">
-            🌕
+        <div className="relative p-5 md:p-6 bg-gradient-to-r from-indigo-50/80 to-white rounded-3xl shadow-sm hover:shadow-md transition-all border border-indigo-100 flex flex-col md:flex-row md:items-center gap-4 group hover:-translate-y-1">
+          <div className="flex-shrink-0 w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center shadow-inner border border-white overflow-hidden p-2 group-hover:scale-105 transition-transform duration-300">
+            <img src={planetImages.moon} alt="Moon" className="w-full h-full object-cover rounded-full" />
           </div>
           <div className="flex-1 space-y-1">
-            <h3 className="font-semibold text-indigo-900 text-base">
+            <h3 className="font-bold text-indigo-900 text-base">
               Moon Sign (Chandra)
             </h3>
             <p className="text-[13px] text-slate-600 font-medium leading-relaxed">
@@ -63,12 +65,12 @@ export const CorePersonalityPage: React.FC<{ pageIdx: number, setPage: (idx: num
         </div>
 
         {/* Rising Sign Card */}
-        <div className="relative p-5 md:p-6 bg-gradient-to-br from-rose-50/50 to-white rounded-3xl shadow-sm hover:shadow-md transition-all border border-rose-100 flex flex-col md:flex-row md:items-center gap-4">
-          <div className="flex-shrink-0 w-14 h-14 rounded-full bg-gradient-to-tr from-rose-200 to-rose-100 flex items-center justify-center text-[11px] font-bold text-rose-800 tracking-wider shadow-inner border border-white">
-            ASC
+        <div className="relative p-5 md:p-6 bg-gradient-to-r from-rose-50/80 to-white rounded-3xl shadow-sm hover:shadow-md transition-all border border-rose-100 flex flex-col md:flex-row md:items-center gap-4 group hover:-translate-y-1">
+          <div className="flex-shrink-0 w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center shadow-inner border border-white overflow-hidden p-2 group-hover:scale-105 transition-transform duration-300">
+            <img src={zodiacSignImages[data.personality.bigThree.ascendant.sign.split(' ')[0].toLowerCase()] || ''} alt="Ascendant" className="w-full h-full object-contain" />
           </div>
           <div className="flex-1 space-y-1">
-            <h3 className="font-semibold text-rose-900 text-base">
+            <h3 className="font-bold text-rose-900 text-base">
               Rising Sign (Lagna)
             </h3>
             <p className="text-[13px] text-slate-600 font-medium leading-relaxed">
@@ -78,8 +80,8 @@ export const CorePersonalityPage: React.FC<{ pageIdx: number, setPage: (idx: num
         </div>
       </div>
 
-      <div className="mt-8 p-6 bg-slate-50 rounded-3xl border border-slate-100 relative">
-        <div className="absolute top-0 left-8 -mt-3 text-4xl text-slate-200 font-serif">"</div>
+      <div className="mt-8 p-6 bg-slate-50/50 rounded-3xl border border-slate-100 relative shadow-sm">
+        <div className="absolute top-0 left-8 -mt-3 text-4xl text-indigo-200 font-serif opacity-50">"</div>
         <p className="text-[14px] text-slate-700 leading-relaxed font-medium italic relative z-10">
           {data.personality.description}
         </p>

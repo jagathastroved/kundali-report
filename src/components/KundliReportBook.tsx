@@ -142,17 +142,15 @@ export const KundliReportBook: React.FC = () => {
     'welcome',
     'birth-star',
     'core-personality',
-    'big-three-signs',
-    'five-great-elements',
-    'stored-karmic-path',
-    'report-features',
-    'chakras-map',
-    'dominant-chakra',
+    'influential-signs',
+    'dominant-element',
+    'lagna-chart',
+    'why-get-report',
+    'karmic-chakra',
     'planetary-strengths',
     'planetary-profiles',
     'atmakaraka',
-    'lagna-chart',
-    'dasha-wheel',
+    'dasha-timeline',
     'premium-deliverables'
   ];
 
@@ -248,7 +246,7 @@ export const KundliReportBook: React.FC = () => {
                   {idx + 1}
                 </div>
                 <span className="flex-1 truncate">{title}</span>
-                {idx === 14 && (
+                {idx === PAGE_TITLES.length - 1 && (
                   <span className={`px-1.5 py-0.5 rounded text-[8px] uppercase font-normal font-mono ml-2 tracking-wider ${isActive ? 'bg-orange-500 text-white' : 'bg-orange-500 text-white animate-pulse'
                     }`}>
                     PRO
@@ -369,7 +367,7 @@ export const KundliReportBook: React.FC = () => {
                     nextPage();
                     handleScrollToTop();
                   }}
-                  disabled={currentPage === 14}
+                  disabled={currentPage === PAGE_TITLES.length - 1}
                   className="flex items-center px-6 py-3 rounded-2xl bg-[#6868f9] hover:bg-[#5252e6] text-white disabled:opacity-30 disabled:cursor-not-allowed text-xs font-normal shadow-md tracking-wider transition cursor-pointer"
                 >
                   <span>Next</span>
