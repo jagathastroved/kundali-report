@@ -1,5 +1,148 @@
 import { KundliReportData } from '../types';
 
+export const reportContent = {
+  landing: {
+    heroTitle: "Discover Your True Path\nThrough Kundali",
+    heroDesc: "Unlock the hidden meanings of your birth chart. Gain deep insights into your personality, destiny, and life's true purpose.",
+    features: [
+      { title: "Personalized Kundali Chart", desc: "Access your detailed birth chart based on precise birth details." },
+      { title: "Core Personality", desc: "Reveal your strengths, challenges, talents, and true life potential." },
+      { title: "Dasha Timeline", desc: "Understand current and future planetary periods shaping your journey." },
+      { title: "Karmic Chakra Analysis", desc: "Uncover karmic patterns and the spiritual lessons guiding your growth." },
+      { title: "Planetary Profiles", desc: "Gain insights into how each planet influences different areas of life." },
+      { title: "Influential Signs", desc: "Learn how key zodiac signs affect your personality and life path." }
+    ]
+  },
+  welcome: {
+    title: "Namaste",
+    subtitle: "Your Cosmic Blueprint",
+    introText: "Your cosmic coordinates align uniquely. We've mapped the exact celestial forces present at your birth to create this deeply personalized Kundali report, offering profound insights into your life's true journey."
+  },
+  birthStar: {
+    // chapterInfo: "Chapter 01: Cosmic Origin",
+    titlePrefix: "Your Birth Star is",
+    deityPrefix: "Associated with the Deity",
+    personalityTitle: "Core Personality",
+    personalityText: "As a {nkName}, you are naturally curious and possess a great desire for knowledge. You have an excellent memory and love to learn new things. You are also a good listener and are sensitive to the needs of others. You are respectful of tradition and often hold a position of authority or leadership within your community.",
+    strengthsTitle: "Strengths & Weaknesses",
+    yourStrengths: "Your Strengths",
+    areasForGrowth: "Areas for Growth"
+  },
+  corePersonality: {
+    // chapterInfo: "Chapter 02: Core Framework",
+    title: "Core Personality Profile",
+    description: "In Vedic Astrology, your personality is shaped by multiple pillars. Your BIG 3 includes your Sun sign, Moon sign, and Ascendant. It is the most important parameter which represents your physical, emotional, and spiritual pathways.",
+    sunTitle: "Sun Sign (Surya)",
+    sunDesc: "The essence of your core self, representational ego, spark of truth and spiritual willpower in this incarnation.",
+    moonTitle: "Moon Sign (Chandra)",
+    moonDesc: "An insight into your emotional self, inner instincts, gut feelings, safety needs and intuitive processes.",
+    risingTitle: "Rising Sign (Lagna)",
+    risingDesc: "Your outward persona and social mask. This represents how you naturally express yourself to strangers."
+  },
+  influentialSigns: {
+    chapterInfo: "As per your kundli,",
+    title: "The three most influential and important signs for you",
+    sunEssenceTitle: "Your Sun Sign Essence",
+    risingPersonaTitle: "Your Rising Sign Persona",
+    moonEmotionTitle: "Your Moon Sign Emotion",
+    mostImportantLabel: "Most Important"
+  },
+  dominantElement: {
+    title: "Can you see how your qualities are connected to the blessings of nature?",
+    description: "The universe is said to be made up of five things: fire, earth, air, water, and ether. In Vedic tradition, these Panchamahabhuta elements rule over your energetic frequency and behavior.",
+    fireTitle: "Fire Element (Agni)",
+    fireDesc: "Primal energy, focus, enthusiasm, and spiritual courage.",
+    earthTitle: "Earth Element (Prithvi)",
+    earthDesc: "Practical structures, patient foundations, stability, and dependability.",
+    airTitle: "Air Element (Vayu)",
+    airDesc: "Intellectual agility, speech, conceptual logic, and communication.",
+    waterTitle: "Water Element (Jala)",
+    waterDesc: "Deep intuitive fields, empathy, creative flow state, and memory.",
+    etherTitle: "Ether Element (Akasha)",
+    etherDesc: "Universal spaciousness, higher wisdom, spiritual portals, and truth alignment.",
+    yogiMetrology: "Yogi Metrology",
+    assessmentTitle: "Dominant Element Assessment",
+    yourDominantElements: "Your Dominant Elements",
+    dominanceText: "As per your precise Vedic sidereal coordinates, you are highly {element} element dominated. This signifies that you {description}"
+  },
+  lagnaChart: {
+    title: "Your Lagna Kundli Chart",
+    stelliumQuestion: "What repeating pattern of your nature does Vedic Astrology reveal?",
+    stelliumDesc1: "A stellium happens when three or more planets gather in one house of your Kundli. If a stellium is present in your birth chart, the house it's in becomes the most active and influential part of your life.",
+    stelliumDesc2: "With a stellium in your ninth house, areas like philosophy, beliefs, travel and higher learning are integral parts of your life. You likely have an insatiable curiosity to understand the meaning behind things and seek truth through exploring ideas, cultures and new horizons.",
+    stelliumDesc3: "This suggests you will find great purpose in academic pursuits, world travel, or just experiencing all this amazing planet has to offer. Overall, this placement indicates that expanding your perspectives - whether through physical journeys or inner soul searching - is a major focal point in this lifetime."
+  },
+  reportFeatures: {
+    premiumInsight: "Premium Insight",
+    heroTitle: "Here we have prepared your in-depth personalized Premium Kundli Report",
+    heroDesc: "Know your future predictions and remedies for the next 6 to 8 years. Also, get an in-depth Kundli analysis of your important life areas.",
+    whatYouGet: "What you will get in this report?",
+    discoverChapters: "Discover the comprehensive chapters included in your premium analysis",
+    reviewName: "Dhaval Motghare",
+    reviewRole: "Verified User",
+    reviewText: "\"One of the most detailed and useful kundli report I have come across. It provides simple and effective remedies that are easy to follow. I am really satisfied after using it. Thanks for creating this useful kundli report !!!\"",
+    ctaText: "Get Your Kundli Report Now",
+    features: [
+      { title: 'Your Kundli and its Calculation', description: 'Learn about yourself by knowing your special Kundli. Also, you will get 21 horoscope charts about different life parts.' },
+      { title: 'Elements of your Kundli', description: 'Find out about your panchang and the predictions and remedies based on it. Also, get to know about your birth nakshatra. See which of the five elements (5 tattva) affects you the most.' },
+      { title: 'Doshas and Remedies for you', description: 'Get predictions and remedies to follow for the dosha present in your Kundli, such as Manglik dosha, kalsarpa dosha, and many more.' },
+      { title: 'In-depth analysis of your kundli', description: 'Know yourself through 11 detailed reports on key life parts. From your Lagna report to Career, Wealth & Finances, Marriage & relationship. Also, know your past life lessons and suggestions so that you do not make the same mistakes.' },
+      { title: 'Detailed Kundli Predictions', description: 'Get detailed predictions, possible planet challenges in your kundli, and ways to fix them.' },
+      { title: 'Dasha Predictions for the next 8 years', description: 'This report gives predictions and remedies for the next 6-8 years. Know about coming good and bad times, and how to handle them well.' }
+    ]
+  },
+  karmicChakra: {
+    title: "Stored Karma & Dominant Chakra",
+    description: "Chakra percentages gives you how much karma do you have stored in each of your chakras. By using this method, you can count the spread of your karma through your chakras in percentage. The Chakra, which has the highest percentage, is the chakra on which you need to work most in this lifetime. It also reveals that the majority of life lessons will come to you in this lifetime through this chakra.",
+    dominantCenter: "Your Dominant Energy Center",
+    remedyTitle: "Spiritual Remedy"
+  },
+  planetaryStrengths: {
+    title: "Planetary Shield Strengths",
+    description: "Planets carry unique energetic behaviors depending on their Vedic dignity. Understanding your planetary shields helps you navigate your strengths and prepare for life's challenges.",
+    yogaKarakaTitle: "Yogakaraka Planets",
+    yogaKarakaDesc: "Yoga Karaka indicates the supreme helper planet in your natal Kundli, carrying massive powers to invite overall growth.",
+    beneficsTitle: "Benefic Forces",
+    beneficsDesc: "These are highly protective, auspicious planets that represent areas of ease, wellness, and mental calm.",
+    maleficsTitle: "Malefic Challenges",
+    maleficsDesc: "These are challenging areas where unexpected spiritual lessons, lessons, and tests are triggered."
+  },
+  planetaryProfiles: {
+    title: "All Planetary Positions",
+    description: "A comprehensive view of all 9 planetary bodies in your Kundli and how they shape your life's path.",
+    remediationTitle: "Corrective Jyotish Remediation"
+  },
+  atmakaraka: {
+    title: "Atmakaraka Insight",
+    description: "The Atmakaraka is the planet with the highest degree in your Kundli. It represents the ultimate desire of your soul and the core spiritual lessons you are here to learn.",
+    yourAtmakaraka: "Your Atmakaraka",
+    soulDesireTitle: "The Soul's Underlying Desire",
+    planet: "Venus (Shukra)",
+    soulDesire: "With Venus as your Atmakaraka, your soul deeply craves beauty, pristine balance, and pure unconditional love. On the earthly planes, this manifests as fine artistic refinement and deep respect for relationships. However, you must occasionally practice detachment from luxury and physical appearances to prevent karmic binding."
+  },
+  dashaTimeline: {
+    title: "Current Dasha Timeline",
+    activePhase: "Active Phase",
+    currentDasha: "Rahu Mahadasha & Venus Antardasha",
+    description: "Vedic astrology divides your life journey into structured chronological dasha segments ruled by key planets. The planetary lord ruling your active Mahadasha provides the principal theme for your career developments, wealth, and wellness traits."
+  },
+  premiumDeliverables: {
+    title: "A Masterpiece of Vedic Knowledge",
+    features: [
+      { title: "Birth Star Analysis", desc: "Discover the celestial forces that shaped your destiny at the exact moment of your birth." },
+      { title: "Core Personality", desc: "Uncover your true inner self, revealing hidden strengths and profound potentials." },
+      { title: "Dasha Wheel", desc: "Navigate life timelines with precise predictions for upcoming planetary periods." },
+      { title: "Dominant Element", desc: "Understand the fundamental natural forces driving your temperament and energy." },
+      { title: "Influential Signs", desc: "Learn how specific zodiac signs profoundly impact your decisions and relationships." },
+      { title: "Karmic Chakra", desc: "Explore the past-life karmic patterns influencing your present challenges." },
+      { title: "Kundali Chart", desc: "Get a meticulously detailed map of the heavens customized perfectly for you." },
+      { title: "Planetary Profiles", desc: "Dive deep into how each planet uniquely shapes your wealth, health, and love life." },
+      { title: "Planetary Strength", desc: "Analyze the exact power of planets to find your greatest advantages in life." }
+    ]
+  }
+};
+
+
 export const fallbackReport: KundliReportData = {
   birthDetails: {
     name: 'Jagath',

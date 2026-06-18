@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Lock, CreditCard } from 'lucide-react';
+import { Globe2, Sparkles, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const PAGE_TITLES = [
@@ -101,33 +101,47 @@ export const PieChartComponent: React.FC<{ ratios: { name: string; percentage: n
 
 export const BookletMockup: React.FC = () => {
   return (
-    <div className="relative group w-32 h-44 flex-shrink-0 perspective-[1000px] select-none pointer-events-none hidden sm:block">
-      <div className="w-full h-full bg-gradient-to-br from-[#2D1B7C] via-[#4F46E5] to-[#7C3AED] rounded-r-2xl shadow-[12px_16px_28px_rgba(33,21,92,0.3)] relative overflow-hidden flex flex-col justify-between p-4.5 border-l-[6px] border-l-[#1E115E]/80">
-        <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#F4742E]/15 rounded-full blur-xl" />
-        <div className="absolute -bottom-10 -left-10 w-24 h-24 bg-[#6868F9]/15 rounded-full blur-xl" />
+    <div className="relative group w-32 h-44 flex-shrink-0 perspective-[1000px] select-none pointer-events-none hidden sm:block ml-2 mb-2">
+      <div className="relative w-full h-full transition-transform duration-700 ease-out origin-left group-hover:[transform:rotateY(-20deg)_rotateX(5deg)] [transform-style:preserve-3d]">
 
-        <div className="text-[7.5px] text-[#FDE5A9] font-normal uppercase tracking-widest text-center border-b border-white/10 pb-1.5 font-mono">
-          AstroVed
-        </div>
+        {/* Book Pages (Back layers) */}
+        <div className="absolute top-[2px] bottom-[2px] right-[-4px] left-2 bg-[#fdfdfd] rounded-r-xl border border-slate-300 -z-10 [transform:translateZ(-1px)]" />
+        <div className="absolute top-[4px] bottom-[4px] right-[-8px] left-2 bg-[#f4f4f4] rounded-r-xl border border-slate-300 -z-20 [transform:translateZ(-2px)]" />
+        <div className="absolute top-[6px] bottom-[6px] right-[-11px] left-2 bg-[#ebebeb] rounded-r-xl border border-slate-300 shadow-[5px_5px_15px_rgba(0,0,0,0.3)] -z-30 [transform:translateZ(-3px)]" />
 
-        <div className="my-auto text-center space-y-1 z-10">
-          <div className="text-[10px] font-normal text-white leading-tight tracking-tight drop-shadow-md">
-            Your Personalised
-          </div>
-          <div className="text-[12px] font-normal tracking-widest text-[#FCAE3B] uppercase bg-white/5 py-1 px-1.5 rounded border border-white/5 drop-shadow">
-            Vedic Kundli
-          </div>
-          <div className="text-[6.5px] text-indigo-200 font-normal tracking-wider uppercase">
-            Comprehensive Report
-          </div>
-        </div>
+        {/* Main Cover */}
+        <div className="absolute inset-0 bg-gradient-to-br from-rose-950 via-purple-900 to-indigo-950 rounded-r-2xl rounded-l-sm overflow-hidden flex flex-col justify-between p-3 z-10 border-l-[8px] border-[#1f0a2a] shadow-inner [transform:translateZ(0)] ring-1 ring-[#D4AF37]/40 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-shadow duration-500">
+          {/* Inner spine crease */}
+          <div className="absolute top-0 bottom-0 left-0 w-3 bg-gradient-to-r from-black/60 to-transparent z-0 pointer-events-none" />
 
-        <div className="flex justify-between items-end border-t border-white/10 pt-1.5">
-          <div className="w-4 h-4 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#FCAE3B]" />
+          {/* Ambient spiritual orbs */}
+          <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#D4AF37]/25 rounded-full blur-xl" />
+          <div className="absolute -bottom-10 -left-10 w-24 h-24 bg-rose-500/20 rounded-full blur-xl" />
+
+          {/* Header */}
+          <div className="border-b border-[#D4AF37]/20 pb-1.5 mb-2 mt-1 flex justify-center items-center z-10">
+            <img
+              src="https://cdn.astroved.com/images/images-av/AstroVed-Logo.svg"
+              alt="Astroved-logo"
+              className="h-3 w-auto object-contain opacity-90 brightness-0 invert"
+            />
           </div>
-          <div className="text-[5px] text-indigo-300 font-normal tracking-widest uppercase">
-            Encrypted
+
+          {/* Content */}
+          <div className="my-auto text-center flex flex-col items-center space-y-1 z-10">
+            <div className="mb-2">
+              <Globe2 className="w-8 h-8 text-[#D4AF37] drop-shadow-md" strokeWidth={1.5} />
+            </div>
+            <div className="text-[10px] font-normal text-white leading-tight tracking-tight drop-shadow-md">
+              Your Personalised
+            </div>
+            <div className="text-[12px] font-bold tracking-widest text-[#D4AF37] uppercase bg-black/20 py-1 px-1.5 rounded border border-[#D4AF37]/30 drop-shadow">
+              Kundli Report
+            </div>
+          </div>
+
+          {/* Footer empty space */}
+          <div className="border-t border-[#D4AF37]/20 pt-1.5 z-10 mt-2">
           </div>
         </div>
       </div>
@@ -137,19 +151,26 @@ export const BookletMockup: React.FC = () => {
 
 export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies' | 'element' | 'planetary' = 'combo') => {
   return (
-    <div className="mt-8 bg-gradient-to-br from-[#1E1B4B] via-[#312E81] to-[#1E1B4B] rounded-[2rem] p-6 sm:p-8 text-white relative overflow-hidden border border-orange-500/30 shadow-[0_20px_50px_rgba(249,115,22,0.15)] flex flex-col sm:flex-row items-center gap-8 group">
+    <div className="mt-8 bg-gradient-to-br from-rose-950 via-indigo-950 to-purple-950 rounded-[2rem] p-6 sm:p-8 text-white relative overflow-hidden border border-[#D4AF37]/40 shadow-[0_20px_50px_rgba(225,29,72,0.15)] flex flex-col sm:flex-row items-center gap-8 group">
       {/* Glossy overlay effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
-      <div className="absolute -top-24 -right-24 w-64 h-64 bg-orange-500/20 rounded-full filter blur-3xl pointer-events-none group-hover:bg-orange-500/30 transition-all duration-700" />
-      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-indigo-500/30 rounded-full filter blur-3xl pointer-events-none group-hover:bg-indigo-500/40 transition-all duration-700" />
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-rose-500/20 rounded-full filter blur-3xl pointer-events-none group-hover:bg-rose-500/30 transition-all duration-700" />
+      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-indigo-500/20 rounded-full filter blur-3xl pointer-events-none group-hover:bg-indigo-500/30 transition-all duration-700" />
+
+      {/* Animated Floating Stars */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <Star className="absolute top-6 left-1/4 w-4 h-4 text-[#D4AF37]/60 animate-pulse" />
+        <Star className="absolute bottom-10 right-1/4 w-6 h-6 text-[#FCAE3B]/40 animate-[spin_4s_linear_infinite]" />
+        <Sparkles className="absolute top-12 right-12 w-5 h-5 text-rose-300/50 animate-bounce" />
+      </div>
 
       <BookletMockup />
 
       <div className="flex-1 space-y-5 relative z-10 flex flex-col justify-center text-center sm:text-left">
         <div>
-          <div className="inline-flex items-center space-x-1.5 bg-orange-500/20 text-orange-300 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-orange-500/40 mb-4 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
-            <Lock size={12} />
-            <span>Premium Insight</span>
+          <div className="inline-flex items-center space-x-1.5 bg-[#D4AF37]/20 text-[#F3E5AB] px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-[#D4AF37]/50 mb-4 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+            <Sparkles size={12} className="text-[#FCAE3B]" />
+            <span>Get Your Premium Kundali Report</span>
           </div>
           <h4 className="text-xl sm:text-2xl font-bold text-white leading-tight tracking-tight drop-shadow-sm">
             {variant === 'combo' ? 'Unlock Personalized Full Kundali Report'
@@ -157,7 +178,7 @@ export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies'
                 : variant === 'planetary' ? 'Unlock Your Premium Kundali Report'
                   : 'Get Complete Karmic Remedies & Rituals'}
           </h4>
-          <p className="text-indigo-200 text-xs sm:text-sm font-normal mt-2.5 leading-relaxed max-w-md sm:mx-0 mx-auto">
+          <p className="text-slate-300 text-xs sm:text-sm font-normal mt-2.5 leading-relaxed max-w-md sm:mx-0 mx-auto">
             {variant === 'combo'
               ? 'This summary is just 5% of your full profile. Discover precise timings, career peaks, and personalized gemstone recommendations.'
               : variant === 'element'
@@ -171,7 +192,7 @@ export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies'
         <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-3 pt-2">
           {/* Primary Action - Buy Now */}
           <Link to="/report/report-features"
-            className="w-full sm:w-auto bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 hover:from-orange-400 hover:to-yellow-400 text-slate-900 px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(249,115,22,0.4)] flex items-center justify-center space-x-2 transform hover:-translate-y-0.5"
+            className="w-full sm:w-auto bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#D4AF37] hover:from-[#C5A028] hover:to-[#E4D69C] text-black px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] flex items-center justify-center space-x-2 transform hover:-translate-y-0.5"
           >
             <span>Book Your Kundali Report Now</span>
           </Link>

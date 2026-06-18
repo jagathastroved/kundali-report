@@ -2,65 +2,27 @@ import React from 'react';
 import { Star, ArrowRight, BookOpen, Compass, ShieldCheck, PieChart, Sparkles, TrendingUp } from 'lucide-react';
 import { BookletMockup } from '../SharedElements';
 import { useNavigate } from 'react-router-dom';
+import { reportContent } from '../../data/reportContent';
 
-export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
+export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const navigate = useNavigate();
-  const features = [
-    {
-      title: 'Your Kundli and its Calculation',
-      description: 'Learn about yourself by knowing your special Kundli. Also, you will get 21 horoscope charts about different life parts.',
-      gradient: 'from-amber-50 to-orange-50',
-      iconColor: 'text-orange-500',
-      iconBg: 'bg-orange-100',
-      borderColor: 'border-orange-200',
-      Icon: BookOpen
-    },
-    {
-      title: 'Elements of your Kundli',
-      description: 'Find out about your panchang and the predictions and remedies based on it. Also, get to know about your birth nakshatra. See which of the five elements (5 tattva) affects you the most.',
-      gradient: 'from-emerald-50 to-teal-50',
-      iconColor: 'text-teal-600',
-      iconBg: 'bg-teal-100',
-      borderColor: 'border-teal-200',
-      Icon: Compass
-    },
-    {
-      title: 'Doshas and Remedies for you',
-      description: 'Get predictions and remedies to follow for the dosha present in your Kundli, such as Manglik dosha, kalsarpa dosha, and many more.',
-      gradient: 'from-blue-50 to-indigo-50',
-      iconColor: 'text-indigo-500',
-      iconBg: 'bg-indigo-100',
-      borderColor: 'border-indigo-200',
-      Icon: ShieldCheck
-    },
-    {
-      title: 'In-depth analysis of your kundli',
-      description: 'Know yourself through 11 detailed reports on key life parts. From your Lagna report to Career, Wealth & Finances, Marriage & relationship. Also, know your past life lessons and suggestions so that you do not make the same mistakes.',
-      gradient: 'from-purple-50 to-fuchsia-50',
-      iconColor: 'text-fuchsia-600',
-      iconBg: 'bg-fuchsia-100',
-      borderColor: 'border-fuchsia-200',
-      Icon: PieChart
-    },
-    {
-      title: 'Detailed Kundli Predictions',
-      description: 'Get detailed predictions, possible planet challenges in your kundli, and ways to fix them.',
-      gradient: 'from-pink-50 to-rose-50',
-      iconColor: 'text-rose-500',
-      iconBg: 'bg-rose-100',
-      borderColor: 'border-rose-200',
-      Icon: Sparkles
-    },
-    {
-      title: 'Dasha Predictions for the next 8 years',
-      description: 'This report gives predictions and remedies for the next 6-8 years. Know about coming good and bad times, and how to handle them well.',
-      gradient: 'from-yellow-50 to-amber-50',
-      iconColor: 'text-amber-600',
-      iconBg: 'bg-amber-100',
-      borderColor: 'border-amber-200',
-      Icon: TrendingUp
-    }
+  
+  // Helper to attach icons based on the index to our dynamic content
+  const iconList = [BookOpen, Compass, ShieldCheck, PieChart, Sparkles, TrendingUp];
+  const styleList = [
+    { gradient: 'from-amber-50 to-orange-50', iconColor: 'text-orange-500', iconBg: 'bg-orange-100', borderColor: 'border-orange-200' },
+    { gradient: 'from-emerald-50 to-teal-50', iconColor: 'text-teal-600', iconBg: 'bg-teal-100', borderColor: 'border-teal-200' },
+    { gradient: 'from-blue-50 to-indigo-50', iconColor: 'text-indigo-500', iconBg: 'bg-indigo-100', borderColor: 'border-indigo-200' },
+    { gradient: 'from-purple-50 to-fuchsia-50', iconColor: 'text-fuchsia-600', iconBg: 'bg-fuchsia-100', borderColor: 'border-fuchsia-200' },
+    { gradient: 'from-pink-50 to-rose-50', iconColor: 'text-rose-500', iconBg: 'bg-rose-100', borderColor: 'border-rose-200' },
+    { gradient: 'from-yellow-50 to-amber-50', iconColor: 'text-amber-600', iconBg: 'bg-amber-100', borderColor: 'border-amber-200' }
   ];
+
+  const features = reportContent?.reportFeatures?.features?.map((feat, idx) => ({
+    ...feat,
+    ...styleList[idx],
+    Icon: iconList[idx]
+  }));
 
   return (
     <div className="space-y-10 pb-10">
@@ -69,13 +31,13 @@ export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: numb
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
         <div className="flex-1 space-y-4 relative z-10">
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold tracking-wider uppercase text-orange-300">
-            Premium Insight
+            {reportContent?.reportFeatures?.premiumInsight}
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold leading-tight drop-shadow-md">
-            Here we have prepared your in-depth personalized Premium Kundli Report
+            {reportContent?.reportFeatures?.heroTitle}
           </h2>
           <p className="text-sm sm:text-base text-indigo-100 leading-relaxed max-w-lg">
-            Know your future predictions and remedies for the next 6 to 8 years. Also, get an in-depth Kundli analysis of your important life areas.
+            {reportContent?.reportFeatures?.heroDesc}
           </p>
         </div>
         <div className="hidden sm:block flex-shrink-0 scale-90 sm:scale-110 relative z-10 transform origin-right">
@@ -85,8 +47,8 @@ export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: numb
 
       <div className="space-y-6">
         <div className="text-center space-y-2">
-          <h3 className="text-2xl font-bold text-slate-900 tracking-tight">What you will get in this report?</h3>
-          <p className="text-sm text-slate-500 font-medium">Discover the comprehensive chapters included in your premium analysis</p>
+          <h3 className="text-2xl font-bold text-slate-900 tracking-tight">{reportContent?.reportFeatures?.whatYouGet}</h3>
+          <p className="text-sm text-slate-500 font-medium">{reportContent?.reportFeatures?.discoverChapters}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-4">
@@ -118,8 +80,8 @@ export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: numb
               <img src="https://i.pravatar.cc/150?u=dhaval" alt="Dhaval Motghare" className="w-full h-full object-cover" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 text-lg">Dhaval Motghare</h4>
-              <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Verified User</p>
+              <h4 className="font-bold text-slate-900 text-lg">{reportContent?.reportFeatures?.reviewName}</h4>
+              <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">{reportContent?.reportFeatures?.reviewRole}</p>
             </div>
           </div>
           <div className="flex space-x-1 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100">
@@ -127,7 +89,7 @@ export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: numb
           </div>
         </div>
         <p className="text-sm sm:text-[15px] text-slate-700 leading-relaxed font-medium italic relative z-10">
-          "One of the most detailed and useful kundli report I have come across. It provides simple and effective remedies that are easy to follow. I am really satisfied after using it. Thanks for creating this useful kundli report !!!"
+          {reportContent?.reportFeatures?.reviewText}
         </p>
       </div>
 
@@ -139,7 +101,7 @@ export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: numb
           {/* Animated gradient background for button */}
           <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-rose-500 to-indigo-500 opacity-90 group-hover:opacity-100 transition-opacity"></div>
           
-          <span className="relative z-10 tracking-wide">Get Your Kundli Report Now</span>
+          <span className="relative z-10 tracking-wide">{reportContent?.reportFeatures?.ctaText}</span>
           <ArrowRight size={22} className="relative z-10 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>

@@ -1,47 +1,35 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React from 'react';
 import { useReport } from '../../context/ReportContext';
-import {
-  ArrowLeft, ArrowRight, BookOpen, Star, Compass, AlertCircle, Sparkles,
-  Map, Moon, Sun, Layers, HelpCircle, Shield, Award, CheckCircle, Zap, Eye, Globe2,
-  Clock, Flame, Wind, Droplets, RefreshCw, CreditCard, ChevronRight, Lock, Printer, Download
-} from 'lucide-react';
-import { PieChartComponent, BookletMockup, renderPromoBox } from '../SharedElements';
-
-export const WelcomePage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
+import { reportContent } from '../../data/reportContent';
+import { Star, Compass, Sparkles, Globe2, Clock, RefreshCw } from 'lucide-react';
+export const WelcomePage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const { reportData: data } = useReport();
   if (!data) return null;
 
   return (
-    <div className="space-y-8 pt-6 pb-8 text-center px-2">
+    <div className="space-y-10 pb-6 text-center font-sans mt-4">
 
-      {/* Icon and Greeting */}
-      <div className="space-y-6">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="w-28 h-28 rounded-full bg-gradient-to-br from-indigo-50 to-orange-50 flex items-center justify-center mx-auto text-5xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white"
-        >
-          🕉️
-        </motion.div>
 
-        <div className="space-y-2">
-          <p className="text-[12px] font-bold text-orange-500 uppercase tracking-widest">
-            Welcome to Your Pristine Vedic Blueprint
-          </p>
-          <h1 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight leading-tight">
-            Namaste, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-400">{data.birthDetails.name}</span>
-          </h1>
-        </div>
+      {/* Title Section */}
+      <div className="space-y-4 relative">
+
+        <h2 className="text-[14px] md:text-base font-bold text-slate-800 tracking-[0.2em] uppercase">
+          {reportContent?.welcome?.title} {data?.birthDetails?.name}
+        </h2>
+        <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-2" />
       </div>
 
-      {/* Decorative Divider */}
-      <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-indigo-500 mx-auto rounded-full" />
+      {/* User Name Pill */}
+      <div className="inline-flex items-center px-4 py-2 rounded-full bg-slate-50 border border-slate-200 shadow-sm mt-4">
+        <div className="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse" />
+        <span className="text-slate-800 font-bold text-sm">
+          Prepared exclusively for <span className="text-indigo-600">{data?.birthDetails?.name}</span>
+        </span>
+      </div>
 
       {/* Introductory Text */}
       <p className="text-slate-600 text-[14.5px] max-w-lg mx-auto leading-relaxed font-medium">
-        Your cosmic coordinates align uniquely. We've mapped the exact celestial forces present at your birth to create this deeply personalized Kundali report, offering profound insights into your life's true journey.
+        {reportContent?.welcome?.introText}
       </p>
 
       <div className="pt-8 w-full max-w-3xl mx-auto">
@@ -60,11 +48,11 @@ export const WelcomePage: React.FC<{ pageIdx: number, setPage: (idx: number) => 
           ].map((item, idx) => (
             <div key={idx} className="flex items-start gap-4 group">
               <div className="w-9 h-9 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-500 flex-shrink-0 mt-0.5 group-hover:bg-indigo-500 group-hover:text-white transition-colors duration-300">
-                {item.icon}
+                {item?.icon}
               </div>
               <div>
-                <h4 className="text-[14px] font-semibold text-slate-800">{item.title}</h4>
-                <p className="text-[13px] text-slate-500 mt-1 leading-relaxed">{item.desc}</p>
+                <h4 className="text-[14px] font-semibold text-slate-800">{item?.title}</h4>
+                <p className="text-[13px] text-slate-500 mt-1 leading-relaxed">{item?.desc}</p>
               </div>
             </div>
           ))}

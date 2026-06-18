@@ -3,9 +3,10 @@ import { ReportProvider, useReport } from './context/ReportContext';
 import { BirthDetailsForm } from './components/BirthDetailsForm';
 import { AstrologyBackground } from './components/AstrologyBackground';
 import { KundliReportBook } from './components/KundliReportBook';
-import { Sparkles, Star, Sun, Compass, Play, ChevronDown, Award, Shield } from 'lucide-react';
+import { Star, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { reportContent } from './data/reportContent';
 
 import * as Pages from './components/pages';
 
@@ -67,22 +68,15 @@ const LandingScreen: React.FC = () => {
 
         {/* Left Side - Content */}
         <div className="space-y-4 text-left max-w-xl w-full mt-8 lg:mt-0">
-          <h1 className="text-3xl md:text-4xl lg:text-[42px] font-semibold text-white tracking-tight leading-[1.1]">
-            Discover Your True Path<br />Through Kundali
+          <h1 className="text-3xl md:text-4xl lg:text-[42px] font-semibold text-white tracking-tight leading-[1.1]" style={{ whiteSpace: 'pre-line' }}>
+            {reportContent.landing.heroTitle}
           </h1>
-          <p className="text-sm md:text-[15px] text-indigo-100/90 font-medium leading-relaxed max-w-md">
-            Unlock the hidden meanings of your birth chart. Gain deep insights into your personality, destiny, and life's true purpose.
+          <p className="text-indigo-200/90 text-[15px] sm:text-base leading-relaxed max-w-md">
+            {reportContent.landing.heroDesc}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8 pt-6">
-            {[
-              { title: "Personalized Kundali Chart", desc: "Access your detailed birth chart based on precise birth details." },
-              { title: "Core Personality", desc: "Reveal your strengths, challenges, talents, and true life potential." },
-              { title: "Dasha Timeline", desc: "Understand current and future planetary periods shaping your journey." },
-              { title: "Karmic Chakra Analysis", desc: "Uncover karmic patterns and the spiritual lessons guiding your growth." },
-              { title: "Planetary Profiles", desc: "Gain insights into how each planet influences different areas of life." },
-              { title: "Influential Signs", desc: "Learn how key zodiac signs affect your personality and life path." }
-            ].map((item, idx) => (
+            {reportContent.landing.features.map((item, idx) => (
               <div key={idx} className="flex items-start">
                 <div className="mt-1 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-1.5 border border-indigo-700/50">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#818CF8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
@@ -134,7 +128,7 @@ export default function App() {
                 <Route path="dominant-element" element={<PageWrapper component={Pages.FiveGreatElementsPage} pageIdx={4} />} />
                 <Route path="lagna-chart" element={<PageWrapper component={Pages.LagnaChartPage} pageIdx={5} />} />
                 <Route path="why-get-report" element={<PageWrapper component={Pages.ReportFeaturesPage} pageIdx={6} />} />
-                <Route path="karmic-chakra" element={<PageWrapper component={Pages.KarmicChakra} pageIdx={7} />} />
+                <Route path="karmic-chakra" element={<PageWrapper component={Pages.KarmicChakraPage} pageIdx={7} />} />
                 <Route path="planetary-strengths" element={<PageWrapper component={Pages.PlanetaryStrengthsPage} pageIdx={8} />} />
                 <Route path="planetary-profiles" element={<PageWrapper component={Pages.PlanetaryProfilesPage} pageIdx={9} />} />
                 <Route path="atmakaraka" element={<PageWrapper component={Pages.AtmakarakaPage} pageIdx={10} />} />

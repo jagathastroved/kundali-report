@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useReport } from '../../context/ReportContext';
 import { planetImages } from '../../data/planetImages';
+import { reportContent } from '../../data/reportContent';
 
 const getPlanetImage = (planetName: string) => {
   const name = planetName.toLowerCase();
@@ -27,7 +28,7 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       {/* Header Section */}
       <div className="text-center space-y-3 mt-4">
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
-          Current Dasha Timeline
+          {reportContent?.dashaTimeline?.title}
         </h2>
         <div className="w-16 h-1 bg-gradient-to-r from-emerald-400 to-teal-500 mx-auto rounded-full mt-4" />
       </div>
@@ -40,10 +41,10 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
         <div className="relative z-10 flex flex-col items-center">
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-white rounded-full shadow-sm text-emerald-600 text-[10px] font-bold uppercase tracking-widest mb-3 ring-1 ring-emerald-200/50">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            Active Phase
+            {reportContent?.dashaTimeline?.activePhase}
           </span>
           <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
-            Rahu Mahadasha & Venus Antardasha
+            {reportContent?.dashaTimeline?.currentDasha}
           </h3>
         </div>
       </div>
@@ -51,21 +52,21 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       {/* Description Card */}
       <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm relative mx-1">
         <p className="text-[14px] text-slate-600 leading-relaxed font-medium">
-          Vedic astrology divides your life journey into structured chronological dasha segments ruled by key planets. The planetary lord ruling your active Mahadasha provides the principal theme for your career developments, wealth, and wellness traits.
+          {reportContent?.dashaTimeline?.description}
         </p>
       </div>
 
       {/* Timeline Section */}
       <div className="px-2 pt-2">
         <div className="relative border-l-2 border-slate-100 ml-6 space-y-8">
-          {data.dashaTimeline.map((item, idx) => (
+          {data?.dashaTimeline?.map((item, idx) => (
             <div key={idx} className="relative pl-8 sm:pl-10 group">
 
               {/* Timeline Planet Node */}
               <div className="absolute -left-[19px] sm:-left-[21px] top-1/2 -translate-y-1/2 w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-full border-4 border-white bg-white shadow-sm overflow-hidden z-10 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-md ring-1 ring-slate-200">
                 <img
-                  src={getPlanetImage(item.planetName)}
-                  alt={item.planetName}
+                  src={getPlanetImage(item?.planetName)}
+                  alt={item?.planetName}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -76,23 +77,23 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
 
                 <div className="space-y-1 z-10">
                   <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest block">
-                    {item.levelName}
+                    {item?.levelName}
                   </span>
                   <div className="flex items-center gap-2">
                     <h4 className="font-bold text-slate-900 text-base sm:text-lg tracking-tight">
-                      Lord {item.planetName}
+                      Lord {item?.planetName}
                     </h4>
                   </div>
                 </div>
 
                 <div className="flex flex-row sm:flex-col justify-between sm:text-right gap-2 sm:gap-0 z-10 bg-slate-50 sm:bg-transparent p-2 sm:p-0 rounded-xl sm:rounded-none">
                   <div className="text-xs sm:text-[13px] font-mono font-bold text-slate-700">
-                    {item.startDate}
+                    {item?.startDate}
                   </div>
                   <div className="text-[10px] sm:text-[11px] font-medium text-slate-500 font-mono flex items-center justify-end gap-1">
                     <span className="hidden sm:inline">until</span>
                     <span className="sm:hidden">-</span>
-                    {item.endDate}
+                    {item?.endDate}
                   </div>
                 </div>
               </div>

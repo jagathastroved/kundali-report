@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useReport } from '../../context/ReportContext';
-import { Link } from 'react-router-dom';
-import {
-  ArrowLeft, ArrowRight, BookOpen, Star, Compass, AlertCircle, Sparkles,
-  Map, Moon, Sun, Layers, HelpCircle, Shield, Award, CheckCircle, Zap, Eye, Globe2,
-  Clock, Flame, Wind, Droplets, RefreshCw, CreditCard, ChevronRight, Lock, Printer, Download
-} from 'lucide-react';
+import { reportContent } from '../../data/reportContent';
+import { Star, Sparkles } from 'lucide-react';
 import { PieChartComponent, BookletMockup, renderPromoBox } from '../SharedElements';
 import { elementImages } from '../../data/elementImages';
 
@@ -21,13 +17,13 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
       <div className="text-center space-y-3 mt-4">
 
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
-          Can you see how your qualities are connected to the blessings of nature?
+          {reportContent?.dominantElement?.title}
         </h2>
         <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
       </div>
 
       <p className="text-slate-600 text-[14px] leading-relaxed font-medium text-center max-w-2xl mx-auto px-2">
-        The universe is said to be made up of five things: fire, earth, air, water, and ether. In Vedic tradition, these Panchamahabhuta elements rule over your energetic frequency and behavior. {data.elementAnalysis.description}
+        {reportContent?.dominantElement?.description} {data?.elementAnalysis?.description}
       </p>
 
       {/* Five elements beautifully colored cards list */}
@@ -38,8 +34,8 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
             <img src={elementImages.fire} alt="Fire" className="w-full h-full object-contain" />
           </div>
           <div>
-            <h4 className="font-bold text-red-900 text-base mb-1">Fire Element (Agni)</h4>
-            <p className="text-[13px] text-slate-600 font-medium leading-relaxed">Primal energy, focus, enthusiasm, and spiritual courage.</p>
+            <h4 className="font-bold text-red-900 text-base mb-1">{reportContent?.dominantElement?.fireTitle}</h4>
+            <p className="text-[13px] text-slate-600 font-medium leading-relaxed">{reportContent?.dominantElement?.fireDesc}</p>
           </div>
         </div>
 
@@ -49,8 +45,8 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
             <img src={elementImages.earth} alt="Earth" className="w-full h-full object-contain" />
           </div>
           <div>
-            <h4 className="font-bold text-green-900 text-base mb-1">Earth Element (Prithvi)</h4>
-            <p className="text-[13px] text-slate-600 font-medium leading-relaxed">Practical structures, patient foundations, stability, and dependability.</p>
+            <h4 className="font-bold text-green-900 text-base mb-1">{reportContent?.dominantElement?.earthTitle}</h4>
+            <p className="text-[13px] text-slate-600 font-medium leading-relaxed">{reportContent?.dominantElement?.earthDesc}</p>
           </div>
         </div>
 
@@ -60,8 +56,8 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
             <img src={elementImages.air} alt="Air" className="w-full h-full object-contain" />
           </div>
           <div>
-            <h4 className="font-bold text-[#A16207] text-base mb-1">Air Element (Vayu)</h4>
-            <p className="text-[13px] text-slate-600 font-medium leading-relaxed">Intellectual agility, speech, conceptual logic, and communication.</p>
+            <h4 className="font-bold text-[#A16207] text-base mb-1">{reportContent?.dominantElement?.airTitle}</h4>
+            <p className="text-[13px] text-slate-600 font-medium leading-relaxed">{reportContent?.dominantElement?.airDesc}</p>
           </div>
         </div>
 
@@ -71,8 +67,8 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
             <img src={elementImages.water} alt="Water" className="w-full h-full object-contain" />
           </div>
           <div>
-            <h4 className="font-bold text-blue-900 text-base mb-1">Water Element (Jala)</h4>
-            <p className="text-[13px] text-slate-600 font-medium leading-relaxed">Deep intuitive fields, empathy, creative flow state, and memory.</p>
+            <h4 className="font-bold text-blue-900 text-base mb-1">{reportContent?.dominantElement?.waterTitle}</h4>
+            <p className="text-[13px] text-slate-600 font-medium leading-relaxed">{reportContent?.dominantElement?.waterDesc}</p>
           </div>
         </div>
 
@@ -82,8 +78,8 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
             <img src={elementImages.ether} alt="Ether" className="w-full h-full object-contain" />
           </div>
           <div>
-            <h4 className="font-bold text-purple-900 text-base mb-1">Ether Element (Akasha)</h4>
-            <p className="text-[13px] text-slate-600 font-medium leading-relaxed">Universal spaciousness, higher wisdom, spiritual portals, and truth alignment.</p>
+            <h4 className="font-bold text-purple-900 text-base mb-1">{reportContent?.dominantElement?.etherTitle}</h4>
+            <p className="text-[13px] text-slate-600 font-medium leading-relaxed">{reportContent?.dominantElement?.etherDesc}</p>
           </div>
         </div>
       </div>
@@ -92,17 +88,17 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
       <div className="pt-8 mt-8 border-t border-slate-100">
 
         <div className="text-center space-y-2 mb-8">
-          <p className="text-[12px] text-slate-500 font-medium uppercase tracking-widest">Yogi Metrology</p>
+          <p className="text-[12px] text-slate-500 font-medium uppercase tracking-widest">{reportContent?.dominantElement?.yogiMetrology}</p>
           <h2 className="text-2xl font-semibold text-slate-900 tracking-tight leading-tight">
-            Dominant Element Assessment
+            {reportContent?.dominantElement?.assessmentTitle}
           </h2>
         </div>
 
         <div className="p-6 rounded-3xl bg-gradient-to-r from-[#FEF6E4] to-white border-l-4 border-l-[#FE7950] border border-[#FDE5A9] shadow-md mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transform transition-transform hover:scale-[1.01]">
           <div>
-            <span className="text-[11px] font-bold text-amber-800/60 uppercase tracking-widest block mb-1">Your Dominant Elements</span>
+            <span className="text-[11px] font-bold text-amber-800/60 uppercase tracking-widest block mb-1">{reportContent?.dominantElement?.yourDominantElements}</span>
             <span className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FE7950] to-orange-500">
-              {data.elementAnalysis.dominant || 'Ether and Air'}
+              {data?.elementAnalysis?.dominant || 'Ether and Air'}
             </span>
           </div>
           <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-sm border border-orange-100 flex-shrink-0 text-orange-400">
@@ -111,11 +107,11 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
         </div>
 
         <div className="py-4 bg-slate-50/50 rounded-3xl border border-slate-100 mb-8 p-4">
-          <PieChartComponent ratios={data.elementAnalysis.ratios} />
+          <PieChartComponent ratios={data?.elementAnalysis?.ratios} />
         </div>
 
         <div className="space-y-5">
-          {data.elementAnalysis.ratios.slice(0, 2).map((element, idx) => {
+          {data?.elementAnalysis?.ratios?.slice(0, 2).map((element, idx) => {
             const ElementIcon = idx === 0 ? Star : Sparkles;
 
             return (
@@ -135,9 +131,7 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
                     Ratio {element.percentage}%
                   </span>
                 </div>
-                <p className="text-[14px] text-slate-700 leading-relaxed font-medium relative z-10 pl-1">
-                  As per your precise Vedic sidereal coordinates, you are highly <span className="font-bold text-slate-900">{element.name.toLowerCase()}</span> element dominated. This signifies that you {element.description.toLowerCase()}
-                </p>
+                <p className="text-[14px] text-slate-700 leading-relaxed font-medium relative z-10 pl-1" dangerouslySetInnerHTML={{ __html: reportContent?.dominantElement?.dominanceText?.replace('{element}', `<span class="font-bold text-slate-900">${element.name.toLowerCase()}</span>`).replace('{description}', element.description.toLowerCase()) }} />
               </div>
             );
           })}

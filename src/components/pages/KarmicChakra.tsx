@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useReport } from '../../context/ReportContext';
 import chakrasImage from '../../assets/chakras.png';
-import { Sparkles, Shield, Activity } from 'lucide-react';
+import { Shield } from 'lucide-react';
+import { reportContent } from '../../data/reportContent';
 
-export const KarmicChakra: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
+export const KarmicChakraPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const { reportData: data } = useReport();
   if (!data) return null;
 
@@ -12,16 +14,15 @@ export const KarmicChakra: React.FC<{ pageIdx: number, setPage: (idx: number) =>
 
       {/* Title Section */}
       <div className="text-center space-y-3 mt-4">
-
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
-          Stored Karma & Dominant Chakra
+          {reportContent?.karmicChakra?.title}
         </h2>
         <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
       </div>
 
       <div className="px-2">
         <p className="text-slate-600 text-[14px] leading-relaxed font-medium text-center max-w-2xl mx-auto">
-          Chakra percentages gives you how much karma do you have stored in each of your chakras. By using this method, you can count the spread of your karma through your chakras in percentage. The Chakra, which has the highest percentage, is the chakra on which you need to work most in this lifetime. It also reveals that the majority of life lessons will come to you in this lifetime through this chakra.
+          {reportContent?.karmicChakra?.description}
         </p>
       </div>
 
@@ -45,13 +46,13 @@ export const KarmicChakra: React.FC<{ pageIdx: number, setPage: (idx: number) =>
           </div>
           <div className="flex-1 space-y-1">
             <h4 className="font-bold text-indigo-900 text-[13px] uppercase tracking-wider mb-1">
-              Your Dominant Energy Center
+              {reportContent?.karmicChakra?.dominantCenter}
             </h4>
             <h3 className="text-lg font-bold text-slate-900 tracking-tight mb-2">
-              The {data.chakraAnalysis.dominantChakra.name} Chakra
+              The {data?.chakraAnalysis?.dominantChakra?.name} Chakra
             </h3>
             <p className="text-[14px] text-slate-700 leading-relaxed font-medium">
-              {data.chakraAnalysis.dominantChakra.description}
+              {data?.chakraAnalysis?.dominantChakra?.description}
             </p>
           </div>
         </div>
@@ -64,10 +65,10 @@ export const KarmicChakra: React.FC<{ pageIdx: number, setPage: (idx: number) =>
           </div>
           <div className="flex-1 space-y-1">
             <h4 className="font-bold text-emerald-900 text-[13px] uppercase tracking-wider mb-1">
-              Spiritual Remedy
+              {reportContent?.karmicChakra?.remedyTitle}
             </h4>
             <p className="text-[14px] text-slate-700 leading-relaxed font-medium">
-              {data.chakraAnalysis.dominantChakra.remedy}
+              {data?.chakraAnalysis?.dominantChakra?.remedy}
             </p>
           </div>
         </div>

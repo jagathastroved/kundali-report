@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { BirthDetails, KundliReportData } from '../types';
-import { fallbackReport } from '../data/fallbackReport';
+import { fallbackReport } from '../data/reportContent';
 
 interface ReportContextType {
   birthDetails: BirthDetails | null;
@@ -65,7 +65,7 @@ export const ReportProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       await new Promise(resolve => setTimeout(resolve, 800));
       
       setReportData(localData);
-    } catch (err: any) {
+    } catch (err) {
       console.error('Error generating report:', err);
       setError('An error occurred while generating the report.');
     } finally {

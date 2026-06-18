@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { BirthDetails } from '../types';
 import { useReport } from '../context/ReportContext';
-import { Sparkles, Calendar, Clock, MapPin, User, Globe2, Mail } from 'lucide-react';
+
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { Country, City } from 'country-state-city';

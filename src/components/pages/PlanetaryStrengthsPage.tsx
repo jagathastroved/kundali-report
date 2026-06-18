@@ -1,8 +1,9 @@
 import React from 'react';
 import { useReport } from '../../context/ReportContext';
-import { Sparkles, ShieldCheck, AlertTriangle } from 'lucide-react';
+import { Award, Shield, AlertCircle } from 'lucide-react';
 import { planetImages } from '../../data/planetImages';
 import { renderPromoBox } from '../SharedElements';
+import { reportContent } from '@/src/data/reportContent';
 
 const getPlanetImage = (planetName: string) => {
   const name = planetName.toLowerCase();
@@ -23,99 +24,93 @@ export const PlanetaryStrengthsPage: React.FC<{ pageIdx: number, setPage: (idx: 
   if (!data) return null;
 
   return (
-    <div className="space-y-8 pb-6">
-
+    <div className="space-y-8 pb-6 font-sans">
       {/* Title Section */}
-      <div className="text-center space-y-3 mt-4">
+      <div className="text-center space-y-3 mt-4 px-2">
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
-          Planetary Shield Strengths
+          {reportContent?.planetaryStrengths?.title}
         </h2>
-        <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
+        <div className="w-16 h-1 bg-gradient-to-r from-emerald-400 to-indigo-500 mx-auto rounded-full mt-4" />
       </div>
 
-      <div className="px-2">
-        <p className="text-slate-600 text-[14px] leading-relaxed font-medium text-center max-w-2xl mx-auto">
-          Planets carry unique energetic behaviors depending on their Vedic dignity. Understanding your planetary shields helps you navigate your strengths and prepare for life's challenges.
-        </p>
-      </div>
+      <p className="text-slate-600 text-[14px] leading-relaxed font-medium text-center max-w-xl mx-auto px-4">
+        {reportContent?.planetaryStrengths?.description}
+      </p>
 
-      <div className="space-y-6 pt-4 font-sans px-1">
+      <div className="space-y-6 pt-2">
 
-        {/* Yogakaraka Row */}
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-indigo-50/80 to-white border border-indigo-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-5 group hover:shadow-md transition-shadow">
-          <div className="absolute top-0 left-0 w-2 h-full bg-indigo-400" />
-          <div className="w-16 h-16 flex-shrink-0 rounded-full overflow-hidden border-2 border-indigo-200 shadow-sm ml-2 bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:scale-105 transition-transform">
-            <Sparkles size={26} />
+        {/* Yogakaraka Planets */}
+        <div className="p-6 rounded-3xl bg-gradient-to-br from-emerald-50/80 to-white border border-emerald-100 shadow-sm relative overflow-hidden group hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+          <div className="absolute -top-10 -right-10 w-32 h-32 bg-emerald-200 opacity-20 rounded-full blur-2xl" />
+          <div className="flex items-center gap-3 mb-4 relative z-10">
+            <div className="w-12 h-12 rounded-full bg-emerald-100/50 flex items-center justify-center text-emerald-600 shadow-sm border border-emerald-50">
+              <Award className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-emerald-900">{reportContent?.planetaryStrengths?.yogaKarakaTitle}</h3>
+              <p className="text-[12px] text-emerald-700/80 font-medium tracking-wide">The Most Auspicious Planets</p>
+            </div>
           </div>
-          <div className="flex-1 space-y-3 w-full">
-            <div className="space-y-1">
-              <h4 className="font-bold text-indigo-900 text-[13px] uppercase tracking-wider mb-1">
-                Yogakaraka Planets
-              </h4>
-              <p className="text-[13px] text-slate-600 leading-relaxed font-medium">
-                Yoga Karaka indicates the supreme helper planet in your natal Kundli, carrying massive powers to invite overall growth.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {data.planetaryStrengths.yogakaraka.map((p, idx) => (
-                <span key={idx} className="bg-white border border-indigo-200 text-indigo-800 pr-4 pl-1.5 py-1.5 rounded-xl text-[13px] font-semibold shadow-sm flex items-center gap-2">
-                  <img src={getPlanetImage(p)} alt={p} className="w-6 h-6 rounded-full object-cover border border-indigo-100 shadow-sm" />
-                  {p}
-                </span>
-              ))}
-            </div>
+
+          <div className="flex flex-wrap gap-2 mt-4 relative z-10">
+            {data?.planetaryStrengths?.yogakaraka?.map((p, i) => (
+              <div key={i} className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white shadow-sm border border-emerald-100 hover:border-emerald-200 transition-colors">
+                <div className="w-6 h-6 rounded-full overflow-hidden flex-shrink-0 border border-emerald-50 shadow-inner">
+                  <img src={getPlanetImage(p)} alt={p} className="w-full h-full object-cover" />
+                </div>
+                <span className="text-emerald-800 font-bold text-sm pr-1">{p}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Benefics Row */}
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-emerald-50/80 to-white border border-emerald-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-5 group hover:shadow-md transition-shadow">
-          <div className="absolute top-0 left-0 w-2 h-full bg-emerald-400" />
-          <div className="w-16 h-16 flex-shrink-0 rounded-full overflow-hidden border-2 border-emerald-200 shadow-sm ml-2 bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:scale-105 transition-transform">
-            <ShieldCheck size={26} />
+        {/* Benefics */}
+        <div className="p-6 rounded-3xl bg-gradient-to-br from-indigo-50/80 to-white border border-indigo-100 shadow-sm relative overflow-hidden group hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+          <div className="absolute -top-10 -right-10 w-32 h-32 bg-indigo-200 opacity-20 rounded-full blur-2xl" />
+          <div className="flex items-center gap-3 mb-4 relative z-10">
+            <div className="w-12 h-12 rounded-full bg-indigo-100/50 flex items-center justify-center text-indigo-600 shadow-sm border border-indigo-50">
+              <Shield className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-indigo-900">{reportContent?.planetaryStrengths?.beneficsTitle}</h3>
+              <p className="text-[12px] text-indigo-700/80 font-medium tracking-wide">Favorable & Supportive</p>
+            </div>
           </div>
-          <div className="flex-1 space-y-3 w-full">
-            <div className="space-y-1">
-              <h4 className="font-bold text-emerald-900 text-[13px] uppercase tracking-wider mb-1">
-                Benefic Forces
-              </h4>
-              <p className="text-[13px] text-slate-600 leading-relaxed font-medium">
-                These are highly protective, auspicious planets that represent areas of ease, wellness, and mental calm.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {data.planetaryStrengths.benefics.map((p, idx) => (
-                <span key={idx} className="bg-white border border-emerald-200 text-emerald-800 pr-4 pl-1.5 py-1.5 rounded-xl text-[13px] font-semibold shadow-sm flex items-center gap-2">
-                  <img src={getPlanetImage(p)} alt={p} className="w-6 h-6 rounded-full object-cover border border-emerald-100 shadow-sm" />
-                  {p}
-                </span>
-              ))}
-            </div>
+
+          <div className="flex flex-wrap gap-2 mt-4 relative z-10">
+            {data?.planetaryStrengths?.benefics?.map((p, i) => (
+              <div key={i} className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white shadow-sm border border-indigo-100 hover:border-indigo-200 transition-colors">
+                <div className="w-6 h-6 rounded-full overflow-hidden flex-shrink-0 border border-indigo-50 shadow-inner">
+                  <img src={getPlanetImage(p)} alt={p} className="w-full h-full object-cover" />
+                </div>
+                <span className="text-indigo-800 font-bold text-sm pr-1">{p}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Malefics Row */}
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-rose-50/80 to-white border border-rose-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-5 group hover:shadow-md transition-shadow">
-          <div className="absolute top-0 left-0 w-2 h-full bg-rose-400" />
-          <div className="w-16 h-16 flex-shrink-0 rounded-full overflow-hidden border-2 border-rose-200 shadow-sm ml-2 bg-rose-50 flex items-center justify-center text-rose-600 group-hover:scale-105 transition-transform">
-            <AlertTriangle size={26} />
+        {/* Malefics */}
+        <div className="p-6 rounded-3xl bg-gradient-to-br from-rose-50/80 to-white border border-rose-100 shadow-sm relative overflow-hidden group hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+          <div className="absolute -top-10 -right-10 w-32 h-32 bg-rose-200 opacity-20 rounded-full blur-2xl" />
+          <div className="flex items-center gap-3 mb-4 relative z-10">
+            <div className="w-12 h-12 rounded-full bg-rose-100/50 flex items-center justify-center text-rose-600 shadow-sm border border-rose-50">
+              <AlertCircle className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-rose-900">{reportContent?.planetaryStrengths?.maleficsTitle}</h3>
+              <p className="text-[12px] text-rose-700/80 font-medium tracking-wide">Challenging & Karmic</p>
+            </div>
           </div>
-          <div className="flex-1 space-y-3 w-full">
-            <div className="space-y-1">
-              <h4 className="font-bold text-rose-900 text-[13px] uppercase tracking-wider mb-1">
-                Malefic Challenges
-              </h4>
-              <p className="text-[13px] text-slate-600 leading-relaxed font-medium">
-                These are challenging areas where unexpected spiritual lessons, lessons, and tests are triggered.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {data.planetaryStrengths.malefics.map((p, idx) => (
-                <span key={idx} className="bg-white border border-rose-200 text-rose-800 pr-4 pl-1.5 py-1.5 rounded-xl text-[13px] font-semibold shadow-sm flex items-center gap-2">
-                  <img src={getPlanetImage(p)} alt={p} className="w-6 h-6 rounded-full object-cover border border-rose-100 shadow-sm" />
-                  {p}
-                </span>
-              ))}
-            </div>
+
+          <div className="flex flex-wrap gap-2 mt-4 relative z-10">
+            {data?.planetaryStrengths?.malefics?.map((p, i) => (
+              <div key={i} className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white shadow-sm border border-rose-100 hover:border-rose-200 transition-colors">
+                <div className="w-6 h-6 rounded-full overflow-hidden flex-shrink-0 border border-rose-50 shadow-inner">
+                  <img src={getPlanetImage(p)} alt={p} className="w-full h-full object-cover" />
+                </div>
+                <span className="text-rose-800 font-bold text-sm pr-1">{p}</span>
+              </div>
+            ))}
           </div>
         </div>
 

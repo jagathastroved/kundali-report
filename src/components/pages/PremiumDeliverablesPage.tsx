@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useReport } from '../../context/ReportContext';
-import { CheckCircle, ShieldCheck, Sparkles, BookOpen, Star, Lock, Loader2, Sparkle } from 'lucide-react';
+import { Loader2, Sparkle } from 'lucide-react';
 import { BookletMockup } from '../SharedElements';
+import { reportContent } from '../../data/reportContent';
 
-export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
+export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const { birthDetails } = useReport();
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -15,19 +16,9 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
     }, 5000);
   };
 
-  const name = birthDetails.name || 'You';
+  const name = birthDetails?.name || 'You';
 
-  const featureItems = [
-    { title: "Birth Star Analysis", desc: "Discover the celestial forces that shaped your destiny at the exact moment of your birth." },
-    { title: "Core Personality", desc: "Uncover your true inner self, revealing hidden strengths and profound potentials." },
-    { title: "Dasha Wheel", desc: "Navigate life timelines with precise predictions for upcoming planetary periods." },
-    { title: "Dominant Element", desc: "Understand the fundamental natural forces driving your temperament and energy." },
-    { title: "Influential Signs", desc: "Learn how specific zodiac signs profoundly impact your decisions and relationships." },
-    { title: "Karmic Chakra", desc: "Explore the past-life karmic patterns influencing your present challenges." },
-    { title: "Kundali Chart", desc: "Get a meticulously detailed map of the heavens customized perfectly for you." },
-    { title: "Planetary Profiles", desc: "Dive deep into how each planet uniquely shapes your wealth, health, and love life." },
-    { title: "Planetary Strength", desc: "Analyze the exact power of planets to find your greatest advantages in life." }
-  ];
+  const featureItems = reportContent?.premiumDeliverables?.features;
 
   return (
     <div className="max-w-2xl mx-auto space-y-6 pb-10 font-sans">
@@ -37,9 +28,6 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
         <h2 className="text-2xl sm:text-[28px] font-bold text-[#2A2B5F] tracking-tight leading-tight">
           Unlock Your Complete Personalized Kundali Report
         </h2>
-        <p className="text-[10px] sm:text-xs font-bold text-[#8E93B0] uppercase tracking-[0.15em]">
-          YOUR COSMIC BLUEPRINT IS READY, {name}
-        </p>
       </div>
 
       {/* Top Hero Card */}
@@ -83,8 +71,8 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
                 <Sparkle size={12} className="fill-current" />
               </div>
               <div className="flex-1">
-                <h4 className="text-[13px] font-bold text-[#2A2B5F] mb-1 leading-tight">{item.title}</h4>
-                <p className="text-[11px] text-[#6B7290] leading-snug">{item.desc}</p>
+                <h4 className="text-[13px] font-bold text-[#2A2B5F] mb-1 leading-tight">{item?.title}</h4>
+                <p className="text-[11px] text-[#6B7290] leading-snug">{item?.desc}</p>
               </div>
             </div>
           ))}
@@ -98,8 +86,8 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
           <div>
             <p className="text-[9px] font-bold text-[#2E8B57] uppercase tracking-widest mb-0.5">TOTAL ORDER PRICE</p>
             <div className="flex items-baseline gap-2">
+              <span className="text-lg text-[#8FBC8F] font-bold line-through">₹2499</span>
               <span className="text-2xl font-black text-[#006400] tracking-tight">₹899</span>
-              <span className="text-xs text-[#8FBC8F] font-bold line-through">₹2499</span>
             </div>
           </div>
           <div className="bg-[#00C950] text-white text-[9px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm">

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useReport } from '../../context/ReportContext';
 import { planetImages } from '../../data/planetImages';
 import { renderPromoBox } from '../SharedElements';
+import { reportContent } from '../../data/reportContent';
 
 const getPlanetImage = (planetName: string) => {
   const name = planetName.toLowerCase();
@@ -96,7 +97,7 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       {/* Title Section */}
       <div className="text-center space-y-3 mt-4">
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
-          Your Lagna Kundli Chart
+          {reportContent?.lagnaChart?.title}
         </h2>
         <div className="w-16 h-1 bg-gradient-to-r from-indigo-400 to-indigo-600 mx-auto rounded-full mt-4" />
       </div>
@@ -104,11 +105,11 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       {/* Review birth details summary indicators inside booklet */}
       <div className="p-4 sm:p-5 bg-gradient-to-r from-slate-50 to-white rounded-3xl flex flex-col sm:flex-row justify-between items-center text-xs font-normal border border-slate-200 shadow-sm mx-1 gap-4">
         <div className="space-y-1 text-slate-600 text-center sm:text-left">
-          <div className="font-medium text-[14px]">Birth: <span className="text-indigo-600 font-bold">{data.birthDetails.name}</span> <span className="text-slate-400 capitalize">({data.birthDetails.gender})</span></div>
+          <div className="font-medium text-[14px]">Birth: <span className="text-indigo-600 font-bold">{data?.birthDetails?.name}</span> <span className="text-slate-400 capitalize">({data?.birthDetails?.gender})</span></div>
           <div className="text-[12px] text-slate-500 flex flex-col sm:flex-row gap-1 sm:gap-3">
-            <span>Date: {data.birthDetails.day}/{data.birthDetails.month}/{data.birthDetails.year}</span>
+            <span>Date: {data?.birthDetails?.day}/{data?.birthDetails?.month}/{data?.birthDetails?.year}</span>
             <span className="hidden sm:inline text-slate-300">|</span>
-            <span>Time: {String(data.birthDetails.hour % 12 || 12).padStart(2, '0')}:{String(data.birthDetails.minute).padStart(2, '0')} {data.birthDetails.hour >= 12 ? 'PM' : 'AM'}</span>
+            <span>Time: {String(data?.birthDetails?.hour % 12 || 12).padStart(2, '0')}:{String(data?.birthDetails?.minute).padStart(2, '0')} {data?.birthDetails?.hour >= 12 ? 'PM' : 'AM'}</span>
           </div>
         </div>
 
@@ -196,20 +197,20 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
 
         <div className="space-y-6">
           <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight leading-tight">
-            What repeating pattern of your nature does Vedic Astrology reveal?
+            {reportContent?.lagnaChart?.stelliumQuestion}
           </h3>
 
           <div className="space-y-5 text-[15px] text-slate-700 leading-relaxed font-medium">
             <p>
-              A stellium happens when three or more planets gather in one house of your Kundli. If a stellium is present in your birth chart, the house it's in becomes the most active and influential part of your life.
+              {reportContent?.lagnaChart?.stelliumDesc1}
             </p>
 
             <p>
-              With a stellium in your ninth house, areas like philosophy, beliefs, travel and higher learning are integral parts of your life. You likely have an insatiable curiosity to understand the meaning behind things and seek truth through exploring ideas, cultures and new horizons.
+              {reportContent?.lagnaChart?.stelliumDesc2}
             </p>
 
             <p>
-              This suggests you will find great purpose in academic pursuits, world travel, or just experiencing all this amazing planet has to offer. Overall, this placement indicates that expanding your perspectives - whether through physical journeys or inner soul searching - is a major focal point in this lifetime.
+              {reportContent?.lagnaChart?.stelliumDesc3}
             </p>
           </div>
         </div>

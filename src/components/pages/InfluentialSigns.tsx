@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useReport } from '../../context/ReportContext';
-import {
-  ArrowLeft, ArrowRight, BookOpen, Star, Compass, AlertCircle, Sparkles,
-  Map, Moon, Sun, Layers, HelpCircle, Shield, Award, CheckCircle, Zap, Eye, Globe2,
-  Clock, Flame, Wind, Droplets, RefreshCw, CreditCard, ChevronRight, Lock, Printer, Download
-} from 'lucide-react';
+import { reportContent } from '../../data/reportContent';
+import { Moon, Sun } from 'lucide-react';
 import { PieChartComponent, BookletMockup, renderPromoBox } from '../SharedElements';
 import { planetImages } from '../../data/planetImages';
 import { zodiacSignImages } from '../../data/zodiacSigns';
 
-export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
+export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const { reportData: data } = useReport();
   if (!data) return null;
 
@@ -20,9 +17,9 @@ export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: numbe
       {/* Title Section */}
       <div className="text-center space-y-3 mt-4">
 
-        <p className="text-[12px] text-slate-500 font-medium uppercase tracking-widest">As per your kundli,</p>
+        <p className="text-[12px] text-slate-500 font-medium uppercase tracking-widest">{reportContent?.influentialSigns?.chapterInfo}</p>
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
-          The three most influential and important signs for you
+          {reportContent?.influentialSigns?.title}
         </h2>
         <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
       </div>
@@ -37,21 +34,21 @@ export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: numbe
           </div>
           <span className="text-[10px] font-bold text-orange-600 uppercase tracking-widest mb-1">Surya (Sun)</span>
           <h4 className="font-bold text-slate-900 text-lg tracking-tight">
-            {data.personality.bigThree.sun.sign}
+            {data?.personality?.bigThree?.sun?.sign}
           </h4>
         </div>
 
         {/* Lagna (Rising Card) */}
         <div className="relative p-6 rounded-3xl bg-gradient-to-b from-rose-50 to-white border-2 border-rose-200 shadow-md hover:shadow-lg transition-shadow text-center flex flex-col items-center group transform sm:-translate-y-2">
           <div className="absolute -top-3 bg-gradient-to-r from-rose-500 to-rose-400 text-white px-3 py-1 text-[10px] font-bold uppercase rounded-full shadow-md tracking-wider">
-            Most Important
+            {reportContent?.influentialSigns?.mostImportantLabel}
           </div>
           <div className="w-16 h-16 rounded-full bg-gradient-to-br from-rose-200 to-rose-100 flex items-center justify-center shadow-inner border border-white mb-4 mt-2 group-hover:scale-105 transition-transform overflow-hidden p-1">
-            <img src={zodiacSignImages[data.personality.bigThree.ascendant.sign.split(' ')[0].toLowerCase()] || ''} alt={data.personality.bigThree.ascendant.sign} className="w-full h-full object-contain" />
+            <img src={zodiacSignImages[data?.personality?.bigThree?.ascendant?.sign?.split(' ')[0].toLowerCase()] || ''} alt={data?.personality?.bigThree?.ascendant?.sign} className="w-full h-full object-contain" />
           </div>
           <span className="text-[10px] font-bold text-rose-600 uppercase tracking-widest mb-1">Lagna (Rising)</span>
           <h4 className="font-bold text-rose-900 text-lg tracking-tight">
-            {data.personality.bigThree.ascendant.sign}
+            {data?.personality?.bigThree?.ascendant?.sign}
           </h4>
         </div>
 
@@ -62,7 +59,7 @@ export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: numbe
           </div>
           <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-1">Chandra (Moon)</span>
           <h4 className="font-bold text-slate-900 text-lg tracking-tight">
-            {data.personality.bigThree.moon.sign}
+            {data?.personality?.bigThree?.moon?.sign}
           </h4>
         </div>
       </div>
@@ -77,10 +74,10 @@ export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: numbe
           </div>
           <div>
             <h4 className="font-bold text-orange-900 text-[13px] uppercase tracking-wider mb-1">
-              Your Sun Sign Essence
+              {reportContent?.influentialSigns?.sunEssenceTitle}
             </h4>
             <p className="text-[14px] text-slate-700 leading-relaxed font-medium">
-              {data.personality.bigThree.sun.description}
+              {data?.personality?.bigThree?.sun?.description}
             </p>
           </div>
         </div>
@@ -88,14 +85,14 @@ export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: numbe
         <div className="p-6 rounded-3xl bg-gradient-to-r from-rose-50/50 to-white border border-rose-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <div className="absolute top-0 left-0 w-2 h-full bg-rose-400" />
           <div className="w-14 h-14 flex-shrink-0 rounded-full overflow-hidden border-2 border-rose-200 shadow-sm ml-2 bg-white p-1">
-            <img src={zodiacSignImages[data.personality.bigThree.ascendant.sign.split(' ')[0].toLowerCase()] || ''} alt="Ascendant" className="w-full h-full object-contain" />
+            <img src={zodiacSignImages[data?.personality?.bigThree?.ascendant?.sign?.split(' ')[0].toLowerCase()] || ''} alt="Ascendant" className="w-full h-full object-contain" />
           </div>
           <div>
             <h4 className="font-bold text-rose-900 text-[13px] uppercase tracking-wider mb-1">
-              Your Rising Sign Persona
+              {reportContent?.influentialSigns?.risingPersonaTitle}
             </h4>
             <p className="text-[14px] text-slate-700 leading-relaxed font-medium">
-              {data.personality.bigThree.ascendant.description}
+              {data?.personality?.bigThree?.ascendant?.description}
             </p>
           </div>
         </div>
@@ -107,10 +104,10 @@ export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: numbe
           </div>
           <div>
             <h4 className="font-bold text-indigo-900 text-[13px] uppercase tracking-wider mb-1">
-              Your Moon Sign Emotion
+              {reportContent?.influentialSigns?.moonEmotionTitle}
             </h4>
             <p className="text-[14px] text-slate-700 leading-relaxed font-medium">
-              {data.personality.bigThree.moon.description}
+              {data?.personality?.bigThree?.moon?.description}
             </p>
           </div>
         </div>

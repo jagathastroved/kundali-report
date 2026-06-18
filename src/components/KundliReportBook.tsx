@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useReport } from '../context/ReportContext';
 import { KundliReportData, PlanetPosition } from '../types';
-import {
-  ArrowLeft, ArrowRight, BookOpen, Star, Compass, AlertCircle, Sparkles,
-  Map, Moon, Sun, Layers, HelpCircle, Shield, Award, CheckCircle, Zap, Eye, Globe2,
-  Clock, Flame, Wind, Droplets, RefreshCw, CreditCard, ChevronRight, Lock, Printer, Download
-} from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, Compass, RefreshCw } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useParams, useNavigate, Navigate, Outlet, useLocation } from 'react-router-dom';
 
