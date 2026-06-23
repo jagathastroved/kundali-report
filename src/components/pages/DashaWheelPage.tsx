@@ -30,11 +30,11 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
           {reportContent?.dashaTimeline?.title}
         </h2>
-        <div className="w-16 h-1 bg-gradient-to-r from-emerald-400 to-teal-500 mx-auto rounded-full mt-4" />
+        <div className="w-16 h-1 bg-linear-to-r from-emerald-400 to-teal-500 mx-auto rounded-full mt-4" />
       </div>
 
       {/* Hero Active Pill */}
-      <div className="p-5 sm:p-6 bg-gradient-to-r from-emerald-50 to-teal-50/50 rounded-3xl border border-emerald-100 shadow-sm relative overflow-hidden flex items-center justify-center text-center">
+      <div className="p-5 sm:p-6 bg-linear-to-r from-emerald-50 to-teal-50/50 rounded-3xl border border-emerald-100 shadow-sm relative overflow-hidden flex items-center justify-center text-center">
         <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-200/20 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-32 h-32 bg-teal-200/20 rounded-full blur-3xl" />
 

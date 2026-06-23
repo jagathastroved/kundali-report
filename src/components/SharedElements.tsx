@@ -112,7 +112,7 @@ export const BookletMockup: React.FC = () => {
         {/* Main Cover */}
         <div className="absolute inset-0 bg-gradient-to-br from-rose-950 via-purple-900 to-indigo-950 rounded-r-2xl rounded-l-sm overflow-hidden flex flex-col justify-between p-3 z-10 border-l-[8px] border-[#1f0a2a] shadow-inner [transform:translateZ(0)] ring-1 ring-[#D4AF37]/40 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-shadow duration-500">
           {/* Inner spine crease */}
-          <div className="absolute top-0 bottom-0 left-0 w-3 bg-gradient-to-r from-black/60 to-transparent z-0 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 left-0 w-3 bg-linear-to-r from-black/60 to-transparent z-0 pointer-events-none" />
 
           {/* Ambient spiritual orbs */}
           <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#D4AF37]/25 rounded-full blur-xl" />
@@ -192,7 +192,7 @@ export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies'
         <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-3 pt-2">
           {/* Primary Action - Buy Now */}
           <Link to="/report/report-features"
-            className="w-full sm:w-auto bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#D4AF37] hover:from-[#C5A028] hover:to-[#E4D69C] text-black px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] flex items-center justify-center space-x-2 transform hover:-translate-y-0.5"
+            className="w-full sm:w-auto bg-linear-to-r from-[#D4AF37] via-[#F3E5AB] to-[#D4AF37] hover:from-[#C5A028] hover:to-[#E4D69C] text-black px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] flex items-center justify-center space-x-2 transform hover:-translate-y-0.5"
           >
             <span>Book Your Kundali Report Now</span>
           </Link>

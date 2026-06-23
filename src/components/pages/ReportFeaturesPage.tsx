@@ -99,7 +99,7 @@ export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: numb
           className="w-full relative group overflow-hidden bg-slate-900 text-white font-bold text-lg py-5 rounded-2xl shadow-xl flex items-center justify-center gap-3 transition-transform hover:-translate-y-1 active:scale-95"
         >
           {/* Animated gradient background for button */}
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-rose-500 to-indigo-500 opacity-90 group-hover:opacity-100 transition-opacity"></div>
+          <div className="absolute inset-0 bg-linear-to-r from-orange-500 via-rose-500 to-indigo-500 opacity-90 group-hover:opacity-100 transition-opacity"></div>
           
           <span className="relative z-10 tracking-wide">{reportContent?.reportFeatures?.ctaText}</span>
           <ArrowRight size={22} className="relative z-10 group-hover:translate-x-1 transition-transform" />

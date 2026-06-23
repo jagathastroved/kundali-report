@@ -176,8 +176,15 @@ export const KundliReportBook: React.FC = () => {
   // Track scroll details within page container
   const handleScrollToTop = () => {
     const el = document.getElementById('report-page-scroller');
-    if (el) el.scrollTop = 0;
+    if (el) {
+      el.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    handleScrollToTop();
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-transparent flex flex-col md:flex-row overflow-hidden relative">
@@ -316,7 +323,7 @@ export const KundliReportBook: React.FC = () => {
                 {/* Center Section Title */}
                 <div className="flex-[2] sm:flex-none flex flex-col items-center justify-center text-center px-2">
                   <div className="flex items-center space-x-3 text-slate-400">
-                    <div className="hidden sm:block w-6 h-px bg-gradient-to-r from-transparent to-[#FE7950] mr-2"></div>
+                    <div className="hidden sm:block w-6 h-px bg-linear-to-r from-transparent to-[#FE7950] mr-2"></div>
                     <Compass size={14} className="animate-spin" style={{ animationDuration: '25s' }} />
                     <div className="hidden sm:block w-6 h-px bg-gradient-to-l from-transparent to-[#FE7950] ml-2"></div>
                   </div>

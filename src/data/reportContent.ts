@@ -16,7 +16,7 @@ export const reportContent = {
   welcome: {
     title: "Namaste",
     subtitle: "Your Cosmic Blueprint",
-    introText: "Your cosmic coordinates align uniquely. We've mapped the exact celestial forces present at your birth to create this deeply personalized Kundali report, offering profound insights into your life's true journey."
+    introText: "Your cosmic blueprint is uniquely yours. Through advanced AI and Vedic astrological analysis, we've mapped the celestial forces present at your birth to reveal powerful insights into your personality, destiny, karmic journey, and life's true purpose."
   },
   birthStar: {
     // chapterInfo: "Chapter 01: Cosmic Origin",
@@ -31,7 +31,7 @@ export const reportContent = {
   corePersonality: {
     // chapterInfo: "Chapter 02: Core Framework",
     title: "Core Personality Profile",
-    description: "In Vedic Astrology, your personality is shaped by multiple pillars. Your BIG 3 includes your Sun sign, Moon sign, and Ascendant. It is the most important parameter which represents your physical, emotional, and spiritual pathways.",
+    description: "Your personality is influenced by three powerful pillars of Vedic Astrology—your Sun Sign, Moon Sign, and Ascendant (Lagna). Together, they reveal your core identity, emotional nature, and outward expression, providing a complete picture of your physical, mental, and spiritual journey.",
     sunTitle: "Sun Sign (Surya)",
     sunDesc: "The essence of your core self, representational ego, spark of truth and spiritual willpower in this incarnation.",
     moonTitle: "Moon Sign (Chandra)",
@@ -49,17 +49,17 @@ export const reportContent = {
   },
   dominantElement: {
     title: "Can you see how your qualities are connected to the blessings of nature?",
-    description: "The universe is said to be made up of five things: fire, earth, air, water, and ether. In Vedic tradition, these Panchamahabhuta elements rule over your energetic frequency and behavior.",
+    description: "The universe operates through five elemental forces: Fire, Earth, Air, Water, and Ether. Their influence within your chart reveals the energies that drive your personality, decisions, and life experiences.",
     fireTitle: "Fire Element (Agni)",
-    fireDesc: "Primal energy, focus, enthusiasm, and spiritual courage.",
+    fireDesc: "Represents passion, determination, confidence, and the drive to pursue your goals with purpose.",
     earthTitle: "Earth Element (Prithvi)",
-    earthDesc: "Practical structures, patient foundations, stability, and dependability.",
+    earthDesc: "Embodies stability, practicality, resilience, and the ability to build strong foundations in life.",
     airTitle: "Air Element (Vayu)",
-    airDesc: "Intellectual agility, speech, conceptual logic, and communication.",
+    airDesc: "Reflects curiosity, adaptability, intellect, and the power of communication and ideas.",
     waterTitle: "Water Element (Jala)",
-    waterDesc: "Deep intuitive fields, empathy, creative flow state, and memory.",
+    waterDesc: "Signifies emotional depth, intuition, compassion, and a natural connection to feelings and creativity.",
     etherTitle: "Ether Element (Akasha)",
-    etherDesc: "Universal spaciousness, higher wisdom, spiritual portals, and truth alignment.",
+    etherDesc: "Represents spiritual awareness, higher consciousness, wisdom, and connection to the universal flow.",
     yogiMetrology: "Yogi Metrology",
     assessmentTitle: "Dominant Element Assessment",
     yourDominantElements: "Your Dominant Elements",
@@ -93,13 +93,13 @@ export const reportContent = {
   },
   karmicChakra: {
     title: "Stored Karma & Dominant Chakra",
-    description: "Chakra percentages gives you how much karma do you have stored in each of your chakras. By using this method, you can count the spread of your karma through your chakras in percentage. The Chakra, which has the highest percentage, is the chakra on which you need to work most in this lifetime. It also reveals that the majority of life lessons will come to you in this lifetime through this chakra.",
+    description: "Your Chakra Karma Distribution illustrates how karmic energy is expressed through each of the seven chakras. The percentage of each chakra represents its relative influence on your life's lessons and spiritual evolution. The chakra with the highest percentage marks the area where you are most likely to experience growth, transformation, and important karmic teachings throughout this lifetime.",
     dominantCenter: "Your Dominant Energy Center",
     remedyTitle: "Spiritual Remedy"
   },
   planetaryStrengths: {
     title: "Planetary Shield Strengths",
-    description: "Planets carry unique energetic behaviors depending on their Vedic dignity. Understanding your planetary shields helps you navigate your strengths and prepare for life's challenges.",
+    description: "The planets act as powerful cosmic forces within your birth chart, influencing your personality, relationships, career, and spiritual growth. Their strengths and weaknesses reveal both opportunities and areas for personal development.",
     yogaKarakaTitle: "Yogakaraka Planets",
     yogaKarakaDesc: "Yoga Karaka indicates the supreme helper planet in your natal Kundli, carrying massive powers to invite overall growth.",
     beneficsTitle: "Benefic Forces",
@@ -109,12 +109,12 @@ export const reportContent = {
   },
   planetaryProfiles: {
     title: "All Planetary Positions",
-    description: "A comprehensive view of all 9 planetary bodies in your Kundli and how they shape your life's path.",
-    remediationTitle: "Corrective Jyotish Remediation"
+    description: "Explore the influence of all nine Vedic planets and discover how their unique energies shape your personality, experiences, relationships, and destiny.",
+    remediationTitle: "Personalized Jyotish Remedies"
   },
   atmakaraka: {
     title: "Atmakaraka Insight",
-    description: "The Atmakaraka is the planet with the highest degree in your Kundli. It represents the ultimate desire of your soul and the core spiritual lessons you are here to learn.",
+    description: "Your Atmakaraka is the planet that holds the highest degree in your birth chart. It represents your soul's deepest purpose, the lessons you are destined to learn, and the path of spiritual growth in this lifetime.",
     yourAtmakaraka: "Your Atmakaraka",
     soulDesireTitle: "The Soul's Underlying Desire",
     planet: "Venus (Shukra)",
@@ -172,7 +172,7 @@ export const fallbackReport: KundliReportData = {
       'Unshakable Perseverance',
       'Philosophical Inquirer'
     ],
-    description: 'The Big 3 represents your core cosmic framework: your Sun sign, Moon sign, and rising Ascendant. Together, they represent your path of action, emotional template, and outward expression.',
+    description: 'Your Sun Sign, Moon Sign, and Ascendant work together to define who you are at your core. They illuminate your inner essence, emotional responses, and the energy you project into the world.',
     bigThree: {
       sun: {
         sign: 'Aquarius (Kumbha)',

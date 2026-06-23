@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React from 'react';
 import { useReport } from '../../context/ReportContext';
 import chakrasImage from '../../assets/chakras.png';
 import { Shield } from 'lucide-react';
@@ -17,11 +16,11 @@ export const KarmicChakraPage: React.FC<{ pageIdx: number, setPage: (idx: number
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
           {reportContent?.karmicChakra?.title}
         </h2>
-        <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
+        <div className="w-16 h-1 bg-linear-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
       </div>
 
       <div className="px-2">
-        <p className="text-slate-600 text-[14px] leading-relaxed font-medium text-center max-w-2xl mx-auto">
+        <p className="text-slate-600 text-[14px] leading-relaxed font-medium max-w-2xl mx-auto">
           {reportContent?.karmicChakra?.description}
         </p>
       </div>
@@ -39,7 +38,7 @@ export const KarmicChakraPage: React.FC<{ pageIdx: number, setPage: (idx: number
       <div className="space-y-5 pt-4 font-sans px-1">
 
         {/* Dominant Chakra Insight */}
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-indigo-50/80 to-white border border-indigo-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 group hover:shadow-md transition-shadow">
+        <div className="p-6 rounded-3xl bg-linear-to-r from-indigo-50/80 to-white border border-indigo-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 group hover:shadow-md transition-shadow">
           <div className="absolute top-0 left-0 w-2 h-full bg-indigo-400" />
           <div className="w-16 h-16 flex-shrink-0 rounded-full overflow-hidden border-2 border-indigo-200 shadow-sm ml-2 bg-indigo-50 flex items-center justify-center p-2 group-hover:scale-105 transition-transform">
             <img src={chakrasImage} alt="Dominant Chakra" className="w-full h-full object-contain" />
@@ -58,7 +57,7 @@ export const KarmicChakraPage: React.FC<{ pageIdx: number, setPage: (idx: number
         </div>
 
         {/* Spiritual Remedy */}
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-emerald-50/80 to-white border border-emerald-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 group hover:shadow-md transition-shadow">
+        <div className="p-6 rounded-3xl bg-linear-to-r from-emerald-50/80 to-white border border-emerald-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 group hover:shadow-md transition-shadow">
           <div className="absolute top-0 left-0 w-2 h-full bg-emerald-400" />
           <div className="w-16 h-16 flex-shrink-0 rounded-full border-2 border-emerald-200 shadow-sm ml-2 bg-emerald-50 flex items-center justify-center group-hover:scale-105 transition-transform text-emerald-600">
             <Shield size={24} />

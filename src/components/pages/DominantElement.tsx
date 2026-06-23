@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React from 'react';
 import { useReport } from '../../context/ReportContext';
 import { reportContent } from '../../data/reportContent';
 import { Star, Sparkles } from 'lucide-react';
-import { PieChartComponent, BookletMockup, renderPromoBox } from '../SharedElements';
+import { PieChartComponent, renderPromoBox } from '../SharedElements';
 import { elementImages } from '../../data/elementImages';
 
 export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
@@ -19,17 +18,15 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
           {reportContent?.dominantElement?.title}
         </h2>
-        <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
       </div>
 
-      <p className="text-slate-600 text-[14px] leading-relaxed font-medium text-center max-w-2xl mx-auto px-2">
+      <p className="text-slate-600 text-[14px] leading-relaxed font-medium max-w-2xl mx-auto px-2">
         {reportContent?.dominantElement?.description} {data?.elementAnalysis?.description}
       </p>
 
-      {/* Five elements beautifully colored cards list */}
       <div className="space-y-4 font-sans px-1 pt-2">
         {/* Fire Element */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 rounded-3xl bg-gradient-to-r from-red-50/80 to-white border border-red-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 rounded-3xl bg-linear-to-r from-red-50/80 to-white border border-red-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1">
           <div className="flex-shrink-0 w-14 h-14 rounded-full bg-red-100 flex items-center justify-center shadow-inner border border-white overflow-hidden p-2 group-hover:scale-105 transition-transform duration-300">
             <img src={elementImages.fire} alt="Fire" className="w-full h-full object-contain" />
           </div>
@@ -40,7 +37,7 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
         </div>
 
         {/* Earth Element */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 rounded-3xl bg-gradient-to-r from-green-50/80 to-white border border-green-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 rounded-3xl bg-linear-to-r from-green-50/80 to-white border border-green-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1">
           <div className="flex-shrink-0 w-14 h-14 rounded-full bg-green-100 flex items-center justify-center shadow-inner border border-white overflow-hidden p-2 group-hover:scale-105 transition-transform duration-300">
             <img src={elementImages.earth} alt="Earth" className="w-full h-full object-contain" />
           </div>
@@ -51,7 +48,7 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
         </div>
 
         {/* Air Element */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 rounded-3xl bg-gradient-to-r from-amber-50/80 to-white border border-amber-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 rounded-3xl bg-linear-to-r from-amber-50/80 to-white border border-amber-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1">
           <div className="flex-shrink-0 w-14 h-14 rounded-full bg-amber-100 flex items-center justify-center shadow-inner border border-white overflow-hidden p-2 group-hover:scale-105 transition-transform duration-300">
             <img src={elementImages.air} alt="Air" className="w-full h-full object-contain" />
           </div>
@@ -62,7 +59,7 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
         </div>
 
         {/* Water Element */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 rounded-3xl bg-gradient-to-r from-blue-50/80 to-white border border-blue-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 rounded-3xl bg-linear-to-r from-blue-50/80 to-white border border-blue-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1">
           <div className="flex-shrink-0 w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center shadow-inner border border-white overflow-hidden p-2 group-hover:scale-105 transition-transform duration-300">
             <img src={elementImages.water} alt="Water" className="w-full h-full object-contain" />
           </div>
@@ -73,7 +70,7 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
         </div>
 
         {/* Ether Element */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 rounded-3xl bg-gradient-to-r from-purple-50/80 to-white border border-purple-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 rounded-3xl bg-linear-to-r from-purple-50/80 to-white border border-purple-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1">
           <div className="flex-shrink-0 w-14 h-14 rounded-full bg-purple-200 flex items-center justify-center shadow-inner border border-white overflow-hidden p-2 group-hover:scale-105 transition-transform duration-300">
             <img src={elementImages.ether} alt="Ether" className="w-full h-full object-contain" />
           </div>
@@ -94,10 +91,10 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
           </h2>
         </div>
 
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-[#FEF6E4] to-white border-l-4 border-l-[#FE7950] border border-[#FDE5A9] shadow-md mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transform transition-transform hover:scale-[1.01]">
+        <div className="p-6 rounded-3xl bg-linear-to-r from-[#FEF6E4] to-white border-l-4 border-l-[#FE7950] border border-[#FDE5A9] shadow-md mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transform transition-transform hover:scale-[1.01]">
           <div>
             <span className="text-[11px] font-bold text-amber-800/60 uppercase tracking-widest block mb-1">{reportContent?.dominantElement?.yourDominantElements}</span>
-            <span className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FE7950] to-orange-500">
+            <span className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-linear-to-r from-[#FE7950] to-orange-500">
               {data?.elementAnalysis?.dominant || 'Ether and Air'}
             </span>
           </div>
@@ -136,10 +133,10 @@ export const FiveGreatElementsPage: React.FC<{ pageIdx: number, setPage: (idx: n
             );
           })}
         </div>
-      {/* Premium Insert Promo */}
-      <div className="pt-6">
-        {renderPromoBox(() => setPage(pageIdx + 1), 'element')}
-      </div>
+        {/* Premium Insert Promo */}
+        <div className="pt-6">
+          {renderPromoBox(() => setPage(pageIdx + 1), 'element')}
+        </div>
       </div>
     </div>
   );

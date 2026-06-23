@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React from 'react';
 import { useReport } from '../../context/ReportContext';
 import { reportContent } from '../../data/reportContent';
-import { Moon, Sun } from 'lucide-react';
-import { PieChartComponent, BookletMockup, renderPromoBox } from '../SharedElements';
 import { planetImages } from '../../data/planetImages';
 import { zodiacSignImages } from '../../data/zodiacSigns';
 
@@ -21,7 +18,7 @@ export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: numbe
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
           {reportContent?.influentialSigns?.title}
         </h2>
-        <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
+        <div className="w-16 h-1 bg-linear-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
       </div>
 
       {/* Three big signs columns grid */}
@@ -40,7 +37,7 @@ export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: numbe
 
         {/* Lagna (Rising Card) */}
         <div className="relative p-6 rounded-3xl bg-gradient-to-b from-rose-50 to-white border-2 border-rose-200 shadow-md hover:shadow-lg transition-shadow text-center flex flex-col items-center group transform sm:-translate-y-2">
-          <div className="absolute -top-3 bg-gradient-to-r from-rose-500 to-rose-400 text-white px-3 py-1 text-[10px] font-bold uppercase rounded-full shadow-md tracking-wider">
+          <div className="absolute -top-3 bg-linear-to-r from-rose-500 to-rose-400 text-white px-3 py-1 text-[10px] font-bold uppercase rounded-full shadow-md tracking-wider">
             {reportContent?.influentialSigns?.mostImportantLabel}
           </div>
           <div className="w-16 h-16 rounded-full bg-gradient-to-br from-rose-200 to-rose-100 flex items-center justify-center shadow-inner border border-white mb-4 mt-2 group-hover:scale-105 transition-transform overflow-hidden p-1">
@@ -67,7 +64,7 @@ export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: numbe
       {/* Dynamic description cards structured in matching color themes */}
       <div className="space-y-5 pt-4 font-sans">
 
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-orange-50/50 to-white border border-orange-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div className="p-6 rounded-3xl bg-linear-to-r from-orange-50/50 to-white border border-orange-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <div className="absolute top-0 left-0 w-2 h-full bg-orange-400" />
           <div className="w-14 h-14 flex-shrink-0 rounded-full overflow-hidden border-2 border-orange-200 shadow-sm ml-2">
             <img src={planetImages.surya} alt="Sun" className="w-full h-full object-cover" />
@@ -82,7 +79,7 @@ export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: numbe
           </div>
         </div>
 
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-rose-50/50 to-white border border-rose-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div className="p-6 rounded-3xl bg-linear-to-r from-rose-50/50 to-white border border-rose-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <div className="absolute top-0 left-0 w-2 h-full bg-rose-400" />
           <div className="w-14 h-14 flex-shrink-0 rounded-full overflow-hidden border-2 border-rose-200 shadow-sm ml-2 bg-white p-1">
             <img src={zodiacSignImages[data?.personality?.bigThree?.ascendant?.sign?.split(' ')[0].toLowerCase()] || ''} alt="Ascendant" className="w-full h-full object-contain" />
@@ -97,7 +94,7 @@ export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: numbe
           </div>
         </div>
 
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-indigo-50/50 to-white border border-indigo-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div className="p-6 rounded-3xl bg-linear-to-r from-indigo-50/50 to-white border border-indigo-100 shadow-sm relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <div className="absolute top-0 left-0 w-2 h-full bg-indigo-400" />
           <div className="w-14 h-14 flex-shrink-0 rounded-full overflow-hidden border-2 border-indigo-200 shadow-sm ml-2">
             <img src={planetImages.moon} alt="Moon" className="w-full h-full object-cover" />

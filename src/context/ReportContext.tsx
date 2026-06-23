@@ -60,10 +60,10 @@ export const ReportProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const localData = JSON.parse(JSON.stringify(fallbackReport));
       localData.birthDetails = details;
       localData.birthStar.description = `Hello, ${details.name}! Based on your birth details of ${details.day}/${details.month}/${details.year} in ${details.city}, ${localData.birthStar.description}`;
-      
+
       // Simulate network delay for UI consistency
       await new Promise(resolve => setTimeout(resolve, 800));
-      
+
       setReportData(localData);
     } catch (err) {
       console.error('Error generating report:', err);

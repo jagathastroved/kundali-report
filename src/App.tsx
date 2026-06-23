@@ -39,7 +39,7 @@ const LoadingScreen: React.FC = () => {
         transition={{ delay: 0.3 }}
         className="mt-10 space-y-3"
       >
-        <h2 className="text-2xl font-semibold tracking-tight bg-gradient-to-r from-orange-200 via-white to-orange-200 bg-clip-text text-transparent">
+        <h2 className="text-2xl font-semibold tracking-tight bg-linear-to-r from-orange-200 via-white to-orange-200 bg-clip-text text-transparent">
           Calculating Your Cosmic Alignments
         </h2>
         <motion.p

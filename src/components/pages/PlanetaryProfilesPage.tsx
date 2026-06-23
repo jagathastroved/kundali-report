@@ -39,7 +39,7 @@ export const PlanetaryProfilesPage: React.FC<{ pageIdx: number, setPage: (idx: n
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
           {reportContent?.planetaryProfiles?.title}
         </h2>
-        <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
+        <div className="w-16 h-1 bg-linear-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
       </div>
 
       <p className="text-slate-600 text-[14px] leading-relaxed font-medium text-center max-w-2xl mx-auto px-2">
