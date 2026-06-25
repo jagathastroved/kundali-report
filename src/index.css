@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+@keyframes bookZoom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+@keyframes glowZoom {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.15); opacity: 0.8; }
+}
+
+.animate-book-zoom {
+  animation: bookZoom 4s ease-in-out infinite;
+}
+
+.animate-glow-zoom {
+  animation: glowZoom 4s ease-in-out infinite;
+}

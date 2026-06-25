@@ -40,7 +40,7 @@ export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: numb
             {reportContent?.reportFeatures?.heroDesc}
           </p>
         </div>
-        <div className="hidden sm:block flex-shrink-0 scale-90 sm:scale-110 relative z-10 transform origin-right">
+        <div className="flex-shrink-0 scale-100 sm:scale-110 relative z-10 transform sm:origin-right flex justify-center w-full sm:w-auto mb-6 sm:mb-0 sm:mt-0 order-first sm:order-last">
           <BookletMockup />
         </div>
       </div>

@@ -15,7 +15,7 @@ export const BirthStarPage: React.FC<{ pageIdx: number, setPage: (idx: number) =
 
       {/* Title Section */}
       <div className="text-center space-y-3 mt-4">
-        <p className="text-[12px] text-slate-500 font-medium uppercase tracking-widest">{reportContent?.birthStar?.chapterInfo}</p>
+        {/* <p className="text-[12px] text-slate-500 font-medium uppercase tracking-widest">{reportContent?.birthStar?.chapterInfo}</p> */}
         <div className="inline-flex items-center justify-center p-4 rounded-full mb-2 shadow-inner border border-white bg-gradient-to-br from-indigo-100 to-indigo-50 overflow-hidden w-20 h-20 relative group mx-auto">
           <img src={elementImages.ether} alt="Ether Space" className="w-full h-full object-cover absolute opacity-30 group-hover:scale-110 transition-transform duration-500" />
           <span className="text-4xl filter drop-shadow-md relative z-10">⭐</span>
@@ -63,7 +63,7 @@ export const BirthStarPage: React.FC<{ pageIdx: number, setPage: (idx: number) =
             <Compass className="w-3 h-3 mr-1" /> {reportContent?.birthStar?.strengthsTitle}
           </div>
           <div className="mt-4 flex flex-col space-y-4">
-             <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center shadow-inner border border-white p-2">
+            <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center shadow-inner border border-white p-2">
               <img src={elementImages.water} alt="Water Flow" className="w-full h-full object-contain opacity-80" />
             </div>
             <div className="space-y-4">

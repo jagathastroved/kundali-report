@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Globe2, Sparkles, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import bookImage from '../assets/Kundali_Report_book.png';
 
 export const PAGE_TITLES = [
   'Welcome ',
@@ -101,50 +102,13 @@ export const PieChartComponent: React.FC<{ ratios: { name: string; percentage: n
 
 export const BookletMockup: React.FC = () => {
   return (
-    <div className="relative group w-32 h-44 flex-shrink-0 perspective-[1000px] select-none pointer-events-none hidden sm:block ml-2 mb-2">
-      <div className="relative w-full h-full transition-transform duration-700 ease-out origin-left group-hover:[transform:rotateY(-20deg)_rotateX(5deg)] [transform-style:preserve-3d]">
-
-        {/* Book Pages (Back layers) */}
-        <div className="absolute top-[2px] bottom-[2px] right-[-4px] left-2 bg-[#fdfdfd] rounded-r-xl border border-slate-300 -z-10 [transform:translateZ(-1px)]" />
-        <div className="absolute top-[4px] bottom-[4px] right-[-8px] left-2 bg-[#f4f4f4] rounded-r-xl border border-slate-300 -z-20 [transform:translateZ(-2px)]" />
-        <div className="absolute top-[6px] bottom-[6px] right-[-11px] left-2 bg-[#ebebeb] rounded-r-xl border border-slate-300 shadow-[5px_5px_15px_rgba(0,0,0,0.3)] -z-30 [transform:translateZ(-3px)]" />
-
-        {/* Main Cover */}
-        <div className="absolute inset-0 bg-gradient-to-br from-rose-950 via-purple-900 to-indigo-950 rounded-r-2xl rounded-l-sm overflow-hidden flex flex-col justify-between p-3 z-10 border-l-[8px] border-[#1f0a2a] shadow-inner [transform:translateZ(0)] ring-1 ring-[#D4AF37]/40 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-shadow duration-500">
-          {/* Inner spine crease */}
-          <div className="absolute top-0 bottom-0 left-0 w-3 bg-linear-to-r from-black/60 to-transparent z-0 pointer-events-none" />
-
-          {/* Ambient spiritual orbs */}
-          <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#D4AF37]/25 rounded-full blur-xl" />
-          <div className="absolute -bottom-10 -left-10 w-24 h-24 bg-rose-500/20 rounded-full blur-xl" />
-
-          {/* Header */}
-          <div className="border-b border-[#D4AF37]/20 pb-1.5 mb-2 mt-1 flex justify-center items-center z-10">
-            <img
-              src="https://cdn.astroved.com/images/images-av/AstroVed-Logo.svg"
-              alt="Astroved-logo"
-              className="h-3 w-auto object-contain opacity-90 brightness-0 invert"
-            />
-          </div>
-
-          {/* Content */}
-          <div className="my-auto text-center flex flex-col items-center space-y-1 z-10">
-            <div className="mb-2">
-              <Globe2 className="w-8 h-8 text-[#D4AF37] drop-shadow-md" strokeWidth={1.5} />
-            </div>
-            <div className="text-[10px] font-normal text-white leading-tight tracking-tight drop-shadow-md">
-              Your Personalised
-            </div>
-            <div className="text-[12px] font-bold tracking-widest text-[#D4AF37] uppercase bg-black/20 py-1 px-1.5 rounded border border-[#D4AF37]/30 drop-shadow">
-              Kundli Report
-            </div>
-          </div>
-
-          {/* Footer empty space */}
-          <div className="border-t border-[#D4AF37]/20 pt-1.5 z-10 mt-2">
-          </div>
-        </div>
-      </div>
+    <div className="flex-shrink-0 w-32 sm:w-40 relative flex justify-center items-center sm:ml-2 sm:mb-2">
+      <div className="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full animate-glow-zoom" />
+      <img
+        src={bookImage}
+        alt="Premium Kundali Report"
+        className="w-full h-auto object-contain drop-shadow-2xl relative z-10 animate-book-zoom"
+      />
     </div>
   );
 };
