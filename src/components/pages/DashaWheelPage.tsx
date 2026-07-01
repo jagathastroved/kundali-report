@@ -27,43 +27,43 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
 
       {/* Header Section */}
       <div className="text-center space-y-3 mt-4">
-        <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-semibold page-text tracking-tight leading-tight max-w-xl mx-auto">
           {reportContent?.dashaTimeline?.title}
         </h2>
         <div className="w-16 h-1 bg-linear-to-r from-emerald-400 to-teal-500 mx-auto rounded-full mt-4" />
       </div>
 
       {/* Hero Active Pill */}
-      <div className="p-5 sm:p-6 bg-linear-to-r from-emerald-50 to-teal-50/50 rounded-3xl border border-emerald-100 shadow-sm relative overflow-hidden flex items-center justify-center text-center">
+      <div className="p-5 sm:p-6 card-bg-secondary rounded-3xl border border-default shadow-soft relative overflow-hidden flex items-center justify-center text-center">
         <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-200/20 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-32 h-32 bg-teal-200/20 rounded-full blur-3xl" />
 
         <div className="relative z-10 flex flex-col items-center">
-          <span className="inline-flex items-center gap-2 px-3 py-1 bg-white rounded-full shadow-sm text-emerald-600 text-[10px] font-bold uppercase tracking-widest mb-3 ring-1 ring-emerald-200/50">
+          <span className="inline-flex items-center gap-2 px-3 py-1 card-bg rounded-full shadow-soft text-emerald-600 text-[10px] font-bold uppercase tracking-widest mb-3 ring-1 ring-emerald-200/50">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             {reportContent?.dashaTimeline?.activePhase}
           </span>
-          <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
+          <h3 className="text-lg sm:text-xl font-bold page-text tracking-tight">
             {reportContent?.dashaTimeline?.currentDasha}
           </h3>
         </div>
       </div>
 
       {/* Description Card */}
-      <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm relative mx-1">
-        <p className="text-[14px] text-slate-600 leading-relaxed font-medium">
+      <div className="p-6 rounded-3xl card-bg border border-default shadow-soft relative mx-1">
+        <p className="text-[14px] page-text leading-relaxed font-medium">
           {reportContent?.dashaTimeline?.description}
         </p>
       </div>
 
       {/* Timeline Section */}
       <div className="px-2 pt-2">
-        <div className="relative border-l-2 border-slate-100 ml-6 space-y-8">
+        <div className="relative border-l-2 border-light ml-6 space-y-8">
           {data?.dashaTimeline?.map((item, idx) => (
             <div key={idx} className="relative pl-8 sm:pl-10 group">
 
               {/* Timeline Planet Node */}
-              <div className="absolute -left-[19px] sm:-left-[21px] top-1/2 -translate-y-1/2 w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-full border-4 border-white bg-white shadow-sm overflow-hidden z-10 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-md ring-1 ring-slate-200">
+              <div className="absolute -left-[19px] sm:-left-[21px] top-1/2 -translate-y-1/2 w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-full border-4 border-default card-bg shadow-soft overflow-hidden z-10 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-soft ring-1 ring-slate-200 dark:ring-slate-700">
                 <img
                   src={getPlanetImage(item?.planetName)}
                   alt={item?.planetName}
@@ -72,7 +72,7 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
               </div>
 
               {/* Card Content */}
-              <div className="p-4 sm:p-5 rounded-3xl bg-white hover:bg-slate-50 border border-slate-200 shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:border-emerald-200/50 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0 relative overflow-hidden">
+              <div className="p-4 sm:p-5 rounded-3xl card-bg hover:card-bg-secondary border border-default shadow-soft transition-all duration-300 group-hover:shadow-soft group-hover:border-emerald-200/50 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-emerald-400 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="space-y-1 z-10">
@@ -80,17 +80,17 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
                     {item?.levelName}
                   </span>
                   <div className="flex items-center gap-2">
-                    <h4 className="font-bold text-slate-900 text-base sm:text-lg tracking-tight">
+                    <h4 className="font-bold page-text text-base sm:text-lg tracking-tight">
                       Lord {item?.planetName}
                     </h4>
                   </div>
                 </div>
 
-                <div className="flex flex-row sm:flex-col justify-between sm:text-right gap-2 sm:gap-0 z-10 bg-slate-50 sm:bg-transparent p-2 sm:p-0 rounded-xl sm:rounded-none">
-                  <div className="text-xs sm:text-[13px] font-mono font-bold text-slate-700">
+                <div className="flex flex-row sm:flex-col justify-between sm:text-right gap-2 sm:gap-0 z-10 card-bg-secondary sm:bg-transparent p-2 sm:p-0 rounded-xl sm:rounded-none">
+                  <div className="text-xs sm:text-[13px] font-mono font-bold page-text">
                     {item?.startDate}
                   </div>
-                  <div className="text-[10px] sm:text-[11px] font-medium text-slate-500 font-mono flex items-center justify-end gap-1">
+                  <div className="text-[10px] sm:text-[11px] font-medium text-muted font-mono flex items-center justify-end gap-1">
                     <span className="hidden sm:inline">until</span>
                     <span className="sm:hidden">-</span>
                     {item?.endDate}

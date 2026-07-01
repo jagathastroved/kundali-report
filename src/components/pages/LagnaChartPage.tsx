@@ -20,14 +20,14 @@ const getPlanetImage = (planetName: string) => {
 
 const SouthChartCell = ({ planets, isAsc = false, num, onMouseMove, onMouseLeave }: { planets: string[], isAsc?: boolean, num?: string, onMouseMove: (e: React.MouseEvent) => void, onMouseLeave: () => void }) => (
   <div
-    className="border border-slate-200/60 p-1.5 sm:p-2 flex flex-col items-center justify-center bg-white h-full w-full relative overflow-hidden transition-colors duration-200 cursor-pointer hover:bg-indigo-50/40"
+    className="border border-slate-200/60 p-1.5 sm:p-2 flex flex-col items-center justify-center card-bg h-full w-full relative overflow-hidden transition-colors duration-200 cursor-pointer hover:bg-indigo-50/40"
     onMouseMove={onMouseMove}
     onMouseLeave={onMouseLeave}
   >
     {num && <span className="absolute top-1 right-1.5 text-[9px] text-slate-300 font-medium">{num}</span>}
     <div className="flex flex-col space-y-0.5 items-center justify-center w-full mt-1">
       {planets.map((p: string, i: number) => (
-        <span key={i} className="text-[11px] sm:text-[12px] font-semibold text-slate-700 tracking-tight leading-none">{p}</span>
+        <span key={i} className="text-[11px] sm:text-[12px] font-semibold page-text tracking-tight leading-none">{p}</span>
       ))}
     </div>
     {isAsc && (
@@ -39,10 +39,10 @@ const SouthChartCell = ({ planets, isAsc = false, num, onMouseMove, onMouseLeave
 const NorthChartCell = ({ x, y, width, height, num, planets, isAsc = false, onMouseMove, onMouseLeave }: { x: number, y: number, width: number, height: number, num: string, planets: string[], isAsc?: boolean, onMouseMove: (e: React.MouseEvent) => void, onMouseLeave: () => void }) => (
   <foreignObject x={x} y={y} width={width} height={height} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} className="cursor-pointer group">
     <div className="flex flex-col items-center justify-center w-full h-full text-center leading-none overflow-visible rounded-xl transition-colors duration-200 hover:bg-indigo-50/40">
-      <span className="text-[10px] font-medium text-slate-400 mb-1">{num}</span>
+      <span className="text-[10px] font-medium text-muted mb-1">{num}</span>
       <div className="flex flex-col items-center justify-center mt-0.5 space-y-[1px]">
         {planets.map((p: string, i: number) => (
-          <span key={i} className="text-[10px] font-semibold text-slate-700 tracking-tight leading-tight">{p}</span>
+          <span key={i} className="text-[10px] font-semibold page-text tracking-tight leading-tight">{p}</span>
         ))}
       </div>
       {isAsc && <span className="text-[8px] font-bold text-indigo-500 uppercase mt-1 tracking-widest">Lagna</span>}
@@ -78,15 +78,15 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
           className="fixed z-50 pointer-events-none transform -translate-x-1/2 -translate-y-full pb-3"
           style={{ left: tooltip.x, top: tooltip.y }}
         >
-          <div className="bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-indigo-50 min-w-[120px] max-w-[200px]">
+          <div className="card-bg/95 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-indigo-50 min-w-[120px] max-w-[200px]">
             <p className="text-[10px] uppercase font-bold text-indigo-500 tracking-wider mb-2 border-b border-indigo-50 pb-1 text-center">
               House {tooltip.houseNum}
             </p>
             <div className="flex flex-col gap-2">
               {tooltip.planets.map((p, i) => (
                 <div key={i} className="flex items-center gap-2">
-                  <img src={getPlanetImage(p)} alt={p} className="w-6 h-6 rounded-full border border-slate-200 shadow-sm" />
-                  <span className="text-[12px] font-bold text-slate-800">{p}</span>
+                  <img src={getPlanetImage(p)} alt={p} className="w-6 h-6 rounded-full border border-default shadow-soft" />
+                  <span className="text-[12px] font-bold page-text">{p}</span>
                 </div>
               ))}
             </div>
@@ -96,17 +96,17 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
 
       {/* Title Section */}
       <div className="text-center space-y-3 mt-4">
-        <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-tight max-w-xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-semibold page-text tracking-tight leading-tight max-w-xl mx-auto">
           {reportContent?.lagnaChart?.title}
         </h2>
         <div className="w-16 h-1 bg-linear-to-r from-indigo-400 to-indigo-600 mx-auto rounded-full mt-4" />
       </div>
 
       {/* Review birth details summary indicators inside booklet */}
-      <div className="p-4 sm:p-5 bg-linear-to-r from-slate-50 to-white rounded-3xl flex flex-col sm:flex-row justify-between items-center text-xs font-normal border border-slate-200 shadow-sm mx-1 gap-4">
-        <div className="space-y-1 text-slate-600 text-center sm:text-left">
-          <div className="font-medium text-[14px]">Birth: <span className="text-indigo-600 font-bold">{data?.birthDetails?.name}</span> <span className="text-slate-400 capitalize">({data?.birthDetails?.gender})</span></div>
-          <div className="text-[12px] text-slate-500 flex flex-col sm:flex-row gap-1 sm:gap-3">
+      <div className="p-4 sm:p-5 bg-linear-to-r from-slate-50 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-slate-900/40 hover:dark:to-slate-800/40 transition-all duration-300 rounded-3xl flex flex-col sm:flex-row justify-between items-center text-xs font-normal border border-default shadow-soft mx-1 gap-4">
+        <div className="space-y-1 page-text text-center sm:text-left">
+          <div className="font-medium text-[14px]">Birth: <span className="text-indigo-600 font-bold">{data?.birthDetails?.name}</span> <span className="text-muted capitalize">({data?.birthDetails?.gender})</span></div>
+          <div className="text-[12px] text-muted flex flex-col sm:flex-row gap-1 sm:gap-3">
             <span>Date: {data?.birthDetails?.day}/{data?.birthDetails?.month}/{data?.birthDetails?.year}</span>
             <span className="hidden sm:inline text-slate-300">|</span>
             <span>Time: {String(data?.birthDetails?.hour % 12 || 12).padStart(2, '0')}:{String(data?.birthDetails?.minute).padStart(2, '0')} {data?.birthDetails?.hour >= 12 ? 'PM' : 'AM'}</span>
@@ -114,17 +114,17 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
         </div>
 
         {/* Select Chart Style togglers */}
-        <div className="flex bg-slate-100 p-1.5 rounded-2xl shadow-inner">
+        <div className="flex card-bg p-1.5 rounded-2xl shadow-inner">
           <button
             onClick={() => setChartType('north')}
-            className={`px-4 py-1.5 rounded-xl text-[11px] font-bold tracking-widest uppercase transition-all ${chartType === 'north' ? 'bg-white text-indigo-600 shadow-sm ring-1 ring-slate-200/50' : 'text-slate-500 hover:text-slate-700'
+            className={`px-4 py-1.5 rounded-xl text-[11px] font-bold tracking-widest uppercase transition-all ${chartType === 'north' ? 'card-bg text-indigo-600 shadow-soft ring-1 ring-slate-200/50' : 'text-muted hover:page-text'
               }`}
           >
             North
           </button>
           <button
             onClick={() => setChartType('south')}
-            className={`px-4 py-1.5 rounded-xl text-[11px] font-bold tracking-widest uppercase transition-all ${chartType === 'south' ? 'bg-white text-indigo-600 shadow-sm ring-1 ring-slate-200/50' : 'text-slate-500 hover:text-slate-700'
+            className={`px-4 py-1.5 rounded-xl text-[11px] font-bold tracking-widest uppercase transition-all ${chartType === 'south' ? 'card-bg text-indigo-600 shadow-soft ring-1 ring-slate-200/50' : 'text-muted hover:page-text'
               }`}
           >
             South
@@ -136,9 +136,9 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       <div className="flex justify-center py-4 min-h-[340px] items-center">
         {chartType === 'north' ? (
           // High Fidelity North Indian Diamond Chart SVG representation
-          <svg width="300" height="300" viewBox="0 0 300 300" className="text-slate-300">
+          <svg width="300" height="300" viewBox="0 0 300 300" className="text-[#EBE4D5] dark:text-slate-700">
             {/* Background Box */}
-            <rect x="0" y="0" width="300" height="300" fill="white" stroke="currentColor" strokeWidth="1.5" className="rounded-xl" rx="8" ry="8" />
+            <rect x="0" y="0" width="300" height="300" fill="transparent" stroke="currentColor" strokeWidth="1.5" className="rounded-xl" rx="8" ry="8" />
             {/* Major Diagonals */}
             <line x1="0" y1="0" x2="300" y2="300" stroke="currentColor" strokeWidth="1.5" />
             <line x1="300" y1="0" x2="0" y2="300" stroke="currentColor" strokeWidth="1.5" />
@@ -163,7 +163,7 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
             <NorthChartCell x={185} y={5} width={80} height={60} num="1" planets={['Saturn', 'Jupiter']} onMouseMove={(e) => handleMouseMove(e, ['Saturn', 'Jupiter'], '1')} onMouseLeave={handleMouseLeave} />
           </svg>
         ) : (
-          <div className="grid grid-cols-4 grid-rows-4 w-full aspect-square max-w-[340px] h-[340px] bg-slate-50/50 border border-slate-200 rounded-xl shadow-sm mx-auto overflow-hidden text-center font-sans relative">
+          <div className="grid grid-cols-4 grid-rows-4 w-full aspect-square max-w-[340px] h-[340px] card-bg-secondary border border-default rounded-xl shadow-soft mx-auto overflow-hidden text-center font-sans relative">
             {/* Row 1 */}
             <SouthChartCell planets={['Mars']} num="11" onMouseMove={(e) => handleMouseMove(e, ['Mars'], '11')} onMouseLeave={handleMouseLeave} />
             <SouthChartCell planets={['Saturn', 'Jupiter']} num="12" onMouseMove={(e) => handleMouseMove(e, ['Saturn', 'Jupiter'], '12')} onMouseLeave={handleMouseLeave} />
@@ -172,9 +172,9 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
 
             {/* Row 2 */}
             <SouthChartCell planets={['Sun', 'Mercury']} num="10" onMouseMove={(e) => handleMouseMove(e, ['Sun', 'Mercury'], '10')} onMouseLeave={handleMouseLeave} />
-            <div className="col-span-2 row-span-2 bg-gradient-to-br from-slate-50 to-white flex flex-col items-center justify-center border border-slate-100 relative">
-              <h3 className="text-xl font-bold text-slate-800 tracking-tight">Birth Chart</h3>
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mt-1">Rasi Chart</p>
+            <div className="col-span-2 row-span-2 card-bg border border-light relative flex flex-col items-center justify-center">
+              <h3 className="text-xl font-bold page-text tracking-tight">Birth Chart</h3>
+              <p className="text-xs font-semibold text-muted uppercase tracking-widest mt-1">Rasi Chart</p>
             </div>
             <SouthChartCell planets={['Rahu']} num="3" onMouseMove={(e) => handleMouseMove(e, ['Rahu'], '3')} onMouseLeave={handleMouseLeave} />
 
@@ -192,15 +192,15 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       </div>
 
       {/* Premium Content Card (Stellium Information) */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm relative overflow-hidden group font-sans mx-1">
+      <div className="p-6 sm:p-8 rounded-3xl card-bg border border-default shadow-soft relative overflow-hidden group font-sans mx-1">
         <div className="absolute top-0 left-0 w-full h-1.5 bg-linear-to-r from-indigo-400 to-indigo-600" />
 
         <div className="space-y-6">
-          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight leading-tight">
+          <h3 className="text-xl sm:text-2xl font-bold page-text tracking-tight leading-tight">
             {reportContent?.lagnaChart?.stelliumQuestion}
           </h3>
 
-          <div className="space-y-5 text-[15px] text-slate-700 leading-relaxed font-medium">
+          <div className="space-y-5 text-[15px] page-text leading-relaxed font-medium">
             <p>
               {reportContent?.lagnaChart?.stelliumDesc1}
             </p>

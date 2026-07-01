@@ -63,7 +63,7 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
       <div className="space-y-6 pt-4 max-w-3xl mx-auto">
         <div className="flex items-center gap-3 mb-8 justify-center sm:justify-start">
           <div className="w-8 h-[2px] bg-amber-500 rounded-full" />
-          <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest">
+          <h3 className="text-sm font-bold page-text uppercase tracking-widest">
             What's Inside Your Report
           </h3>
           <div className="w-8 h-[2px] bg-amber-500 rounded-full sm:hidden" />
@@ -71,16 +71,16 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {featureItems?.map((item: any, idx: number) => (
-            <div key={idx} className="group bg-white rounded-3xl p-6 border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-indigo-100 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden flex gap-4 items-start">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -mr-10 -mt-10 pointer-events-none" />
+            <div key={idx} className="group card-bg rounded-3xl p-6 border border-light shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-indigo-100 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden flex gap-4 items-start">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 dark:bg-indigo-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -mr-10 -mt-10 pointer-events-none" />
 
-              <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-indigo-50/80 flex items-center justify-center text-indigo-600 group-hover:scale-110 group-hover:bg-indigo-100 transition-all duration-300 shadow-sm border border-indigo-100/50">
+              <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-indigo-50/80 flex items-center justify-center text-indigo-600 group-hover:scale-110 group-hover:bg-indigo-100 transition-all duration-300 shadow-soft border border-indigo-100/50">
                 <CheckCircle2 size={22} className="fill-indigo-100/50" />
               </div>
 
               <div className="flex-1 space-y-1.5 relative z-10">
-                <h4 className="text-[15px] font-bold text-slate-900 leading-tight group-hover:text-indigo-900 transition-colors tracking-tight">{item?.title}</h4>
-                <p className="text-[13px] text-slate-500 leading-relaxed font-medium">{item?.desc}</p>
+                <h4 className="text-[15px] font-bold page-text leading-tight group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition-colors tracking-tight">{item?.title}</h4>
+                <p className="text-[13px] text-muted leading-relaxed font-medium">{item?.desc}</p>
               </div>
             </div>
           ))}
@@ -98,7 +98,7 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
               <span className="text-2xl sm:text-3xl font-black text-[#006400] tracking-tight">₹899</span>
             </div>
           </div>
-          <div className="bg-[#00C950] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm whitespace-nowrap flex-shrink-0 text-center">
+          <div className="bg-[#00C950] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-soft whitespace-nowrap flex-shrink-0 text-center">
             SAVE 64% TODAY
           </div>
         </div>

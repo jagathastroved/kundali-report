@@ -37,16 +37,16 @@ export const PieChartComponent: React.FC<{ ratios: { name: string; percentage: n
   };
 
   const textColors: { [key: string]: string } = {
-    Ether: 'text-purple-600',
-    Air: 'text-yellow-700',
-    Water: 'text-blue-600',
-    Fire: 'text-red-700',
-    Earth: 'text-green-600',
+    Ether: 'text-purple-600 dark:text-purple-400',
+    Air: 'text-yellow-600 dark:text-yellow-400',
+    Water: 'text-blue-600 dark:text-blue-400',
+    Fire: 'text-red-600 dark:text-red-400',
+    Earth: 'text-green-600 dark:text-green-400',
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 bg-amber-500/[0.02] border border-[#EBE4D5]/60 p-5 rounded-3xl">
-      <div className="relative w-40 h-40">
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-8 bg-gradient-to-br from-slate-50 to-slate-100/50 dark:from-slate-800/40 dark:to-slate-900/40 hover:dark:from-slate-800/60 hover:dark:to-slate-900/60 border border-light p-6 sm:p-8 rounded-[2rem] shadow-soft hover:shadow-lg transition-all duration-300">
+      <div className="relative w-40 h-40 drop-shadow-md">
         <svg width="160" height="160" viewBox="0 0 160 160" className="transform -rotate-90">
           {ratios.map((element, idx) => {
             const val = element.percentage;
@@ -71,27 +71,27 @@ export const PieChartComponent: React.FC<{ ratios: { name: string; percentage: n
                 key={idx}
                 d={pathData}
                 fill={color}
-                stroke="#FAF7F0"
-                strokeWidth="1.5"
+                stroke="currentColor"
+                strokeWidth="2"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
-                className="hover:opacity-90 transition-opacity cursor-pointer"
+                className="hover:opacity-80 transition-opacity cursor-pointer text-slate-50 dark:text-slate-900"
               />
             );
           })}
-          <circle cx="80" cy="80" r="32" fill="#FCFAF2" />
+          <circle cx="80" cy="80" r="28" className="fill-slate-50 dark:fill-slate-900/90" />
         </svg>
       </div>
 
-      <div className="space-y-1.5 flex-1 min-w-[120px]">
+      <div className="space-y-2.5 flex-1 min-w-[140px] bg-white/50 dark:bg-slate-800/30 p-4 rounded-2xl border border-light">
         {ratios.map((element, idx) => {
           const color = bgColors[element.name] || '#64748B';
           return (
-            <div key={idx} className="flex items-center text-xs font-normal text-slate-800">
-              <span className="w-3.5 h-3.5 rounded-md mr-2.5 transition-colors" style={{ backgroundColor: color }} />
-              <span className="min-w-[50px]">{element.name}:</span>
-              <span className={`ml-2 font-mono font-normal ${textColors[element.name] || 'text-slate-500'}`}>{element.percentage}%</span>
+            <div key={idx} className="flex items-center text-[13px] font-medium page-text group">
+              <span className="w-3.5 h-3.5 rounded-full mr-3 shadow-sm transition-transform group-hover:scale-110" style={{ backgroundColor: color }} />
+              <span className="min-w-[55px] tracking-wide">{element.name}:</span>
+              <span className={`ml-2 font-bold ${textColors[element.name] || 'text-slate-500'}`}>{element.percentage}%</span>
             </div>
           );
         })}

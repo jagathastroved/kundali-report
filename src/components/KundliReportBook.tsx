@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useReport } from '../context/ReportContext';
+import { useTheme } from '../context/ThemeContext';
 import { KundliReportData, PlanetPosition } from '../types';
-import { ArrowLeft, ArrowRight, BookOpen, Compass, RefreshCw } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, Compass, RefreshCw, Moon, Sun, Monitor } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useParams, useNavigate, Navigate, Outlet, useLocation } from 'react-router-dom';
 
@@ -9,6 +10,7 @@ import { PAGE_TITLES } from './SharedElements';
 
 // Pie Chart component for representing elements ratio perfectly matching Screenshot 4
 const PieChartComponent: React.FC<{ ratios: { name: string; percentage: number }[] }> = ({ ratios }) => {
+  const { resolvedTheme } = useTheme();
   let accumulatedAngle = 0;
   const radius = 64;
   const cx = 80;
@@ -34,7 +36,7 @@ const PieChartComponent: React.FC<{ ratios: { name: string; percentage: number }
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 bg-amber-500/[0.02] border border-[#EBE4D5]/60 p-5 rounded-3xl">
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 bg-amber-500/[0.02] border border-light p-5 rounded-3xl">
       <div className="relative w-40 h-40">
         <svg width="160" height="160" viewBox="0 0 160 160" className="transform -rotate-90">
           {ratios.map((element, idx) => {
@@ -61,7 +63,7 @@ const PieChartComponent: React.FC<{ ratios: { name: string; percentage: number }
                 key={idx}
                 d={pathData}
                 fill={color}
-                stroke="#FAF7F0"
+                stroke={resolvedTheme === 'dark' ? '#0F172A' : '#FCFAF5'}
                 strokeWidth="1.5"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -71,7 +73,7 @@ const PieChartComponent: React.FC<{ ratios: { name: string; percentage: number }
             );
           })}
           {/* Inner hole for warm donut booklet feel */}
-          <circle cx="80" cy="80" r="32" fill="#FCFAF2" />
+          <circle cx="80" cy="80" r="32" fill={resolvedTheme === 'dark' ? '#0F172A' : '#FCFAF2'} />
         </svg>
       </div>
 
@@ -80,7 +82,7 @@ const PieChartComponent: React.FC<{ ratios: { name: string; percentage: number }
         {ratios.map((element, idx) => {
           const color = bgColors[element.name] || '#64748B';
           return (
-            <div key={idx} className="flex items-center text-xs font-normal text-slate-800">
+            <div key={idx} className="flex items-center text-xs font-normal page-text">
               <span className="w-3.5 h-3.5 rounded-md mr-2.5 transition-colors" style={{ backgroundColor: color }} />
               <span className="min-w-[50px]">{element.name}:</span>
               <span className={`ml-2 font-mono font-normal ${textColors[element.name] || 'text-slate-500'}`}>{element.percentage}%</span>
@@ -131,6 +133,7 @@ const BookletMockup: React.FC = () => {
 
 export const KundliReportBook: React.FC = () => {
   const { reportData, resetReport } = useReport();
+  const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -200,24 +203,26 @@ export const KundliReportBook: React.FC = () => {
 
       {/* Modern Collapsible Table of Contents Navigation Drawer */}
       <aside
-        className={`fixed md:relative inset-y-0 left-0 h-screen z-50 md:z-20 border-r border-slate-200/80 bg-white/95 backdrop-blur-md flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${isSidebarOpen
+        className={`fixed md:relative inset-y-0 left-0 h-screen z-50 md:z-20 border-r border-default sidebar-bg backdrop-blur-md flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${isSidebarOpen
           ? 'translate-x-0 w-[85vw] sm:w-80 shadow-2xl md:shadow-none md:w-80 opacity-100'
           : '-translate-x-full md:translate-x-0 w-[85vw] sm:w-80 md:w-0 md:opacity-0 md:overflow-hidden'
           }`}
       >
-        <div className="p-5 border-b border-slate-200/80 flex justify-between items-center bg-slate-50/60">
+        <div className="p-5 border-b border-default sidebar-header-bg flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <BookOpen className="text-indigo-600" size={20} />
-            <span className="font-semibold text-sm uppercase tracking-wider text-slate-800">
+            <span className="font-semibold text-sm uppercase tracking-wider sidebar-item-text">
               Report Index
             </span>
           </div>
-          <button
-            onClick={() => setIsSidebarOpen(false)}
-            className="text-slate-500 hover:text-slate-800 p-1 transition-colors"
-          >
-            <ArrowLeft size={18} />
-          </button>
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setIsSidebarOpen(false)}
+              className="text-muted hover:text-slate-800 dark:hover:text-slate-200 p-1 transition-colors"
+            >
+              <ArrowLeft size={18} />
+            </button>
+          </div>
         </div>
 
         {/* Scrollable checklist items */}
@@ -237,14 +242,14 @@ export const KundliReportBook: React.FC = () => {
                 }}
                 className={`w-full flex items-center px-4 py-2.5 rounded-xl text-left text-xs font-normal transition-all group ${isActive
                   ? 'bg-[#FE7950] text-white shadow-md shadow-[#FE7950]/15'
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  : 'sidebar-item-text sidebar-item-hover'
                   }`}
               >
-                <div className={`w-5 h-5 rounded-full mr-3 text-[10px] flex items-center justify-center font-normal border transition-colors ${isActive
+                <div className={`w-5 h-5 rounded-full mr-3 text-[10px] flex items-center justify-center font-bold border transition-colors ${isActive
                   ? 'border-white/40 bg-white/20 text-white'
                   : isCompleted
-                    ? 'border-indigo-200 bg-indigo-50/40 text-indigo-500'
-                    : 'border-slate-300 bg-transparent text-slate-400'
+                    ? 'border-emerald-200 bg-emerald-50 text-emerald-600 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400'
+                    : 'border-slate-300 dark:border-slate-600 bg-transparent text-slate-400 group-hover:border-slate-400 dark:group-hover:border-slate-500 font-normal'
                   }`}>
                   {idx + 1}
                 </div>
@@ -261,10 +266,10 @@ export const KundliReportBook: React.FC = () => {
         </div>
 
         {/* Exit booklet back to start form */}
-        <div className="p-4 border-t border-slate-200/80 bg-slate-50/60 flex justify-center">
+        <div className="p-4 border-t border-default sidebar-header-bg flex justify-center">
           <button
             onClick={handleResetReport}
-            className="text-xs font-normal text-slate-500 hover:text-orange-500 hover:text-orange-600 flex items-center space-x-1.5 transition-colors focus:outline-none"
+            className="text-xs font-normal text-muted hover:text-orange-500 hover:text-orange-600 flex items-center space-x-1.5 transition-colors focus:outline-none"
           >
             <RefreshCw size={12} />
             <span>Enter Different Details</span>
@@ -285,13 +290,39 @@ export const KundliReportBook: React.FC = () => {
           </button>
         )}
 
+        {/* Floating Theme Toggle Button */}
+        <button
+          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          className="absolute top-4 right-4 md:right-8 z-50 p-3 bg-white/90 dark:bg-slate-800/80 backdrop-blur-md border border-slate-200/50 dark:border-slate-600/50 shadow-lg hover:shadow-xl dark:shadow-[0_0_15px_rgba(250,204,21,0.15)] rounded-full transition-all duration-500 hover:scale-110 group flex items-center justify-center overflow-hidden"
+          title="Toggle Theme"
+        >
+          <div className="relative flex items-center justify-center w-6 h-6">
+            <Moon 
+              className={`absolute transition-all duration-500 text-indigo-600 ${
+                theme === 'light' 
+                  ? 'opacity-100 rotate-0 scale-100 group-hover:-rotate-12' 
+                  : 'opacity-0 rotate-90 scale-50'
+              }`} 
+              size={22} 
+            />
+            <Sun 
+              className={`absolute transition-all duration-500 text-yellow-400 ${
+                theme === 'light' 
+                  ? 'opacity-0 -rotate-90 scale-50' 
+                  : 'opacity-100 rotate-0 scale-100 group-hover:rotate-45'
+              }`} 
+              size={22} 
+            />
+          </div>
+        </button>
+
         {/* Outer PDF Page Body Grid */}
         <section
           id="report-page-scroller"
           className="flex-1 overflow-y-auto px-4 md:px-12 py-8 flex items-start justify-center custom-scrollbar"
         >
           {/* Virtual Booklet Frame centering */}
-          <div className="w-full max-w-2xl bg-[#FCFAF5] border border-[#EBE4D5] shadow-[0_15px_40px_rgba(0,0,0,0.4)] rounded-3xl md:rounded-[2rem] flex flex-col p-6 md:p-10 relative select-text min-h-[580px] justify-between text-slate-800 overflow-hidden">
+          <div className="w-full max-w-2xl page-bg border border-default shadow-book rounded-3xl md:rounded-[2rem] flex flex-col p-6 md:p-10 relative select-text min-h-[580px] justify-between page-text overflow-hidden">
 
             {/* Dynamic Header Progress Bar */}
             <div className="absolute top-0 left-0 right-0 h-2 bg-slate-200/60">
@@ -305,7 +336,7 @@ export const KundliReportBook: React.FC = () => {
 
             <div className="block flex-1">
               {/* Header inside the booklet page */}
-              <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#EBE4D5]/60 relative">
+              <div className="flex items-center justify-between pb-4 mb-6 border-b border-light relative">
                 {/* Left Logo */}
                 <div className="flex-1 flex justify-start">
                   <button
@@ -327,7 +358,7 @@ export const KundliReportBook: React.FC = () => {
                     <Compass size={14} className="animate-spin" style={{ animationDuration: '25s' }} />
                     <div className="hidden sm:block w-6 h-px bg-gradient-to-l from-transparent to-[#FE7950] ml-2"></div>
                   </div>
-                  <span className="text-[10px] sm:text-xs font-semibold text-slate-800 tracking-[0.15em] sm:tracking-[0.2em] uppercase text-center break-words">
+                  <span className="text-[10px] sm:text-xs font-semibold page-text tracking-[0.15em] sm:tracking-[0.2em] uppercase text-center break-words">
                     {PAGE_TITLES[currentPage]}
                   </span>
                 </div>
@@ -344,7 +375,7 @@ export const KundliReportBook: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.35, ease: 'easeOut' }}
-                  className="space-y-6 text-slate-700 leading-relaxed text-sm md:text-base font-normal selection:bg-orange-100"
+                  className="space-y-6 page-text leading-relaxed text-sm md:text-base font-normal selection:bg-orange-100"
                 >
                   <Outlet />
                 </motion.div>
@@ -352,16 +383,16 @@ export const KundliReportBook: React.FC = () => {
             </div>
 
             {/* Bottom Book Navigator Buttons */}
-            <footer className="mt-10 pt-6 border-t border-[#EBE4D5]/60 flex justify-between items-center">
+            <footer className="mt-10 pt-6 border-t border-light flex justify-between items-center">
               <button
                 onClick={() => {
                   prevPage();
                   handleScrollToTop();
                 }}
                 disabled={currentPage === 0}
-                className="flex items-center justify-center w-11 h-11 rounded-2xl bg-white border border-slate-200 hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed shadow-sm transition"
+                className="flex items-center justify-center w-11 h-11 rounded-2xl card-bg border border-default sidebar-item-hover disabled:opacity-30 disabled:cursor-not-allowed shadow-soft transition"
               >
-                <ArrowLeft size={16} className="text-slate-700" />
+                <ArrowLeft size={16} className="page-text" />
               </button>
 
               {currentPage < PAGE_TITLES.length - 1 && (
