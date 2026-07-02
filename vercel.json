@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://sprint-common-nutlike.ngrok-free.dev/api/:match*"
+    }
+  ]
+}

@@ -11,7 +11,7 @@ export interface ReportApiRequest {
 }
 
 export const fetchReportFull = async (payload: ReportApiRequest) => {
-  const baseUrl = import.meta.env.VITE_API_URL || 'https://sprint-common-nutlike.ngrok-free.dev';
+  const baseUrl = import.meta.env.VITE_API_URL || '';
   const url = `${baseUrl}/api/v1/report/full`;
 
   try {
