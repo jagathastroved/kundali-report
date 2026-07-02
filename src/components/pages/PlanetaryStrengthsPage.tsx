@@ -3,7 +3,7 @@ import { useReport } from '../../context/ReportContext';
 import { Award, Shield, AlertCircle } from 'lucide-react';
 import { planetImages } from '../../data/planetImages';
 import { renderPromoBox } from '../SharedElements';
-import { reportContent } from '@/src/data/reportContent';
+
 
 const getPlanetImage = (planetName: string) => {
   const name = planetName.toLowerCase();
@@ -21,20 +21,34 @@ const getPlanetImage = (planetName: string) => {
 
 export const PlanetaryStrengthsPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
   const { reportData: data } = useReport();
+  const planetaryStrengths = data?.pages?.page9_yogakaraka?.planetaryStrengths || data?.planetaryStrengths;
+  
   if (!data) return null;
+
+  const yogakarakaObj = planetaryStrengths?.yogaKaraka || planetaryStrengths?.yogakaraka;
+  const yogakarakaPlanets = Array.isArray(yogakarakaObj) ? yogakarakaObj : (yogakarakaObj?.planets || []);
+  const yogakarakaContent = yogakarakaObj?.content;
+
+  const beneficsObj = planetaryStrengths?.benefics;
+  const beneficsPlanets = Array.isArray(beneficsObj) ? beneficsObj : (beneficsObj?.planets || []);
+  const beneficsContent = beneficsObj?.content;
+
+  const maleficsObj = planetaryStrengths?.malefics;
+  const maleficsPlanets = Array.isArray(maleficsObj) ? maleficsObj : (maleficsObj?.planets || []);
+  const maleficsContent = maleficsObj?.content;
 
   return (
     <div className="space-y-8 pb-6 font-sans">
       {/* Title Section */}
       <div className="text-center space-y-3 mt-4 px-2">
         <h2 className="text-2xl md:text-3xl font-semibold page-text tracking-tight leading-tight max-w-xl mx-auto">
-          {reportContent?.planetaryStrengths?.title}
+          Planetary Shield Strengths
         </h2>
         <div className="w-16 h-1 bg-linear-to-r from-emerald-400 to-indigo-500 mx-auto rounded-full mt-4" />
       </div>
 
       <p className="page-text text-[14px] leading-relaxed font-medium max-w-xl mx-auto px-4">
-        {reportContent?.planetaryStrengths?.description}
+        The planets act as powerful cosmic forces within your birth chart, influencing your personality, relationships, career, and spiritual growth. Their strengths and weaknesses reveal both opportunities and areas for personal development.
       </p>
 
       <div className="space-y-6 pt-2">
@@ -47,13 +61,13 @@ export const PlanetaryStrengthsPage: React.FC<{ pageIdx: number, setPage: (idx: 
               <Award className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-emerald-900 dark:text-emerald-300">{reportContent?.planetaryStrengths?.yogaKarakaTitle}</h3>
+              <h3 className="text-lg font-bold text-emerald-900 dark:text-emerald-300">Yogakaraka Planets</h3>
               <p className="text-[12px] text-emerald-700/80 dark:text-emerald-400/90 font-medium tracking-wide">The Most Auspicious Planets</p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-2 mt-4 relative z-10">
-            {data?.planetaryStrengths?.yogakaraka?.map((p, i) => (
+            {yogakarakaPlanets.map((p: string, i: number) => (
               <div key={i} className="flex items-center gap-2 px-3 py-1.5 rounded-full card-bg shadow-soft border border-emerald-100 dark:border-emerald-500/30 hover:border-emerald-200 transition-colors">
                 <div className="w-6 h-6 rounded-full overflow-hidden flex-shrink-0 border border-emerald-50 shadow-inner">
                   <img src={getPlanetImage(p)} alt={p} className="w-full h-full object-cover" />
@@ -62,6 +76,11 @@ export const PlanetaryStrengthsPage: React.FC<{ pageIdx: number, setPage: (idx: 
               </div>
             ))}
           </div>
+          {yogakarakaContent && (
+            <p className="mt-4 text-[13.5px] text-emerald-800/80 dark:text-emerald-300/80 leading-relaxed font-medium relative z-10">
+              {yogakarakaContent}
+            </p>
+          )}
         </div>
 
         {/* Benefics */}
@@ -72,13 +91,13 @@ export const PlanetaryStrengthsPage: React.FC<{ pageIdx: number, setPage: (idx: 
               <Shield className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-indigo-900 dark:text-indigo-300">{reportContent?.planetaryStrengths?.beneficsTitle}</h3>
+              <h3 className="text-lg font-bold text-indigo-900 dark:text-indigo-300">Benefic Forces</h3>
               <p className="text-[12px] text-indigo-700/80 dark:text-indigo-400/90 font-medium tracking-wide">Favorable & Supportive</p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-2 mt-4 relative z-10">
-            {data?.planetaryStrengths?.benefics?.map((p, i) => (
+            {beneficsPlanets.map((p: string, i: number) => (
               <div key={i} className="flex items-center gap-2 px-3 py-1.5 rounded-full card-bg shadow-soft border border-indigo-100 dark:border-indigo-500/30 hover:border-indigo-200 transition-colors">
                 <div className="w-6 h-6 rounded-full overflow-hidden flex-shrink-0 border border-indigo-50 shadow-inner">
                   <img src={getPlanetImage(p)} alt={p} className="w-full h-full object-cover" />
@@ -87,6 +106,11 @@ export const PlanetaryStrengthsPage: React.FC<{ pageIdx: number, setPage: (idx: 
               </div>
             ))}
           </div>
+          {beneficsContent && (
+            <p className="mt-4 text-[13.5px] text-indigo-800/80 dark:text-indigo-300/80 leading-relaxed font-medium relative z-10">
+              {beneficsContent}
+            </p>
+          )}
         </div>
 
         {/* Malefics */}
@@ -97,13 +121,13 @@ export const PlanetaryStrengthsPage: React.FC<{ pageIdx: number, setPage: (idx: 
               <AlertCircle className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-rose-900 dark:text-rose-300">{reportContent?.planetaryStrengths?.maleficsTitle}</h3>
+              <h3 className="text-lg font-bold text-rose-900 dark:text-rose-300">Malefic Challenges</h3>
               <p className="text-[12px] text-rose-700/80 dark:text-rose-400/90 font-medium tracking-wide">Challenging & Karmic</p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-2 mt-4 relative z-10">
-            {data?.planetaryStrengths?.malefics?.map((p, i) => (
+            {maleficsPlanets.map((p: string, i: number) => (
               <div key={i} className="flex items-center gap-2 px-3 py-1.5 rounded-full card-bg shadow-soft border border-rose-100 dark:border-rose-500/30 hover:border-rose-200 transition-colors">
                 <div className="w-6 h-6 rounded-full overflow-hidden flex-shrink-0 border border-rose-50 shadow-inner">
                   <img src={getPlanetImage(p)} alt={p} className="w-full h-full object-cover" />
@@ -112,6 +136,11 @@ export const PlanetaryStrengthsPage: React.FC<{ pageIdx: number, setPage: (idx: 
               </div>
             ))}
           </div>
+          {maleficsContent && (
+            <p className="mt-4 text-[13.5px] text-rose-800/80 dark:text-rose-300/80 leading-relaxed font-medium relative z-10">
+              {maleficsContent}
+            </p>
+          )}
         </div>
 
       </div>

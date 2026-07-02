@@ -174,8 +174,6 @@ export const KundliReportBook: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [chartType, setChartType] = useState<'north' | 'south'>('north');
 
-  if (!reportData) return <Navigate to="/" replace />;
-
   // Track scroll details within page container
   const handleScrollToTop = () => {
     const el = document.getElementById('report-page-scroller');
@@ -188,6 +186,8 @@ export const KundliReportBook: React.FC = () => {
   useEffect(() => {
     handleScrollToTop();
   }, [location.pathname]);
+
+  if (!reportData) return <Navigate to="/" replace />;
 
   return (
     <div className="min-h-screen bg-transparent flex flex-col md:flex-row overflow-hidden relative">

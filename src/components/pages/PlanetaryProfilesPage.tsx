@@ -3,7 +3,7 @@ import { useReport } from '../../context/ReportContext';
 import { PlanetPosition } from '../../types';
 import { planetImages } from '../../data/planetImages';
 import { Lightbulb } from 'lucide-react';
-import { reportContent } from '../../data/reportContent';
+
 
 const getPlanetImage = (planetName: string) => {
   const name = planetName.toLowerCase();
@@ -21,6 +21,13 @@ const getPlanetImage = (planetName: string) => {
 
 export const PlanetaryProfilesPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
   const { reportData: data } = useReport();
+  const planetaryStrengths = data?.pages?.page8_planets_1 ? {
+    planets: [
+      ...(data.pages.page8_planets_1.planets || []),
+      ...(data.pages.page8_planets_2?.planets || []),
+      ...(data.pages.page8_planets_3?.planets || [])
+    ].reduce((acc: any, p: any) => { acc[p.planet.toLowerCase()] = p; return acc; }, {})
+  } : data?.planetaryStrengths;
   if (!data) return null;
 
   const planetKeys = ['sun', 'moon', 'mercury', 'jupiter', 'venus', 'mars', 'saturn', 'rahu', 'ketu'];
@@ -37,19 +44,19 @@ export const PlanetaryProfilesPage: React.FC<{ pageIdx: number, setPage: (idx: n
       {/* Title Section */}
       <div className="text-center space-y-3 mt-4">
         <h2 className="text-2xl md:text-3xl font-semibold page-text tracking-tight leading-tight max-w-xl mx-auto">
-          {reportContent?.planetaryProfiles?.title}
+          Planetary Profiles
         </h2>
         <div className="w-16 h-1 bg-linear-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
       </div>
 
       <p className="page-text text-[14px] leading-relaxed font-medium text-center max-w-2xl mx-auto px-2">
-        {reportContent?.planetaryProfiles?.description}
+        An in-depth analysis of how each planet's placement in your chart influences your character and life path.
       </p>
 
       {/* List all planets dynamically based on the payload */}
       <div className="space-y-6 pt-4 font-sans px-1">
         {planetKeys.map((key) => {
-          const planet: PlanetPosition = data?.planetaryStrengths?.planets[key];
+          const planet: PlanetPosition = planetaryStrengths?.planets[key];
           if (!planet) return null;
 
           const imgKey = imageKeyMap[key] || 'surya';
@@ -85,7 +92,9 @@ export const PlanetaryProfilesPage: React.FC<{ pageIdx: number, setPage: (idx: n
                 </div>
                 <div className="p-3 bg-slate-50/50 dark:bg-slate-800/40 rounded-2xl border border-light flex flex-col justify-center group-hover:card-bg group-hover:border-indigo-50 group-hover:shadow-[0_2px_10px_-4px_rgba(79,70,229,0.1)] transition-all duration-300">
                   <span className="text-[10px] uppercase font-semibold text-muted tracking-wider mb-0.5 group-hover:text-indigo-500 dark:group-hover:text-indigo-300 transition-colors duration-300">Degree</span>
-                  <span className="font-semibold page-text text-[13px] font-mono group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition-colors duration-300">{planet?.degree}</span>
+                  <span className="font-semibold page-text text-[13px] font-mono group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition-colors duration-300">
+                    {planet?.degree || (data?.pages?.page5_kundali_chart || data?.page5_kundali_chart)?.planet_positions?.find((p: any) => p.planet === ((planet as any).planet || planet?.name))?.degree || '-'}
+                  </span>
                 </div>
                 <div className="p-3 bg-slate-50/50 dark:bg-slate-800/40 rounded-2xl border border-light flex flex-col justify-center group-hover:card-bg group-hover:border-indigo-50 group-hover:shadow-[0_2px_10px_-4px_rgba(79,70,229,0.1)] transition-all duration-300">
                   <span className="text-[10px] uppercase font-semibold text-muted tracking-wider mb-0.5 group-hover:text-indigo-500 dark:group-hover:text-indigo-300 transition-colors duration-300">Nakshatra</span>
@@ -100,21 +109,6 @@ export const PlanetaryProfilesPage: React.FC<{ pageIdx: number, setPage: (idx: n
               {/* Description */}
               <div className="text-[13px] page-text leading-relaxed font-medium bg-indigo-50/30 dark:bg-indigo-900/10 p-4 rounded-2xl border border-indigo-100/50 dark:border-indigo-800/30 italic">
                 "{planet?.description}"
-              </div>
-
-              {/* Remediation */}
-              <div className="p-4 bg-orange-50/50 dark:bg-orange-900/10 rounded-2xl border border-orange-100/50 dark:border-orange-800/30 flex gap-3 items-start">
-                <div className="mt-0.5 text-orange-500">
-                  <Lightbulb size={18} />
-                </div>
-                <div className="space-y-1">
-                  <span className="text-[11px] font-bold uppercase text-orange-700 dark:text-orange-500 tracking-wider block">
-                    {reportContent?.planetaryProfiles?.remediationTitle}
-                  </span>
-                  <p className="text-[13px] page-text leading-relaxed font-medium">
-                    {planet?.remediation}
-                  </p>
-                </div>
               </div>
 
             </div>

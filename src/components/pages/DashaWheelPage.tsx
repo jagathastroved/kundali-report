@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useReport } from '../../context/ReportContext';
 import { planetImages } from '../../data/planetImages';
-import { reportContent } from '../../data/reportContent';
+
 
 const getPlanetImage = (planetName: string) => {
   const name = planetName.toLowerCase();
@@ -20,6 +20,7 @@ const getPlanetImage = (planetName: string) => {
 
 export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
   const { reportData: data } = useReport();
+  const dasha = data?.pages?.page6_dasha || data;
   if (!data) return null;
 
   return (
@@ -28,7 +29,7 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       {/* Header Section */}
       <div className="text-center space-y-3 mt-4">
         <h2 className="text-2xl md:text-3xl font-semibold page-text tracking-tight leading-tight max-w-xl mx-auto">
-          {reportContent?.dashaTimeline?.title}
+          Current Dasha Timeline
         </h2>
         <div className="w-16 h-1 bg-linear-to-r from-emerald-400 to-teal-500 mx-auto rounded-full mt-4" />
       </div>
@@ -41,10 +42,10 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
         <div className="relative z-10 flex flex-col items-center">
           <span className="inline-flex items-center gap-2 px-3 py-1 card-bg rounded-full shadow-soft text-emerald-600 text-[10px] font-bold uppercase tracking-widest mb-3 ring-1 ring-emerald-200/50">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            {reportContent?.dashaTimeline?.activePhase}
+            Active Phase
           </span>
           <h3 className="text-lg sm:text-xl font-bold page-text tracking-tight">
-            {reportContent?.dashaTimeline?.currentDasha}
+            {dasha?.dashaTimeline?.[0]?.planetName} {dasha?.dashaTimeline?.[0]?.levelName} & {dasha?.dashaTimeline?.[1]?.planetName} {dasha?.dashaTimeline?.[1]?.levelName}
           </h3>
         </div>
       </div>
@@ -52,14 +53,14 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       {/* Description Card */}
       <div className="p-6 rounded-3xl card-bg border border-default shadow-soft relative mx-1">
         <p className="text-[14px] page-text leading-relaxed font-medium">
-          {reportContent?.dashaTimeline?.description}
+          Vedic astrology divides your life journey into structured chronological dasha segments ruled by key planets. The planetary lord ruling your active Mahadasha provides the principal theme for your career developments, wealth, and wellness traits.
         </p>
       </div>
 
       {/* Timeline Section */}
       <div className="px-2 pt-2">
         <div className="relative border-l-2 border-light ml-6 space-y-8">
-          {data?.dashaTimeline?.map((item, idx) => (
+          {dasha?.dashaTimeline?.map((item: any, idx: number) => (
             <div key={idx} className="relative pl-8 sm:pl-10 group">
 
               {/* Timeline Planet Node */}

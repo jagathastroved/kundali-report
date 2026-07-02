@@ -1,7 +1,7 @@
 import React from 'react';
 import { useReport } from '../../context/ReportContext';
 import { Sparkles, Heart } from 'lucide-react';
-import { reportContent } from '../../data/reportContent';
+
 import { planetImages } from '../../data/planetImages';
 
 const getPlanetImage = (planetName: string) => {
@@ -20,6 +20,7 @@ const getPlanetImage = (planetName: string) => {
 
 export const AtmakarakaPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const { reportData: data } = useReport();
+  const atmakaraka = data?.pages?.page4_atmakaraka?.atmakaraka || data?.page4_atmakaraka?.atmakaraka || data?.atmakaraka;
   if (!data) return null;
 
   return (
@@ -27,13 +28,13 @@ export const AtmakarakaPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       {/* Title Section */}
       <div className="text-center space-y-3 mt-4 px-2">
         <h2 className="text-2xl md:text-3xl font-semibold page-text tracking-tight leading-tight max-w-xl mx-auto">
-          {reportContent?.atmakaraka?.title}
+          Atmakaraka Insight
         </h2>
         <div className="w-16 h-1 bg-linear-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-4" />
       </div>
 
       <p className="page-text text-[14px] leading-relaxed font-medium max-w-xl mx-auto px-4">
-        {reportContent?.atmakaraka?.description}
+        Your Atmakaraka is the planet that holds the highest degree in your birth chart. It represents your soul's deepest purpose, the lessons you are destined to learn, and the path of spiritual growth in this lifetime.
       </p>
 
       {/* Hero Card */}
@@ -44,8 +45,8 @@ export const AtmakarakaPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
         <div className="relative z-10 flex flex-col items-center">
           <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-[6px] border-white shadow-xl overflow-hidden mb-5 bg-indigo-50 dark:bg-indigo-500/10 relative group-hover:scale-105 transition-transform duration-500">
             <img
-              src={getPlanetImage(reportContent?.atmakaraka?.planet)}
-              alt={reportContent?.atmakaraka?.planet}
+              src={getPlanetImage(atmakaraka?.planetName || '')}
+              alt={atmakaraka?.planetName}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/40 to-transparent flex items-end justify-center pb-2">
@@ -54,18 +55,18 @@ export const AtmakarakaPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
           </div>
 
           <span className="text-[11px] font-bold uppercase text-indigo-500 tracking-widest mb-1">
-            {reportContent?.atmakaraka?.yourAtmakaraka}
+            Your Atmakaraka
           </span>
           <h3 className="text-3xl font-black text-indigo-950 dark:text-indigo-100 mb-6 tracking-tight">
-            {reportContent?.atmakaraka?.planet}
+            {atmakaraka?.planetName}
           </h3>
 
           <div className="card-bg/80 backdrop-blur-sm p-5 sm:p-6 rounded-2xl border border-indigo-100/50 shadow-soft text-left w-full max-w-lg">
             <h4 className="font-bold page-text text-[13px] uppercase tracking-wider mb-3 flex items-center gap-2">
-              <Heart className="w-4 h-4 text-rose-500" /> {reportContent?.atmakaraka?.soulDesireTitle}
+              <Heart className="w-4 h-4 text-rose-500" /> The Soul's Underlying Desire
             </h4>
             <p className="text-[15px] page-text leading-relaxed font-medium">
-              {reportContent?.atmakaraka?.soulDesire}
+              {atmakaraka?.soulDesireText}
             </p>
           </div>
         </div>

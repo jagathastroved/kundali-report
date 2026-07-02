@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { BirthDetails, KundliReportData } from '../types';
-import { fallbackReport } from '../data/reportContent';
+import fallbackReport from '../data/fallBackReport.json';
 
 interface ReportContextType {
   birthDetails: BirthDetails | null;
@@ -8,7 +8,7 @@ interface ReportContextType {
   isLoading: boolean;
   isGenerated: boolean;
   error: string | null;
-  submitBirthDetails: (details: BirthDetails) => Promise<void>;
+  submitBirthDetails: (details: BirthDetails, apiData?: any) => Promise<void>;
   resetReport: () => void;
 }
 
@@ -50,7 +50,7 @@ export const ReportProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [reportData]);
 
-  const submitBirthDetails = async (details: BirthDetails) => {
+  const submitBirthDetails = async (details: BirthDetails, apiData?: any) => {
     setIsLoading(true);
     setError(null);
     setBirthDetails(details);
@@ -63,8 +63,10 @@ export const ReportProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
       // Simulate network delay for UI consistency
       await new Promise(resolve => setTimeout(resolve, 800));
+      
+      const finalData = apiData ? { ...localData, ...apiData } : localData;
 
-      setReportData(localData);
+      setReportData(finalData);
     } catch (err) {
       console.error('Error generating report:', err);
       setError('An error occurred while generating the report.');

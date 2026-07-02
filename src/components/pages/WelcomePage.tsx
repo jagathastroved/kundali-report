@@ -1,6 +1,6 @@
 import React from 'react';
 import { useReport } from '../../context/ReportContext';
-import { reportContent } from '../../data/reportContent';
+
 import { Star, Compass, Sparkles, Globe2, Clock, RefreshCw } from 'lucide-react';
 export const WelcomePage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const { reportData: data } = useReport();
@@ -14,7 +14,7 @@ export const WelcomePage: React.FC<{ pageIdx: number, setPage: (idx: number) => 
       <div className="space-y-4 relative">
 
         <h2 className="text-[14px] md:text-base font-bold page-text tracking-[0.2em] uppercase">
-          {reportContent?.welcome?.title} {data?.birthDetails?.name}
+          Namaste {data?.birthDetails?.name}
         </h2>
         <div className="w-16 h-1 bg-linear-to-r from-orange-400 to-indigo-500 mx-auto rounded-full mt-2" />
       </div>
@@ -29,7 +29,7 @@ export const WelcomePage: React.FC<{ pageIdx: number, setPage: (idx: number) => 
 
       {/* Introductory Text */}
       <p className="page-text text-[14.5px] max-w-lg mx-auto text-justify leading-relaxed font-medium">
-        {reportContent?.welcome?.introText}
+        Your cosmic blueprint is uniquely yours. Through advanced AI and Vedic astrological analysis, we've mapped the celestial forces present at your birth to reveal powerful insights into your personality, destiny, karmic journey, and life's true purpose.
       </p>
 
       <div className="pt-8 w-full max-w-3xl mx-auto">

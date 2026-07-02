@@ -4,7 +4,9 @@ import { useReport } from '../context/ReportContext';
 
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
-import { Country, City } from 'country-state-city';
+import { Country, City, State } from 'country-state-city';
+import { fetchReportFull, ReportApiRequest } from '../services/reportApi';
+import fallbackReport from '../data/fallBackReport.json';
 
 export const BirthDetailsForm: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'kundli' | 'numerology'>('kundli');
@@ -92,14 +94,61 @@ export const BirthDetailsForm: React.FC = () => {
       language
     };
 
+    // Format datetime_local string (YYYY-MM-DDTHH:mm:ss)
+    const formattedMonth = String(month).padStart(2, '0');
+    const formattedDay = String(day).padStart(2, '0');
+    const formattedHour = String(finalHour).padStart(2, '0');
+    const formattedMinute = String(minute).padStart(2, '0');
+    const datetime_local = `${year}-${formattedMonth}-${formattedDay}T${formattedHour}:${formattedMinute}:00`;
+
+    // Determine state if possible
+    let stateName = 'Unknown';
+    const selectedCountryObj = allCountries.find(c => c.name === country);
+    if (selectedCountryObj) {
+      const selectedCityObj = City.getCitiesOfCountry(selectedCountryObj.isoCode)?.find(c => c.name.toLowerCase() === city.trim().toLowerCase());
+      if (selectedCityObj && selectedCityObj.stateCode) {
+        const stateObj = State.getStateByCodeAndCountry(selectedCityObj.stateCode, selectedCountryObj.isoCode);
+        if (stateObj) {
+          stateName = stateObj.name;
+        }
+      }
+    }
+
+    // Call external API as requested (do not integrate to UI yet, just log)
+    const apiPayload: ReportApiRequest = {
+      name: name.trim(),
+      datetime_local,
+      city: city.trim(),
+      state: stateName,
+      country: country,
+      ayanamsa: 'LAHIRI',
+      house_system: 'WHOLE_SIGN'
+    };
+
+    console.log('Sending birth data to API:', apiPayload);
+
     navigate('/generating');
 
-    const minLoadingTime = new Promise(resolve => setTimeout(resolve, 3000));
+    const minLoadingTime = new Promise(resolve => setTimeout(resolve, 6000));
+
+    let apiResponseData = null;
+    const fetchApiTask = (async () => {
+      try {
+        const response = await fetchReportFull(apiPayload);
+        console.log('API Success - Received Response:', response);
+        apiResponseData = response;
+      } catch (error) {
+        console.error('API Error:', error);
+        console.log('Fallback report:', fallbackReport);
+      }
+    })();
+
     await Promise.all([
-      submitBirthDetails(birthData),
+      fetchApiTask,
       minLoadingTime
     ]);
 
+    await submitBirthDetails(birthData, apiResponseData);
     navigate('/report/welcome');
   };
 

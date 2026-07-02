@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ReportProvider, useReport } from './context/ReportContext';
 import { BirthDetailsForm } from './components/BirthDetailsForm';
 import { AstrologyBackground } from './components/AstrologyBackground';
@@ -6,11 +6,39 @@ import { KundliReportBook } from './components/KundliReportBook';
 import { Star, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { reportContent } from './data/reportContent';
+
 
 import * as Pages from './components/pages';
 
 const LoadingScreen: React.FC = () => {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 99) {
+          clearInterval(interval);
+          return 99;
+        }
+        // Jump by a random amount between 3 and 9
+        const jump = Math.floor(Math.random() * 7) + 3;
+        return Math.min(prev + jump, 99);
+      });
+    }, 2500); // Jumps every 2.5 seconds, reaches 99% in about 40-50 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  const getMessage = (p: number) => {
+    if (p < 15) return "Calculating your birth star...";
+    if (p < 30) return "Analyzing core personality...";
+    if (p < 45) return "Finding your dominant element...";
+    if (p < 60) return "Creating your kundali report chart...";
+    if (p < 75) return "Mapping karmic chakra & planetary strength...";
+    if (p < 90) return "Generating planetary profiles & dasha...";
+    if (p < 99) return "Finalizing cosmic alignments...";
+    return "Generating your full report...";
+  };
+
   return (
     <div className="min-h-screen bg-transparent flex flex-col items-center justify-center p-6 text-center text-white relative overflow-hidden select-none z-10">
       <div className="relative w-72 h-72 flex items-center justify-center">
@@ -27,9 +55,9 @@ const LoadingScreen: React.FC = () => {
         <motion.div
           animate={{ scale: [0.95, 1.05, 0.95] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-32 h-32 rounded-full bg-gradient-to-tr from-indigo-800 to-indigo-650 flex items-center justify-center text-5xl shadow-2xl shadow-indigo-500/20 border border-white/10"
+          className="w-32 h-32 rounded-full bg-gradient-to-tr from-indigo-800 to-indigo-650 flex flex-col items-center justify-center shadow-2xl shadow-indigo-500/20 border border-white/10"
         >
-          ☀️
+          <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-200 to-white">{progress}%</span>
         </motion.div>
       </div>
 
@@ -37,18 +65,23 @@ const LoadingScreen: React.FC = () => {
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="mt-10 space-y-3"
+        className="mt-10 space-y-3 min-h-[80px]"
       >
-        <h2 className="text-2xl font-semibold tracking-tight bg-linear-to-r from-orange-200 via-white to-orange-200 bg-clip-text text-transparent">
-          Calculating Your Cosmic Alignments
+        <h2 className="text-2xl font-semibold tracking-tight bg-gradient-to-r from-orange-200 via-white to-orange-200 bg-clip-text text-transparent">
+          Crafting Your Cosmic Blueprint
         </h2>
-        <motion.p
-          animate={{ opacity: [0.6, 1, 0.6] }}
-          transition={{ duration: 1.8, repeat: Infinity }}
-          className="text-xs tracking-widest uppercase font-mono font-normal text-slate-400"
-        >
-          Connecting to Lahiri coordinates library...
-        </motion.p>
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={getMessage(progress)}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -5 }}
+            transition={{ duration: 0.2 }}
+            className="text-[13px] tracking-widest uppercase font-mono font-medium text-indigo-300"
+          >
+            {getMessage(progress)}
+          </motion.p>
+        </AnimatePresence>
       </motion.div>
     </div>
   );
@@ -69,14 +102,21 @@ const LandingScreen: React.FC = () => {
         {/* Left Side - Content */}
         <div className="space-y-4 text-left max-w-xl w-full mt-8 lg:mt-0">
           <h1 className="text-3xl md:text-4xl lg:text-[42px] font-semibold text-white tracking-tight leading-[1.1]" style={{ whiteSpace: 'pre-line' }}>
-            {reportContent.landing.heroTitle}
+            Discover Your True Path{'\n'}Through Kundali
           </h1>
           <p className="text-indigo-200/90 text-[15px] sm:text-base leading-relaxed max-w-md">
-            {reportContent.landing.heroDesc}
+            Unlock the hidden meanings of your birth chart. Gain deep insights into your personality, destiny, and life's true purpose.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8 pt-6">
-            {reportContent.landing.features.map((item, idx) => (
+            {[
+              { title: "Personalized Kundali Chart", desc: "Access your detailed birth chart based on precise birth details." },
+              { title: "Core Personality", desc: "Reveal your strengths, challenges, talents, and true life potential." },
+              { title: "Dasha Timeline", desc: "Understand current and future planetary periods shaping your journey." },
+              { title: "Karmic Chakra Analysis", desc: "Uncover karmic patterns and the spiritual lessons guiding your growth." },
+              { title: "Planetary Profiles", desc: "Gain insights into how each planet influences different areas of life." },
+              { title: "Influential Signs", desc: "Learn how key zodiac signs affect your personality and life path." }
+            ].map((item, idx) => (
               <div key={idx} className="flex items-start">
                 <div className="mt-1 mr-4 flex-shrink-0 bg-indigo-900/50 rounded-full p-1.5 border border-indigo-700/50">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#818CF8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>

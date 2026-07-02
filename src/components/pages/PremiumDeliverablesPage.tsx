@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useReport } from '../../context/ReportContext';
 import { Loader2, Sparkles, CheckCircle2 } from 'lucide-react';
 import bookImage from '../../assets/Kundali_Report_book.png';
-import { reportContent } from '../../data/reportContent';
+
 
 export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const { birthDetails } = useReport();
@@ -17,7 +17,17 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
   };
 
   const name = birthDetails?.name || 'You';
-  const featureItems = reportContent?.premiumDeliverables?.features || [];
+  const featureItems = [
+    { title: "Birth Star Analysis", desc: "Discover the celestial forces that shaped your destiny at the exact moment of your birth." },
+    { title: "Core Personality", desc: "Uncover your true inner self, revealing hidden strengths and profound potentials." },
+    { title: "Dasha Wheel", desc: "Navigate life timelines with precise predictions for upcoming planetary periods." },
+    { title: "Dominant Element", desc: "Understand the fundamental natural forces driving your temperament and energy." },
+    { title: "Influential Signs", desc: "Learn how specific zodiac signs profoundly impact your decisions and relationships." },
+    { title: "Karmic Chakra", desc: "Explore the past-life karmic patterns influencing your present challenges." },
+    { title: "Kundali Chart", desc: "Get a meticulously detailed map of the heavens customized perfectly for you." },
+    { title: "Planetary Profiles", desc: "Dive deep into how each planet uniquely shapes your wealth, health, and love life." },
+    { title: "Planetary Strength", desc: "Analyze the exact power of planets to find your greatest advantages in life." }
+  ];
 
   return (
     <div className="max-w-4xl mx-auto space-y-8 pb-12 font-sans px-2 sm:px-0">

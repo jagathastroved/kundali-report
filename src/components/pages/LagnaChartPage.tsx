@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useReport } from '../../context/ReportContext';
 import { planetImages } from '../../data/planetImages';
 import { renderPromoBox } from '../SharedElements';
-import { reportContent } from '../../data/reportContent';
+
 
 const getPlanetImage = (planetName: string) => {
   const name = planetName.toLowerCase();
@@ -51,11 +51,44 @@ const NorthChartCell = ({ x, y, width, height, num, planets, isAsc = false, onMo
 );
 
 export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
-  const { reportData: data } = useReport();
+  const { reportData: data, birthDetails } = useReport();
+  const stellium = data?.pages?.page7_chart_stellium || data?.page7_chart_stellium;
+  const chartData = data?.pages?.page5_kundali_chart || data?.page5_kundali_chart;
+  const chart = chartData?.chart || {};
+  const planetPositions = chartData?.planet_positions || [];
+
   const [chartType, setChartType] = useState<'south' | 'north'>('north');
   const [tooltip, setTooltip] = useState<{ x: number, y: number, planets: string[], houseNum: string } | null>(null);
 
   if (!data) return null;
+
+  const signsList = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+  const lagnaSignName = planetPositions.find((p: any) => p.planet === 'Lagna')?.sign || 'Aries';
+  const lagnaSignIndex = signsList.indexOf(lagnaSignName) + 1;
+
+  const getPlanetsForHouse = (houseNum: number) => {
+    return planetPositions.filter((p: any) => p.house === houseNum && p.planet !== 'Lagna').map((p: any) => p.planet);
+  };
+
+  const getHouseNumForSign = (signName: string) => {
+    const signIndex = signsList.indexOf(signName) + 1;
+    return String(((signIndex - lagnaSignIndex + 12) % 12) + 1);
+  };
+
+  const northHousesCoords = [
+    { x: 110, y: 30, w: 80, h: 90 }, { x: 35, y: 5, w: 80, h: 60 }, { x: 5, y: 35, w: 60, h: 80 },
+    { x: 30, y: 110, w: 90, h: 80 }, { x: 5, y: 185, w: 60, h: 80 }, { x: 35, y: 235, w: 80, h: 60 },
+    { x: 110, y: 180, w: 80, h: 90 }, { x: 185, y: 235, w: 80, h: 60 }, { x: 235, y: 185, w: 60, h: 80 },
+    { x: 180, y: 110, w: 90, h: 80 }, { x: 235, y: 35, w: 60, h: 80 }, { x: 185, y: 5, w: 80, h: 60 }
+  ];
+
+  const getPlanetsForSign = (signName: string) => {
+    return (chart[signName] || []).filter((p: string) => p !== 'Lagna');
+  };
+
+  const isAsc = (signName: string) => {
+    return (chart[signName] || []).includes('Lagna');
+  };
 
   const handleMouseMove = (e: React.MouseEvent, planets: string[], houseNum: string) => {
     if (planets.length > 0) {
@@ -97,7 +130,7 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       {/* Title Section */}
       <div className="text-center space-y-3 mt-4">
         <h2 className="text-2xl md:text-3xl font-semibold page-text tracking-tight leading-tight max-w-xl mx-auto">
-          {reportContent?.lagnaChart?.title}
+          Your Lagna Kundli Chart
         </h2>
         <div className="w-16 h-1 bg-linear-to-r from-indigo-400 to-indigo-600 mx-auto rounded-full mt-4" />
       </div>
@@ -105,11 +138,11 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       {/* Review birth details summary indicators inside booklet */}
       <div className="p-4 sm:p-5 bg-linear-to-r from-slate-50 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-slate-900/40 hover:dark:to-slate-800/40 transition-all duration-300 rounded-3xl flex flex-col sm:flex-row justify-between items-center text-xs font-normal border border-default shadow-soft mx-1 gap-4">
         <div className="space-y-1 page-text text-center sm:text-left">
-          <div className="font-medium text-[14px]">Birth: <span className="text-indigo-600 font-bold">{data?.birthDetails?.name}</span> <span className="text-muted capitalize">({data?.birthDetails?.gender})</span></div>
+          <div className="font-medium text-[14px]">Birth: <span className="text-indigo-600 font-bold">{birthDetails?.name}</span> <span className="text-muted capitalize">({birthDetails?.gender})</span></div>
           <div className="text-[12px] text-muted flex flex-col sm:flex-row gap-1 sm:gap-3">
-            <span>Date: {data?.birthDetails?.day}/{data?.birthDetails?.month}/{data?.birthDetails?.year}</span>
+            <span>Date: {birthDetails?.day}/{birthDetails?.month}/{birthDetails?.year}</span>
             <span className="hidden sm:inline text-slate-300">|</span>
-            <span>Time: {String(data?.birthDetails?.hour % 12 || 12).padStart(2, '0')}:{String(data?.birthDetails?.minute).padStart(2, '0')} {data?.birthDetails?.hour >= 12 ? 'PM' : 'AM'}</span>
+            <span>Time: {String((birthDetails?.hour || 0) % 12 || 12).padStart(2, '0')}:{String(birthDetails?.minute || 0).padStart(2, '0')} {(birthDetails?.hour || 0) >= 12 ? 'PM' : 'AM'}</span>
           </div>
         </div>
 
@@ -149,44 +182,46 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
             <line x1="300" y1="150" x2="150" y2="300" stroke="currentColor" strokeWidth="1.5" />
 
             {/* Displaying houses using foreignObject for perfect flexbox alignment */}
-            <NorthChartCell x={110} y={30} width={80} height={90} num="2" planets={[]} isAsc={true} onMouseMove={(e) => handleMouseMove(e, [], '2')} onMouseLeave={handleMouseLeave} />
-            <NorthChartCell x={35} y={5} width={80} height={60} num="3" planets={[]} onMouseMove={(e) => handleMouseMove(e, [], '3')} onMouseLeave={handleMouseLeave} />
-            <NorthChartCell x={5} y={35} width={60} height={80} num="4" planets={['Rahu']} onMouseMove={(e) => handleMouseMove(e, ['Rahu'], '4')} onMouseLeave={handleMouseLeave} />
-            <NorthChartCell x={30} y={110} width={90} height={80} num="5" planets={[]} onMouseMove={(e) => handleMouseMove(e, [], '5')} onMouseLeave={handleMouseLeave} />
-            <NorthChartCell x={5} y={185} width={60} height={80} num="6" planets={[]} onMouseMove={(e) => handleMouseMove(e, [], '6')} onMouseLeave={handleMouseLeave} />
-            <NorthChartCell x={35} y={235} width={80} height={60} num="7" planets={[]} onMouseMove={(e) => handleMouseMove(e, [], '7')} onMouseLeave={handleMouseLeave} />
-            <NorthChartCell x={110} y={180} width={80} height={90} num="8" planets={[]} onMouseMove={(e) => handleMouseMove(e, [], '8')} onMouseLeave={handleMouseLeave} />
-            <NorthChartCell x={185} y={235} width={80} height={60} num="9" planets={[]} onMouseMove={(e) => handleMouseMove(e, [], '9')} onMouseLeave={handleMouseLeave} />
-            <NorthChartCell x={235} y={185} width={60} height={80} num="10" planets={['Moon', 'Venus', 'Ketu']} onMouseMove={(e) => handleMouseMove(e, ['Moon', 'Venus', 'Ketu'], '10')} onMouseLeave={handleMouseLeave} />
-            <NorthChartCell x={180} y={110} width={90} height={80} num="11" planets={['Sun', 'Mercury']} onMouseMove={(e) => handleMouseMove(e, ['Sun', 'Mercury'], '11')} onMouseLeave={handleMouseLeave} />
-            <NorthChartCell x={235} y={35} width={60} height={80} num="12" planets={['Mars']} onMouseMove={(e) => handleMouseMove(e, ['Mars'], '12')} onMouseLeave={handleMouseLeave} />
-            <NorthChartCell x={185} y={5} width={80} height={60} num="1" planets={['Saturn', 'Jupiter']} onMouseMove={(e) => handleMouseMove(e, ['Saturn', 'Jupiter'], '1')} onMouseLeave={handleMouseLeave} />
+            {northHousesCoords.map((c, i) => {
+              const houseNum = i + 1;
+              return (
+                <NorthChartCell
+                  key={houseNum}
+                  x={c.x} y={c.y} width={c.w} height={c.h}
+                  num={String(houseNum)}
+                  planets={getPlanetsForHouse(houseNum)}
+                  isAsc={houseNum === 1}
+                  onMouseMove={(e) => handleMouseMove(e, getPlanetsForHouse(houseNum), String(houseNum))}
+                  onMouseLeave={handleMouseLeave}
+                />
+              );
+            })}
           </svg>
         ) : (
           <div className="grid grid-cols-4 grid-rows-4 w-full aspect-square max-w-[340px] h-[340px] card-bg-secondary border border-default rounded-xl shadow-soft mx-auto overflow-hidden text-center font-sans relative">
             {/* Row 1 */}
-            <SouthChartCell planets={['Mars']} num="11" onMouseMove={(e) => handleMouseMove(e, ['Mars'], '11')} onMouseLeave={handleMouseLeave} />
-            <SouthChartCell planets={['Saturn', 'Jupiter']} num="12" onMouseMove={(e) => handleMouseMove(e, ['Saturn', 'Jupiter'], '12')} onMouseLeave={handleMouseLeave} />
-            <SouthChartCell planets={[]} isAsc={true} num="1" onMouseMove={(e) => handleMouseMove(e, [], '1')} onMouseLeave={handleMouseLeave} />
-            <SouthChartCell planets={[]} num="2" onMouseMove={(e) => handleMouseMove(e, [], '2')} onMouseLeave={handleMouseLeave} />
+            <SouthChartCell planets={getPlanetsForSign('Pisces')} isAsc={isAsc('Pisces')} num={getHouseNumForSign('Pisces')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Pisces'), getHouseNumForSign('Pisces'))} onMouseLeave={handleMouseLeave} />
+            <SouthChartCell planets={getPlanetsForSign('Aries')} isAsc={isAsc('Aries')} num={getHouseNumForSign('Aries')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Aries'), getHouseNumForSign('Aries'))} onMouseLeave={handleMouseLeave} />
+            <SouthChartCell planets={getPlanetsForSign('Taurus')} isAsc={isAsc('Taurus')} num={getHouseNumForSign('Taurus')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Taurus'), getHouseNumForSign('Taurus'))} onMouseLeave={handleMouseLeave} />
+            <SouthChartCell planets={getPlanetsForSign('Gemini')} isAsc={isAsc('Gemini')} num={getHouseNumForSign('Gemini')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Gemini'), getHouseNumForSign('Gemini'))} onMouseLeave={handleMouseLeave} />
 
             {/* Row 2 */}
-            <SouthChartCell planets={['Sun', 'Mercury']} num="10" onMouseMove={(e) => handleMouseMove(e, ['Sun', 'Mercury'], '10')} onMouseLeave={handleMouseLeave} />
+            <SouthChartCell planets={getPlanetsForSign('Aquarius')} isAsc={isAsc('Aquarius')} num={getHouseNumForSign('Aquarius')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Aquarius'), getHouseNumForSign('Aquarius'))} onMouseLeave={handleMouseLeave} />
             <div className="col-span-2 row-span-2 card-bg border border-light relative flex flex-col items-center justify-center">
               <h3 className="text-xl font-bold page-text tracking-tight">Birth Chart</h3>
               <p className="text-xs font-semibold text-muted uppercase tracking-widest mt-1">Rasi Chart</p>
             </div>
-            <SouthChartCell planets={['Rahu']} num="3" onMouseMove={(e) => handleMouseMove(e, ['Rahu'], '3')} onMouseLeave={handleMouseLeave} />
+            <SouthChartCell planets={getPlanetsForSign('Cancer')} isAsc={isAsc('Cancer')} num={getHouseNumForSign('Cancer')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Cancer'), getHouseNumForSign('Cancer'))} onMouseLeave={handleMouseLeave} />
 
             {/* Row 3 */}
-            <SouthChartCell planets={['Moon', 'Venus', 'Ketu']} num="9" onMouseMove={(e) => handleMouseMove(e, ['Moon', 'Venus', 'Ketu'], '9')} onMouseLeave={handleMouseLeave} />
-            <SouthChartCell planets={[]} num="4" onMouseMove={(e) => handleMouseMove(e, [], '4')} onMouseLeave={handleMouseLeave} />
+            <SouthChartCell planets={getPlanetsForSign('Capricorn')} isAsc={isAsc('Capricorn')} num={getHouseNumForSign('Capricorn')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Capricorn'), getHouseNumForSign('Capricorn'))} onMouseLeave={handleMouseLeave} />
+            <SouthChartCell planets={getPlanetsForSign('Leo')} isAsc={isAsc('Leo')} num={getHouseNumForSign('Leo')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Leo'), getHouseNumForSign('Leo'))} onMouseLeave={handleMouseLeave} />
 
             {/* Row 4 */}
-            <SouthChartCell planets={[]} num="8" onMouseMove={(e) => handleMouseMove(e, [], '8')} onMouseLeave={handleMouseLeave} />
-            <SouthChartCell planets={[]} num="7" onMouseMove={(e) => handleMouseMove(e, [], '7')} onMouseLeave={handleMouseLeave} />
-            <SouthChartCell planets={[]} num="6" onMouseMove={(e) => handleMouseMove(e, [], '6')} onMouseLeave={handleMouseLeave} />
-            <SouthChartCell planets={[]} num="5" onMouseMove={(e) => handleMouseMove(e, [], '5')} onMouseLeave={handleMouseLeave} />
+            <SouthChartCell planets={getPlanetsForSign('Sagittarius')} isAsc={isAsc('Sagittarius')} num={getHouseNumForSign('Sagittarius')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Sagittarius'), getHouseNumForSign('Sagittarius'))} onMouseLeave={handleMouseLeave} />
+            <SouthChartCell planets={getPlanetsForSign('Scorpio')} isAsc={isAsc('Scorpio')} num={getHouseNumForSign('Scorpio')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Scorpio'), getHouseNumForSign('Scorpio'))} onMouseLeave={handleMouseLeave} />
+            <SouthChartCell planets={getPlanetsForSign('Libra')} isAsc={isAsc('Libra')} num={getHouseNumForSign('Libra')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Libra'), getHouseNumForSign('Libra'))} onMouseLeave={handleMouseLeave} />
+            <SouthChartCell planets={getPlanetsForSign('Virgo')} isAsc={isAsc('Virgo')} num={getHouseNumForSign('Virgo')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Virgo'), getHouseNumForSign('Virgo'))} onMouseLeave={handleMouseLeave} />
           </div>
         )}
       </div>
@@ -197,21 +232,13 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
 
         <div className="space-y-6">
           <h3 className="text-xl sm:text-2xl font-bold page-text tracking-tight leading-tight">
-            {reportContent?.lagnaChart?.stelliumQuestion}
+            {stellium?.stelliumQuestion || "What repeating pattern of your nature does Vedic Astrology reveal?"}
           </h3>
 
           <div className="space-y-5 text-[15px] page-text leading-relaxed font-medium">
-            <p>
-              {reportContent?.lagnaChart?.stelliumDesc1}
-            </p>
-
-            <p>
-              {reportContent?.lagnaChart?.stelliumDesc2}
-            </p>
-
-            <p>
-              {reportContent?.lagnaChart?.stelliumDesc3}
-            </p>
+            {stellium?.stelliumDesc1 && <p>{stellium.stelliumDesc1}</p>}
+            {stellium?.stelliumDesc2 && <p>{stellium.stelliumDesc2}</p>}
+            {stellium?.stelliumDesc3 && <p>{stellium.stelliumDesc3}</p>}
           </div>
         </div>
       </div>

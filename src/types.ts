@@ -80,6 +80,7 @@ export interface DailyPrediction {
 }
 
 export interface KundliReportData {
+  [key: string]: any; // Allow dynamic API response keys
   birthDetails: BirthDetails;
   birthStar: NakshatraDetails;
   personality: {
@@ -113,17 +114,22 @@ export interface KundliReportData {
     benefics: string[];
     malefics: string[];
   };
-  spiritualProfile: {
-    ishtaDevata: {
+  spiritualProfile?: {
+    ishtaDevata?: {
       name: string;
       deities: Array<{ name: string; avatarUrl: string; emoji: string }>;
       description: string;
     };
-    atmakaraka: {
+    atmakaraka?: {
       planetName: string;
       description: string;
       soulDesireText: string;
     };
+  };
+  atmakaraka?: {
+    planetName: string;
+    description: string;
+    soulDesireText: string;
   };
   dashaTimeline: DashaPeriod[];
   predictions: DailyPrediction[];
