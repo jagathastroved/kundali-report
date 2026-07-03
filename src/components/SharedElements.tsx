@@ -155,7 +155,7 @@ export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies'
 
         <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-3 pt-2">
           {/* Primary Action - Buy Now */}
-          <Link to="/report/report-features"
+          <Link to="/report/premium-deliverables"
             className="w-full sm:w-auto bg-linear-to-r from-[#D4AF37] via-[#F3E5AB] to-[#D4AF37] hover:from-[#C5A028] hover:to-[#E4D69C] text-black px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] flex items-center justify-center space-x-2 transform hover:-translate-y-0.5"
           >
             <span>Book Your Kundali Report Now</span>
