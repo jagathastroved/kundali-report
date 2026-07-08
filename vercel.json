@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:match*",
-      "destination": "https://sprint-common-nutlike.ngrok-free.dev/api/:match*"
+      "destination": "https://astropedia-ai.astroved.com/kundali-report/api/:match*"
     }
   ]
 }

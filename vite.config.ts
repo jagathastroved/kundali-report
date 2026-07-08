@@ -20,7 +20,7 @@ export default defineConfig(() => {
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
       proxy: {
         '/api': {
-          target: 'https://sprint-common-nutlike.ngrok-free.dev',
+          target: 'https://astropedia-ai.astroved.com/kundali-report',
           changeOrigin: true,
           secure: false,
         }

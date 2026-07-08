@@ -61,7 +61,7 @@ export const AtmakarakaPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
             {atmakaraka?.planetName}
           </h3>
 
-          <div className="card-bg/80 backdrop-blur-sm p-5 sm:p-6 rounded-2xl border border-indigo-100/50 shadow-soft text-left w-full max-w-lg">
+          <div className="card-bg/80 p-5 sm:p-6 rounded-2xl border border-indigo-100/50 shadow-soft text-left w-full max-w-lg">
             <h4 className="font-bold page-text text-[13px] uppercase tracking-wider mb-3 flex items-center gap-2">
               <Heart className="w-4 h-4 text-rose-500" /> The Soul's Underlying Desire
             </h4>

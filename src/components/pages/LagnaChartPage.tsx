@@ -52,7 +52,25 @@ const NorthChartCell = ({ x, y, width, height, num, planets, isAsc = false, onMo
 
 export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
   const { reportData: data, birthDetails } = useReport();
-  const stellium = data?.pages?.page7_chart_stellium || data?.page7_chart_stellium;
+  
+  const findPageByType = (obj: any, type: string): any => {
+    if (!obj || typeof obj !== 'object') return null;
+    if (obj.page_type === type) return obj;
+    for (const key in obj) {
+      if (typeof obj[key] === 'object') {
+        const found = findPageByType(obj[key], type);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
+
+  const baseStellium = findPageByType(data, 'kundali_chart_stellium') 
+    || data?.pages?.page7_chart_stellium 
+    || data?.page7_chart_stellium;
+
+  const stellium = baseStellium?.lagnaChart || baseStellium;
+
   const chartData = data?.pages?.page5_kundali_chart || data?.page5_kundali_chart;
   const chart = chartData?.chart || {};
   const planetPositions = chartData?.planet_positions || [];
@@ -83,11 +101,11 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
   ];
 
   const getPlanetsForSign = (signName: string) => {
-    return (chart[signName] || []).filter((p: string) => p !== 'Lagna');
+    return planetPositions.filter((p: any) => p.sign === signName && p.planet !== 'Lagna').map((p: any) => p.planet);
   };
 
   const isAsc = (signName: string) => {
-    return (chart[signName] || []).includes('Lagna');
+    return planetPositions.some((p: any) => p.sign === signName && p.planet === 'Lagna');
   };
 
   const handleMouseMove = (e: React.MouseEvent, planets: string[], houseNum: string) => {
@@ -111,7 +129,7 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
           className="fixed z-50 pointer-events-none transform -translate-x-1/2 -translate-y-full pb-3"
           style={{ left: tooltip.x, top: tooltip.y }}
         >
-          <div className="card-bg/95 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-indigo-50 min-w-[120px] max-w-[200px]">
+          <div className="card-bg/95 p-3 rounded-2xl shadow-xl border border-indigo-50 min-w-[120px] max-w-[200px]">
             <p className="text-[10px] uppercase font-bold text-indigo-500 tracking-wider mb-2 border-b border-indigo-50 pb-1 text-center">
               House {tooltip.houseNum}
             </p>
@@ -232,7 +250,7 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
 
         <div className="space-y-6">
           <h3 className="text-xl sm:text-2xl font-bold page-text tracking-tight leading-tight">
-            {stellium?.stelliumQuestion || "What repeating pattern of your nature does Vedic Astrology reveal?"}
+            {stellium?.stelliumQuestion}
           </h3>
 
           <div className="space-y-5 text-[15px] page-text leading-relaxed font-medium">

@@ -196,14 +196,14 @@ export const KundliReportBook: React.FC = () => {
 
       {/* Mobile Drawer Overlay */}
       <div
-        className={`md:hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        className={`md:hidden fixed inset-0 bg-slate-900/40 z-40 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           }`}
         onClick={() => setIsSidebarOpen(false)}
       />
 
       {/* Modern Collapsible Table of Contents Navigation Drawer */}
       <aside
-        className={`fixed md:relative inset-y-0 left-0 h-screen z-50 md:z-20 border-r border-default sidebar-bg backdrop-blur-md flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${isSidebarOpen
+        className={`fixed md:relative inset-y-0 left-0 h-screen z-50 md:z-20 border-r border-default sidebar-bg flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${isSidebarOpen
           ? 'translate-x-0 w-[85vw] sm:w-80 shadow-2xl md:shadow-none md:w-80 opacity-100'
           : '-translate-x-full md:translate-x-0 w-[85vw] sm:w-80 md:w-0 md:opacity-0 md:overflow-hidden'
           }`}
@@ -293,25 +293,23 @@ export const KundliReportBook: React.FC = () => {
         {/* Floating Theme Toggle Button */}
         <button
           onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-          className="absolute top-4 right-4 md:right-8 z-50 p-3 bg-white/90 dark:bg-slate-800/80 backdrop-blur-md border border-slate-200/50 dark:border-slate-600/50 shadow-lg hover:shadow-xl dark:shadow-[0_0_15px_rgba(250,204,21,0.15)] rounded-full transition-all duration-500 hover:scale-110 group flex items-center justify-center overflow-hidden"
+          className="absolute top-4 right-4 md:right-8 z-50 p-3 bg-white/90 dark:bg-slate-800/80 border border-slate-200/50 dark:border-slate-600/50 shadow-lg hover:shadow-xl dark:shadow-[0_0_15px_rgba(250,204,21,0.15)] rounded-full transition-all duration-500 hover:scale-110 group flex items-center justify-center overflow-hidden"
           title="Toggle Theme"
         >
           <div className="relative flex items-center justify-center w-6 h-6">
-            <Moon 
-              className={`absolute transition-all duration-500 text-indigo-600 ${
-                theme === 'light' 
-                  ? 'opacity-100 rotate-0 scale-100 group-hover:-rotate-12' 
+            <Moon
+              className={`absolute transition-all duration-500 text-indigo-600 ${theme === 'light'
+                  ? 'opacity-100 rotate-0 scale-100 group-hover:-rotate-12'
                   : 'opacity-0 rotate-90 scale-50'
-              }`} 
-              size={22} 
+                }`}
+              size={22}
             />
-            <Sun 
-              className={`absolute transition-all duration-500 text-yellow-400 ${
-                theme === 'light' 
-                  ? 'opacity-0 -rotate-90 scale-50' 
+            <Sun
+              className={`absolute transition-all duration-500 text-yellow-400 ${theme === 'light'
+                  ? 'opacity-0 -rotate-90 scale-50'
                   : 'opacity-100 rotate-0 scale-100 group-hover:rotate-45'
-              }`} 
-              size={22} 
+                }`}
+              size={22}
             />
           </div>
         </button>
