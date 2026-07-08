@@ -53,7 +53,7 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       {/* Description Card */}
       <div className="p-6 rounded-3xl card-bg border border-default shadow-soft relative mx-1">
         <p className="text-[14px] page-text leading-relaxed font-medium">
-          {dasha?.summaryText || dasha?.page6_dasha?.summaryText || "Vedic astrology divides your life journey into structured chronological dasha segments ruled by key planets. The planetary lord ruling your active Mahadasha provides the principal theme for your career developments, wealth, and wellness traits."}
+          {dasha?.summaryText || dasha?.page6_dasha?.summaryText}
         </p>
       </div>
 

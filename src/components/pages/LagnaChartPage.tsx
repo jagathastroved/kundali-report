@@ -249,9 +249,11 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
         <div className="absolute top-0 left-0 w-full h-1.5 bg-linear-to-r from-indigo-400 to-indigo-600" />
 
         <div className="space-y-6">
-          <h3 className="text-xl sm:text-2xl font-bold page-text tracking-tight leading-tight">
-            {stellium?.stelliumQuestion}
-          </h3>
+          {stellium?.stelliumQuestion && (
+            <h3 className="text-xl sm:text-2xl font-bold page-text tracking-tight leading-tight">
+              {stellium.stelliumQuestion}
+            </h3>
+          )}
 
           <div className="space-y-5 text-[15px] page-text leading-relaxed font-medium">
             {stellium?.stelliumDesc1 && <p>{stellium.stelliumDesc1}</p>}
