@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useReport } from '../context/ReportContext';
-import { useTheme } from '../context/ThemeContext';
-import { KundliReportData, PlanetPosition } from '../types';
+import { useReport } from '../../context/ReportContext';
+import { useTheme } from '../../context/ThemeContext';
+import { KundliReportData, PlanetPosition } from '../../types';
 import { ArrowLeft, ArrowRight, BookOpen, Compass, RefreshCw, Moon, Sun, Monitor } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useParams, useNavigate, Navigate, Outlet, useLocation } from 'react-router-dom';
+import { PAGE_TITLES } from '../ui/SharedElements';
 
-import { PAGE_TITLES } from './SharedElements';
+
 
 // Pie Chart component for representing elements ratio perfectly matching Screenshot 4
 const PieChartComponent: React.FC<{ ratios: { name: string; percentage: number }[] }> = ({ ratios }) => {
@@ -190,22 +191,22 @@ export const KundliReportBook: React.FC = () => {
   if (!reportData) return <Navigate to="/" replace />;
 
   return (
-    <div className="min-h-screen bg-transparent flex flex-col md:flex-row overflow-hidden relative">
+    <div className="min-h-screen bg-transparent flex flex-col lg:flex-row overflow-hidden relative">
       {/* Decorative celestial background sparkles */}
       <div className="absolute inset-0 bg-[radial-gradient(#000000_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
 
       {/* Mobile Drawer Overlay */}
       <div
-        className={`md:hidden fixed inset-0 bg-slate-900/40 z-40 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        className={`lg:hidden fixed inset-0 bg-slate-900/40 z-40 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           }`}
         onClick={() => setIsSidebarOpen(false)}
       />
 
       {/* Modern Collapsible Table of Contents Navigation Drawer */}
       <aside
-        className={`fixed md:relative inset-y-0 left-0 h-screen z-50 md:z-20 border-r border-default sidebar-bg flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${isSidebarOpen
-          ? 'translate-x-0 w-[85vw] sm:w-80 shadow-2xl md:shadow-none md:w-80 opacity-100'
-          : '-translate-x-full md:translate-x-0 w-[85vw] sm:w-80 md:w-0 md:opacity-0 md:overflow-hidden'
+        className={`fixed lg:relative inset-y-0 left-0 h-screen z-50 lg:z-20 border-r border-default sidebar-bg flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${isSidebarOpen
+          ? 'translate-x-0 w-[85vw] sm:w-80 shadow-2xl lg:shadow-none lg:w-80 opacity-100'
+          : '-translate-x-full lg:translate-x-0 w-[85vw] sm:w-80 lg:w-0 lg:opacity-0 lg:overflow-hidden'
           }`}
       >
         <div className="p-5 border-b border-default sidebar-header-bg flex justify-between items-center">
@@ -236,7 +237,7 @@ export const KundliReportBook: React.FC = () => {
                 onClick={() => {
                   setPage(idx);
                   handleScrollToTop();
-                  if (window.innerWidth < 768) {
+                  if (window.innerWidth < 1024) {
                     setIsSidebarOpen(false);
                   }
                 }}
@@ -278,7 +279,7 @@ export const KundliReportBook: React.FC = () => {
       </aside>
 
       {/* Main Booklet container view */}
-      <main className="flex-1 flex flex-col h-3/4 md:h-screen overflow-hidden relative">
+      <main className="flex-1 flex flex-col h-[100dvh] overflow-hidden relative">
         {/* Floating Show Index Button when Sidebar is closed */}
         {!isSidebarOpen && (
           <button
@@ -299,15 +300,15 @@ export const KundliReportBook: React.FC = () => {
           <div className="relative flex items-center justify-center w-6 h-6">
             <Moon
               className={`absolute transition-all duration-500 text-indigo-600 ${theme === 'light'
-                  ? 'opacity-100 rotate-0 scale-100 group-hover:-rotate-12'
-                  : 'opacity-0 rotate-90 scale-50'
+                ? 'opacity-100 rotate-0 scale-100 group-hover:-rotate-12'
+                : 'opacity-0 rotate-90 scale-50'
                 }`}
               size={22}
             />
             <Sun
               className={`absolute transition-all duration-500 text-yellow-400 ${theme === 'light'
-                  ? 'opacity-0 -rotate-90 scale-50'
-                  : 'opacity-100 rotate-0 scale-100 group-hover:rotate-45'
+                ? 'opacity-0 -rotate-90 scale-50'
+                : 'opacity-100 rotate-0 scale-100 group-hover:rotate-45'
                 }`}
               size={22}
             />

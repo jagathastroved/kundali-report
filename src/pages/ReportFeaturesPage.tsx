@@ -1,12 +1,12 @@
 import React from 'react';
 import { Star, ArrowRight, BookOpen, Compass, ShieldCheck, PieChart, Sparkles, TrendingUp } from 'lucide-react';
-import { BookletMockup } from '../SharedElements';
+import { BookletMockup } from '../components/ui/SharedElements';
 import { useNavigate } from 'react-router-dom';
 
 
 export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const navigate = useNavigate();
-  
+
   // Helper to attach icons based on the index to our dynamic content
   const iconList = [BookOpen, Compass, ShieldCheck, PieChart, Sparkles, TrendingUp];
   const styleList = [
@@ -64,8 +64,8 @@ export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: numb
           {features.map((feature, idx) => {
             const { Icon } = feature;
             return (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className={`flex flex-col p-6 rounded-3xl bg-gradient-to-br ${feature.gradient} border ${feature.borderColor} shadow-soft hover:shadow-soft transition-all duration-300 group hover:-translate-y-1`}
               >
                 <div className={`w-12 h-12 rounded-2xl ${feature.iconBg} flex items-center justify-center mb-4 shadow-inner group-hover:scale-110 transition-transform duration-300`}>
@@ -86,7 +86,7 @@ export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: numb
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 rounded-full bg-slate-200 overflow-hidden flex-shrink-0 border-2 border-white shadow-soft">
-              <img src="https://i.pravatar.cc/150?u=dhaval" alt="Dhaval Motghare" className="w-full h-full object-cover" />
+              <img src="https://ui-avatars.com/api/?name=Dhaval+Motghare&background=6366f1&color=fff&size=150" alt="Dhaval Motghare" className="w-full h-full object-cover" />
             </div>
             <div>
               <h4 className="font-bold page-text text-lg">Dhaval Motghare</h4>
@@ -102,17 +102,17 @@ export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: numb
         </p>
       </div>
 
-      <div className="pt-4">
+      <div className="pt-4 px-1 sm:px-0">
         <button
           onClick={() => navigate('/report/premium-deliverables')}
-          className="w-full relative group overflow-hidden bg-slate-900 text-white font-bold text-lg py-5 rounded-2xl shadow-xl flex items-center justify-center gap-3 transition-transform hover:-translate-y-1 active:scale-95"
+          className="w-full relative group overflow-hidden bg-slate-900 text-white font-bold text-[15px] sm:text-lg py-4 sm:py-5 rounded-2xl shadow-xl flex items-center justify-center gap-2 sm:gap-3 transition-transform hover:-translate-y-1 active:scale-95"
         >
           {/* Animated gradient background for button */}
           <div className="absolute inset-0 bg-linear-to-r from-orange-500 via-rose-500 to-indigo-500 opacity-90 group-hover:opacity-100 transition-opacity"></div>
-          
-          <span className="relative z-10 tracking-wide flex items-center gap-2">
-            Get Your Kundli Report Now
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+
+          <span className="relative z-10 tracking-wide flex items-center justify-center gap-1.5 sm:gap-2 w-full px-1">
+            <span className="text-center leading-tight">Get Your Kundli Report</span>
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform shrink-0" />
           </span>
         </button>
       </div>

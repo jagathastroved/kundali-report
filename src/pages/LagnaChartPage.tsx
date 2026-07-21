@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useReport } from '../../context/ReportContext';
-import { planetImages } from '../../data/planetImages';
-import { renderPromoBox } from '../SharedElements';
+import { useReport } from '../context/ReportContext';
+import { planetImages } from '../constants/planetImages';
+import { renderPromoBox } from '../components/ui/SharedElements';
 
 
 const getPlanetImage = (planetName: string) => {
@@ -20,11 +20,11 @@ const getPlanetImage = (planetName: string) => {
 
 const SouthChartCell = ({ planets, isAsc = false, num, onMouseMove, onMouseLeave }: { planets: string[], isAsc?: boolean, num?: string, onMouseMove: (e: React.MouseEvent) => void, onMouseLeave: () => void }) => (
   <div
-    className="border border-slate-200/60 p-1.5 sm:p-2 flex flex-col items-center justify-center card-bg h-full w-full relative overflow-hidden transition-colors duration-200 cursor-pointer hover:bg-indigo-50/40"
+    className="p-1.5 sm:p-2 flex flex-col items-center justify-center card-bg h-full w-full relative overflow-hidden transition-colors duration-200 cursor-pointer hover:bg-indigo-50/40"
     onMouseMove={onMouseMove}
     onMouseLeave={onMouseLeave}
   >
-    {num && <span className="absolute top-1 right-1.5 text-[9px] text-slate-300 font-medium">{num}</span>}
+    {num && <span className="absolute top-1 right-1.5 text-[9px] text-slate-400 font-medium">{num}</span>}
     <div className="flex flex-col space-y-0.5 items-center justify-center w-full mt-1">
       {planets.map((p: string, i: number) => (
         <span key={i} className="text-[11px] sm:text-[12px] font-semibold page-text tracking-tight leading-none">{p}</span>
@@ -52,7 +52,7 @@ const NorthChartCell = ({ x, y, width, height, num, planets, isAsc = false, onMo
 
 export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = ({ pageIdx, setPage }) => {
   const { reportData: data, birthDetails } = useReport();
-  
+
   const findPageByType = (obj: any, type: string): any => {
     if (!obj || typeof obj !== 'object') return null;
     if (obj.page_type === type) return obj;
@@ -65,8 +65,8 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
     return null;
   };
 
-  const baseStellium = findPageByType(data, 'kundali_chart_stellium') 
-    || data?.pages?.page7_chart_stellium 
+  const baseStellium = findPageByType(data, 'kundali_chart_stellium')
+    || data?.pages?.page7_chart_stellium
     || data?.page7_chart_stellium;
 
   const stellium = baseStellium?.lagnaChart || baseStellium;
@@ -123,27 +123,6 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
   return (
     <div className="space-y-8 pb-6 relative">
 
-      {/* Tooltip Portal Overlay */}
-      {tooltip && (
-        <div
-          className="fixed z-50 pointer-events-none transform -translate-x-1/2 -translate-y-full pb-3"
-          style={{ left: tooltip.x, top: tooltip.y }}
-        >
-          <div className="card-bg/95 p-3 rounded-2xl shadow-xl border border-indigo-50 min-w-[120px] max-w-[200px]">
-            <p className="text-[10px] uppercase font-bold text-indigo-500 tracking-wider mb-2 border-b border-indigo-50 pb-1 text-center">
-              House {tooltip.houseNum}
-            </p>
-            <div className="flex flex-col gap-2">
-              {tooltip.planets.map((p, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <img src={getPlanetImage(p)} alt={p} className="w-6 h-6 rounded-full border border-default shadow-soft" />
-                  <span className="text-[12px] font-bold page-text">{p}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Title Section */}
       <div className="text-center space-y-3 mt-4">
@@ -187,17 +166,17 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       <div className="flex justify-center py-4 min-h-[340px] items-center">
         {chartType === 'north' ? (
           // High Fidelity North Indian Diamond Chart SVG representation
-          <svg width="300" height="300" viewBox="0 0 300 300" className="text-[#EBE4D5] dark:text-slate-700">
+          <svg width="300" height="300" viewBox="0 0 300 300" className="text-slate-800 dark:text-slate-400">
             {/* Background Box */}
-            <rect x="0" y="0" width="300" height="300" fill="transparent" stroke="currentColor" strokeWidth="1.5" className="rounded-xl" rx="8" ry="8" />
+            <rect x="0" y="0" width="300" height="300" fill="transparent" stroke="currentColor" strokeWidth="1" className="rounded-xl" rx="8" ry="8" />
             {/* Major Diagonals */}
-            <line x1="0" y1="0" x2="300" y2="300" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="300" y1="0" x2="0" y2="300" stroke="currentColor" strokeWidth="1.5" />
+            <line x1="0" y1="0" x2="300" y2="300" stroke="currentColor" strokeWidth="1" />
+            <line x1="300" y1="0" x2="0" y2="300" stroke="currentColor" strokeWidth="1" />
             {/* Inner Diamonds lines */}
-            <line x1="150" y1="0" x2="0" y2="150" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="150" y1="0" x2="300" y2="150" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="0" y1="150" x2="150" y2="300" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="300" y1="150" x2="150" y2="300" stroke="currentColor" strokeWidth="1.5" />
+            <line x1="150" y1="0" x2="0" y2="150" stroke="currentColor" strokeWidth="1" />
+            <line x1="150" y1="0" x2="300" y2="150" stroke="currentColor" strokeWidth="1" />
+            <line x1="0" y1="150" x2="150" y2="300" stroke="currentColor" strokeWidth="1" />
+            <line x1="300" y1="150" x2="150" y2="300" stroke="currentColor" strokeWidth="1" />
 
             {/* Displaying houses using foreignObject for perfect flexbox alignment */}
             {northHousesCoords.map((c, i) => {
@@ -216,7 +195,7 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
             })}
           </svg>
         ) : (
-          <div className="grid grid-cols-4 grid-rows-4 w-full aspect-square max-w-[340px] h-[340px] card-bg-secondary border border-default rounded-xl shadow-soft mx-auto overflow-hidden text-center font-sans relative">
+          <div className="grid grid-cols-4 grid-rows-4 gap-px bg-slate-800 dark:bg-slate-500 w-full aspect-square max-w-[340px] h-[340px] border border-slate-800 dark:border-slate-500 rounded-xl shadow-soft mx-auto overflow-hidden text-center font-sans relative">
             {/* Row 1 */}
             <SouthChartCell planets={getPlanetsForSign('Pisces')} isAsc={isAsc('Pisces')} num={getHouseNumForSign('Pisces')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Pisces'), getHouseNumForSign('Pisces'))} onMouseLeave={handleMouseLeave} />
             <SouthChartCell planets={getPlanetsForSign('Aries')} isAsc={isAsc('Aries')} num={getHouseNumForSign('Aries')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Aries'), getHouseNumForSign('Aries'))} onMouseLeave={handleMouseLeave} />
@@ -225,7 +204,7 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
 
             {/* Row 2 */}
             <SouthChartCell planets={getPlanetsForSign('Aquarius')} isAsc={isAsc('Aquarius')} num={getHouseNumForSign('Aquarius')} onMouseMove={(e) => handleMouseMove(e, getPlanetsForSign('Aquarius'), getHouseNumForSign('Aquarius'))} onMouseLeave={handleMouseLeave} />
-            <div className="col-span-2 row-span-2 card-bg border border-light relative flex flex-col items-center justify-center">
+            <div className="col-span-2 row-span-2 card-bg relative flex flex-col items-center justify-center">
               <h3 className="text-xl font-bold page-text tracking-tight">Birth Chart</h3>
               <p className="text-xs font-semibold text-muted uppercase tracking-widest mt-1">Rasi Chart</p>
             </div>
@@ -248,14 +227,14 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       <div className="p-6 sm:p-8 rounded-3xl card-bg border border-default shadow-soft relative overflow-hidden group font-sans mx-1">
         <div className="absolute top-0 left-0 w-full h-1.5 bg-linear-to-r from-indigo-400 to-indigo-600" />
 
-        <div className="space-y-6">
+        <div className="space-y-5 sm:space-y-6">
           {stellium?.stelliumQuestion && (
-            <h3 className="text-xl sm:text-2xl font-bold page-text tracking-tight leading-tight">
+            <h3 className="text-[22px] sm:text-2xl font-bold page-text tracking-tight leading-tight">
               {stellium.stelliumQuestion}
             </h3>
           )}
 
-          <div className="space-y-5 text-[15px] page-text leading-relaxed font-medium">
+          <div className="space-y-4 sm:space-y-5 text-[14.5px] sm:text-[15px] page-text leading-relaxed md:leading-loose font-medium opacity-90">
             {stellium?.stelliumDesc1 && <p>{stellium.stelliumDesc1}</p>}
             {stellium?.stelliumDesc2 && <p>{stellium.stelliumDesc2}</p>}
             {stellium?.stelliumDesc3 && <p>{stellium.stelliumDesc3}</p>}
@@ -267,6 +246,28 @@ export const LagnaChartPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
       <div className="mt-8">
         {renderPromoBox(() => setPage(pageIdx + 1), 'planetary')}
       </div>
+
+      {/* Tooltip Portal Overlay - placed at the end to guarantee it overlays the SVGs */}
+      {tooltip && (
+        <div
+          className="fixed z-[100] pointer-events-none transform -translate-x-1/2 -translate-y-full pb-3"
+          style={{ left: tooltip.x, top: tooltip.y }}
+        >
+          <div className="card-bg p-3 rounded-2xl shadow-xl shadow-indigo-900/10 border border-slate-200/60 dark:border-slate-700/60 min-w-[120px] max-w-[200px]">
+            <p className="text-[10px] uppercase font-bold text-indigo-500 tracking-wider mb-2 border-b border-indigo-50 dark:border-slate-700 pb-1 text-center">
+              House {tooltip.houseNum}
+            </p>
+            <div className="flex flex-col gap-2">
+              {tooltip.planets.map((p, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <img src={getPlanetImage(p)} alt={p} className="w-6 h-6 rounded-full border border-slate-200 dark:border-slate-700 shadow-soft" />
+                  <span className="text-[12px] font-bold page-text">{p}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

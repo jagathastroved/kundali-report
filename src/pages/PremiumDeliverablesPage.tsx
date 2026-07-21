@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useReport } from '../../context/ReportContext';
+import { useReport } from '../context/ReportContext';
 import { Loader2, Sparkles, CheckCircle2 } from 'lucide-react';
-import bookImage from '../../assets/Kundali_Report_book.png';
+import bookImage from '../assets/Kundali_Report_book.png';
 
 
 export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
@@ -100,15 +100,15 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
       {/* Bottom Pricing & Action Section */}
       <div className="pt-8 space-y-4 max-w-2xl mx-auto">
         {/* Pricing Box */}
-        <div className="bg-[#EFFFF6] border border-[#C6F1D6] rounded-xl p-4 flex flex-row justify-between items-center gap-2">
-          <div className="flex-1">
-            <p className="text-[9px] font-bold text-[#2E8B57] uppercase tracking-widest mb-0.5">TOTAL ORDER PRICE</p>
+        <div className="bg-[#EFFFF6] border border-[#C6F1D6] rounded-xl p-3 sm:p-4 flex flex-row flex-wrap sm:flex-nowrap justify-between items-center gap-2 sm:gap-2">
+          <div className="flex-1 min-w-[120px]">
+            <p className="text-[9px] sm:text-[10px] font-bold text-[#2E8B57] uppercase tracking-widest mb-0.5">TOTAL ORDER PRICE</p>
             <div className="flex items-baseline gap-1.5 sm:gap-2">
-              <span className="text-lg text-[#8FBC8F] font-bold line-through">₹2499</span>
+              <span className="text-base sm:text-lg text-[#8FBC8F] font-bold line-through">₹2499</span>
               <span className="text-2xl sm:text-3xl font-black text-[#006400] tracking-tight">₹899</span>
             </div>
           </div>
-          <div className="bg-[#00C950] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-soft whitespace-nowrap flex-shrink-0 text-center">
+          <div className="bg-[#00C950] text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2.5 sm:px-3 py-1.5 rounded-full shadow-soft whitespace-nowrap flex-shrink-0 text-center">
             SAVE 64% TODAY
           </div>
         </div>

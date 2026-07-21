@@ -1,6 +1,6 @@
 import React from 'react';
-import { useReport } from '../../context/ReportContext';
-import chakrasImage from '../../assets/chakras.png';
+import { useReport } from '../context/ReportContext';
+import chakrasImage from '../assets/chakras.png';
 import { Shield } from 'lucide-react';
 
 

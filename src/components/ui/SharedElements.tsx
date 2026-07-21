@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Globe2, Sparkles, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import bookImage from '../assets/Kundali_Report_book.png';
+import bookImage from '../../assets/Kundali_Report_book.png';
 
 export const PAGE_TITLES = [
   'Welcome ',
@@ -21,6 +21,7 @@ export const PAGE_TITLES = [
 ];
 
 export const PieChartComponent: React.FC<{ ratios: { name: string; percentage: number }[] }> = ({ ratios }) => {
+  const [hoveredSlice, setHoveredSlice] = React.useState<{ name: string; percentage: number; color: string } | null>(null);
   let accumulatedAngle = 0;
   const radius = 64;
   const cx = 80;
@@ -46,8 +47,8 @@ export const PieChartComponent: React.FC<{ ratios: { name: string; percentage: n
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center gap-8 bg-gradient-to-br from-slate-50 to-slate-100/50 dark:from-slate-800/40 dark:to-slate-900/40 hover:dark:from-slate-800/60 hover:dark:to-slate-900/60 border border-light p-6 sm:p-8 rounded-[2rem] shadow-soft hover:shadow-lg transition-all duration-300">
-      <div className="relative w-40 h-40 drop-shadow-md">
-        <svg width="160" height="160" viewBox="0 0 160 160" className="transform -rotate-90">
+      <div className="relative w-48 h-48 sm:w-56 sm:h-56 drop-shadow-md flex items-center justify-center" onMouseLeave={() => setHoveredSlice(null)}>
+        <svg viewBox="0 0 160 160" className="w-full h-full transform -rotate-90">
           {ratios.map((element, idx) => {
             const val = element.percentage;
             if (val <= 0) return null;
@@ -72,16 +73,48 @@ export const PieChartComponent: React.FC<{ ratios: { name: string; percentage: n
                 d={pathData}
                 fill={color}
                 stroke="currentColor"
-                strokeWidth="2"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: idx * 0.05 }}
-                className="hover:opacity-80 transition-opacity cursor-pointer text-slate-50 dark:text-slate-900"
+                strokeWidth="3"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: hoveredSlice?.name === element.name ? 1.05 : 1 }}
+                transition={{ duration: 0.3, type: "spring" }}
+                onMouseEnter={() => setHoveredSlice({ name: element.name, percentage: element.percentage, color: textColors[element.name] })}
+                onClick={() => setHoveredSlice({ name: element.name, percentage: element.percentage, color: textColors[element.name] })}
+                className="hover:opacity-90 transition-opacity cursor-pointer text-slate-50 dark:text-slate-900 origin-center"
+                style={{ transformOrigin: '80px 80px' }}
               />
             );
           })}
-          <circle cx="80" cy="80" r="28" className="fill-slate-50 dark:fill-slate-900/90" />
+          <circle cx="80" cy="80" r="32" className="fill-slate-50 dark:fill-slate-900/90 pointer-events-none" />
         </svg>
+
+        {/* Center Hover Content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+          {(() => {
+            const displaySlice = hoveredSlice || (() => {
+              if (!ratios.length) return null;
+              const max = ratios.reduce((prev, current) => (prev.percentage > current.percentage) ? prev : current);
+              return { name: max.name, percentage: max.percentage, color: textColors[max.name] };
+            })();
+
+            if (!displaySlice) return null;
+
+            return (
+              <motion.div
+                key={displaySlice.name}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center"
+              >
+                <span className={`block text-[10px] sm:text-xs font-bold uppercase tracking-wider ${displaySlice.color}`}>
+                  {displaySlice.name}
+                </span>
+                <span className={`block text-xl sm:text-2xl font-black ${displaySlice.color}`}>
+                  {displaySlice.percentage}%
+                </span>
+              </motion.div>
+            );
+          })()}
+        </div>
       </div>
 
       <div className="space-y-2.5 flex-1 min-w-[140px] bg-white/50 dark:bg-slate-800/30 p-4 rounded-2xl border border-light">
@@ -130,19 +163,19 @@ export const renderPromoBox = (onNext: () => void, variant: 'combo' | 'remedies'
 
       <BookletMockup />
 
-      <div className="flex-1 space-y-5 relative z-10 flex flex-col justify-center text-center sm:text-left">
+      <div className="flex-1 space-y-4 sm:space-y-5 relative z-10 flex flex-col justify-center text-center sm:text-left">
         <div>
-          <div className="inline-flex items-center space-x-1.5 bg-[#D4AF37]/20 text-[#F3E5AB] px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-[#D4AF37]/50 mb-4 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+          <div className="inline-flex items-center space-x-1.5 bg-[#D4AF37]/20 text-[#F3E5AB] px-3 py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-widest border border-[#D4AF37]/50 mb-4 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
             <Sparkles size={12} className="text-[#FCAE3B]" />
             <span>Get Your Premium Kundali Report</span>
           </div>
-          <h4 className="text-xl sm:text-2xl font-bold text-white leading-tight tracking-tight drop-shadow-sm">
+          <h4 className="text-xl sm:text-2xl font-bold text-white leading-tight tracking-tight drop-shadow-sm px-1 sm:px-0">
             {variant === 'combo' ? 'Unlock Personalized Full Kundali Report'
               : variant === 'element' ? 'Unlock Your Complete Astrological Destiny'
                 : variant === 'planetary' ? 'Unlock Your Premium Kundali Report'
                   : 'Get Complete Karmic Remedies & Rituals'}
           </h4>
-          <p className="text-slate-300 text-xs sm:text-sm font-normal mt-2.5 leading-relaxed max-w-md sm:mx-0 mx-auto">
+          <p className="text-slate-300 text-[13px] sm:text-sm font-medium mt-3 leading-relaxed max-w-md sm:mx-0 mx-auto px-2 sm:px-0 opacity-90">
             {variant === 'combo'
               ? 'This summary is just 5% of your full profile. Discover precise timings, career peaks, and personalized gemstone recommendations.'
               : variant === 'element'

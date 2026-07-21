@@ -1,4 +1,4 @@
-import fallbackReport from '../data/fallBackReport.json';
+import fallbackReport from '../mocks/fallBackReport.json';
 
 export interface ReportApiRequest {
   name: string;

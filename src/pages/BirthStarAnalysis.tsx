@@ -1,7 +1,7 @@
 import React from 'react';
-import { useReport } from '../../context/ReportContext';
+import { useReport } from '../context/ReportContext';
 import { Compass, AlertCircle, Sparkles, CheckCircle } from 'lucide-react';
-import { elementImages } from '../../data/elementImages';
+import { elementImages } from '../constants/elementImages';
 
 export const BirthStarPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const { reportData: data } = useReport();
@@ -31,54 +31,59 @@ export const BirthStarPage: React.FC<{ pageIdx: number, setPage: (idx: number) =
       <div className="px-2">
         <div className="p-6 rounded-3xl bg-linear-to-r from-indigo-50/50 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-indigo-900/40 hover:dark:to-slate-800/40 transition-all duration-300 border border-indigo-100 shadow-soft relative overflow-hidden">
           <div className="absolute top-0 left-0 w-2 h-full bg-indigo-400" />
-          <p className="page-text text-[15px] leading-relaxed font-medium text-center max-w-2xl mx-auto z-10 relative">
-            {birthStar?.nkName} Nakshatra! You are ruled by the <strong className="text-indigo-600">{birthStar?.rulingPlanet}</strong> and your zodiac sign is <strong className="text-indigo-600">{birthStar?.zodiacSign}</strong>. Your nakshatra is intimately associated with the god {birthStar?.associatedDeity}. {birthStar?.description}
-          </p>
+          <div className="page-text text-[14px] md:text-[15px] leading-relaxed md:leading-loose font-medium text-left md:text-center max-w-2xl mx-auto z-10 relative space-y-4">
+            <p>
+              {birthStar?.nkName} Nakshatra! You are ruled by the <strong className="text-indigo-600">{birthStar?.rulingPlanet}</strong> and your zodiac sign is <strong className="text-indigo-600">{birthStar?.zodiacSign}</strong>. Your nakshatra is intimately associated with the god {birthStar?.associatedDeity}.
+            </p>
+            <p>
+              {birthStar?.description}
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Traits Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+      <div className="grid grid-cols-1 gap-8 pt-4">
 
         {/* Personality Card */}
-        <div className="relative p-6 rounded-3xl bg-gradient-to-br from-orange-50/80 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-orange-900/40 hover:dark:to-slate-800/40 transition-all duration-300 border border-orange-100 shadow-soft hover:shadow-soft transition-all group hover:-translate-y-1">
+        <div className="relative p-6 sm:px-8 sm:py-7 rounded-3xl bg-gradient-to-br from-orange-50/80 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-orange-900/40 hover:dark:to-slate-800/40 transition-all duration-300 border border-orange-100 shadow-soft hover:shadow-soft transition-all group hover:-translate-y-1">
           <div className="absolute -top-3 left-6 bg-linear-to-r from-orange-500 to-orange-400 text-white px-4 py-1 text-[11px] font-bold uppercase rounded-full shadow-soft tracking-wider flex items-center">
             <Sparkles className="w-3 h-3 mr-1" /> Core Personality
           </div>
-          <div className="mt-4 flex flex-col space-y-4">
-            <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center shadow-inner border border-white p-2">
+          <div className="mt-2 flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
+            <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center shadow-inner border border-white p-2.5">
               <img src={elementImages.fire} alt="Fire Energy" className="w-full h-full object-contain opacity-80" />
             </div>
-            <p className="page-text text-[14px] leading-relaxed font-medium">
+            <p className="page-text text-[14px] sm:text-[15px] leading-relaxed font-medium flex-1 pt-1">
               {`As a ${birthStar?.nkName}, you are naturally curious and possess a great desire for knowledge. You have an excellent memory and love to learn new things. You are also a good listener and are sensitive to the needs of others. You are respectful of tradition and often hold a position of authority or leadership within your community.`}
             </p>
           </div>
         </div>
 
         {/* Strengths & Weaknesses Card */}
-        <div className="relative p-6 rounded-3xl bg-gradient-to-br from-indigo-50/80 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-indigo-900/40 hover:dark:to-slate-800/40 transition-all duration-300 border border-indigo-100 shadow-soft hover:shadow-soft transition-all group hover:-translate-y-1">
+        <div className="relative p-6 sm:px-8 sm:py-7 rounded-3xl bg-gradient-to-br from-indigo-50/80 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-indigo-900/40 hover:dark:to-slate-800/40 transition-all duration-300 border border-indigo-100 shadow-soft hover:shadow-soft transition-all group hover:-translate-y-1">
           <div className="absolute -top-3 left-6 bg-linear-to-r from-indigo-600 to-indigo-500 text-white px-4 py-1 text-[11px] font-bold uppercase rounded-full shadow-soft tracking-wider flex items-center">
             <Compass className="w-3 h-3 mr-1" /> Strengths & Weaknesses
           </div>
-          <div className="mt-4 flex flex-col space-y-4">
-            <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center shadow-inner border border-white p-2">
+          <div className="mt-2 flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
+            <div className="flex-shrink-0 w-14 h-14 rounded-full bg-indigo-100 flex items-center justify-center shadow-inner border border-white p-2.5">
               <img src={elementImages.water} alt="Water Flow" className="w-full h-full object-contain opacity-80" />
             </div>
-            <div className="space-y-4">
+            <div className="space-y-5 flex-1 pt-1">
               <div>
-                <span className="text-emerald-700 font-bold mb-1 flex items-center text-[13px] uppercase tracking-wider">
-                  <CheckCircle className="w-4 h-4 mr-1" /> Your Strengths
+                <span className="text-emerald-700 font-bold mb-1.5 flex items-center text-[13px] uppercase tracking-wider">
+                  <CheckCircle className="w-4 h-4 mr-1.5" /> Your Strengths
                 </span>
-                <p className="page-text text-[14px] leading-relaxed font-medium">
+                <p className="page-text text-[14px] sm:text-[15px] leading-relaxed font-medium">
                   {birthStar?.strengths}
                 </p>
               </div>
               <div className="h-px w-full bg-indigo-200/50" />
               <div>
-                <span className="text-rose-600 font-bold mb-1 flex items-center text-[13px] uppercase tracking-wider">
-                  <AlertCircle className="w-4 h-4 mr-1" /> Areas for Growth
+                <span className="text-rose-600 font-bold mb-1.5 flex items-center text-[13px] uppercase tracking-wider">
+                  <AlertCircle className="w-4 h-4 mr-1.5" /> Areas for Growth
                 </span>
-                <p className="page-text text-[14px] leading-relaxed font-medium">
+                <p className="page-text text-[14px] sm:text-[15px] leading-relaxed font-medium">
                   {birthStar?.weaknesses}
                 </p>
               </div>

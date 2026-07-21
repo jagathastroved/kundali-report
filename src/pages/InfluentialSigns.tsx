@@ -1,8 +1,7 @@
 import React from 'react';
-import { useReport } from '../../context/ReportContext';
-
-import { planetImages } from '../../data/planetImages';
-import { zodiacSignImages } from '../../data/zodiacSigns';
+import { useReport } from '../context/ReportContext';
+import { planetImages } from '../constants/planetImages';
+import { zodiacSignImages } from '../constants/zodiacSigns';
 
 export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const { reportData: data } = useReport();
@@ -65,46 +64,46 @@ export const BigThreeSignsPage: React.FC<{ pageIdx: number, setPage: (idx: numbe
       {/* Dynamic description cards structured in matching color themes */}
       <div className="space-y-5 pt-4 font-sans">
 
-        <div className="p-6 rounded-3xl bg-linear-to-r from-orange-50/50 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-orange-900/40 hover:dark:to-slate-800/40 transition-all duration-300 border border-orange-100 shadow-soft relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-orange-50/50 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-orange-900/40 hover:dark:to-slate-800/40 transition-all duration-300 border border-orange-100 shadow-soft relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
           <div className="absolute top-0 left-0 w-2 h-full bg-orange-400" />
-          <div className="w-14 h-14 flex-shrink-0 rounded-full overflow-hidden border-2 border-orange-200 shadow-soft ml-2">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 rounded-full overflow-hidden border-2 border-orange-200 shadow-soft">
             <img src={planetImages.surya} alt="Sun" className="w-full h-full object-cover" />
           </div>
-          <div>
-            <h4 className="font-bold text-orange-900 dark:text-orange-300 text-[13px] uppercase tracking-wider mb-1">
+          <div className="flex-1 space-y-2">
+            <h4 className="font-bold text-orange-900 dark:text-orange-300 text-[14px] sm:text-[15px] uppercase tracking-wider">
               Your Sun Sign Essence
             </h4>
-            <p className="text-[14px] page-text leading-relaxed font-medium">
+            <p className="text-[14.5px] sm:text-[15px] page-text leading-relaxed md:leading-loose font-medium opacity-90">
               {personality?.bigThree?.sun?.description}
             </p>
           </div>
         </div>
 
-        <div className="p-6 rounded-3xl bg-linear-to-r from-rose-50/50 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-rose-900/40 hover:dark:to-slate-800/40 transition-all duration-300 border border-rose-100 shadow-soft relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-rose-50/50 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-rose-900/40 hover:dark:to-slate-800/40 transition-all duration-300 border border-rose-100 shadow-soft relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
           <div className="absolute top-0 left-0 w-2 h-full bg-rose-400" />
-          <div className="w-14 h-14 flex-shrink-0 rounded-full overflow-hidden border-2 border-rose-200 shadow-soft ml-2 card-bg p-1">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 rounded-full overflow-hidden border-2 border-rose-200 shadow-soft card-bg p-1.5">
             <img src={zodiacSignImages[personality?.bigThree?.ascendant?.sign?.split(' ')[0].toLowerCase()] || ''} alt="Ascendant" className="w-full h-full object-contain" />
           </div>
-          <div>
-            <h4 className="font-bold text-rose-900 dark:text-rose-300 text-[13px] uppercase tracking-wider mb-1">
+          <div className="flex-1 space-y-2">
+            <h4 className="font-bold text-rose-900 dark:text-rose-300 text-[14px] sm:text-[15px] uppercase tracking-wider">
               Your Rising Sign Persona
             </h4>
-            <p className="text-[14px] page-text leading-relaxed font-medium">
+            <p className="text-[14.5px] sm:text-[15px] page-text leading-relaxed md:leading-loose font-medium opacity-90">
               {personality?.bigThree?.ascendant?.description}
             </p>
           </div>
         </div>
 
-        <div className="p-6 rounded-3xl bg-linear-to-r from-indigo-50/50 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-indigo-900/40 hover:dark:to-slate-800/40 transition-all duration-300 border border-indigo-100 shadow-soft relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-indigo-50/50 to-white dark:from-slate-800/20 dark:to-transparent hover:dark:from-indigo-900/40 hover:dark:to-slate-800/40 transition-all duration-300 border border-indigo-100 shadow-soft relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
           <div className="absolute top-0 left-0 w-2 h-full bg-indigo-400" />
-          <div className="w-14 h-14 flex-shrink-0 rounded-full overflow-hidden border-2 border-indigo-200 shadow-soft ml-2">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 rounded-full overflow-hidden border-2 border-indigo-200 shadow-soft">
             <img src={planetImages.moon} alt="Moon" className="w-full h-full object-cover" />
           </div>
-          <div>
-            <h4 className="font-bold text-indigo-900 dark:text-indigo-300 text-[13px] uppercase tracking-wider mb-1">
+          <div className="flex-1 space-y-2">
+            <h4 className="font-bold text-indigo-900 dark:text-indigo-300 text-[14px] sm:text-[15px] uppercase tracking-wider">
               Your Moon Sign Emotion
             </h4>
-            <p className="text-[14px] page-text leading-relaxed font-medium">
+            <p className="text-[14.5px] sm:text-[15px] page-text leading-relaxed md:leading-loose font-medium opacity-90">
               {personality?.bigThree?.moon?.description}
             </p>
           </div>

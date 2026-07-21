@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { useReport } from '../../context/ReportContext';
-import { planetImages } from '../../data/planetImages';
+import { useReport } from '../context/ReportContext';
+import { planetImages } from '../constants/planetImages';
 
 
 const getPlanetImage = (planetName: string) => {
@@ -87,13 +87,14 @@ export const DashaWheelPage: React.FC<{ pageIdx: number, setPage: (idx: number) 
                   </div>
                 </div>
 
-                <div className="flex flex-row sm:flex-col justify-between sm:text-right gap-2 sm:gap-0 z-10 card-bg-secondary sm:bg-transparent p-2 sm:p-0 rounded-xl sm:rounded-none">
-                  <div className="text-xs sm:text-[13px] font-mono font-bold page-text">
+                <div className="flex flex-col sm:text-right gap-1 sm:gap-0 z-10 card-bg-secondary sm:bg-transparent p-2.5 sm:p-0 rounded-xl sm:rounded-none mt-2 sm:mt-0">
+                  <div className="text-[11.5px] sm:text-[13px] font-mono font-bold page-text text-left sm:text-right whitespace-nowrap flex items-center gap-2">
+                    <span className="sm:hidden text-[9px] uppercase tracking-widest text-emerald-600/70">From</span>
                     {item?.startDate}
                   </div>
-                  <div className="text-[10px] sm:text-[11px] font-medium text-muted font-mono flex items-center justify-end gap-1">
+                  <div className="text-[11.5px] sm:text-[11px] font-medium text-muted font-mono flex items-center justify-start sm:justify-end gap-2 whitespace-nowrap">
                     <span className="hidden sm:inline">until</span>
-                    <span className="sm:hidden">-</span>
+                    <span className="sm:hidden text-[9px] uppercase tracking-widest text-emerald-600/70 ml-0.5">To</span>
                     {item?.endDate}
                   </div>
                 </div>

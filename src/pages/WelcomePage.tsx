@@ -1,5 +1,5 @@
 import React from 'react';
-import { useReport } from '../../context/ReportContext';
+import { useReport } from '../context/ReportContext';
 
 import { Star, Compass, Sparkles, Globe2, Clock, RefreshCw } from 'lucide-react';
 export const WelcomePage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { BirthDetails, KundliReportData } from '../types';
-import fallbackReport from '../data/fallBackReport.json';
+import fallbackReport from '../mocks/fallBackReport.json';
 
 interface ReportContextType {
   birthDetails: BirthDetails | null;
@@ -8,7 +8,7 @@ interface ReportContextType {
   isLoading: boolean;
   isGenerated: boolean;
   error: string | null;
-  submitBirthDetails: (details: BirthDetails, apiData?: any) => Promise<void>;
+  submitBirthDetails: (details: BirthDetails, apiData?: any, apiError?: any) => Promise<void>;
   resetReport: () => void;
 }
 
@@ -50,12 +50,14 @@ export const ReportProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [reportData]);
 
-  const submitBirthDetails = async (details: BirthDetails, apiData?: any) => {
+  const submitBirthDetails = async (details: BirthDetails, apiData?: any, apiError?: any) => {
     setIsLoading(true);
     setError(null);
     setBirthDetails(details);
 
     try {
+      if (apiError) throw apiError;
+
       // Construct a tailored local report using static data
       const localData = JSON.parse(JSON.stringify(fallbackReport));
       localData.birthDetails = details;
@@ -67,9 +69,9 @@ export const ReportProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const finalData = apiData ? { ...localData, ...apiData } : localData;
 
       setReportData(finalData);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error generating report:', err);
-      setError('An error occurred while generating the report.');
+      setError(err?.message || 'An error occurred while generating the report.');
     } finally {
       setIsLoading(false);
     }
