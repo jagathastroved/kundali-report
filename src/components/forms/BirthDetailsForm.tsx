@@ -172,6 +172,8 @@ export const BirthDetailsForm: React.FC = () => {
 
     const apiPayload: ReportApiRequest = {
       name: name.trim(),
+      email: email.trim(),
+      gender,
       datetime_local,
       city: city.trim(),
       state: stateName,

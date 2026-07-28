@@ -2,6 +2,8 @@ import fallbackReport from '../mocks/fallBackReport.json';
 
 export interface ReportApiRequest {
   name: string;
+  email: string;
+  gender: string;
   datetime_local: string; // Format: "YYYY-MM-DDTHH:mm:ss"
   city: string;
   state: string;
