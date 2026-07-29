@@ -10,7 +10,8 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
   const [priceDetails, setPriceDetails] = useState({ symbol: '₹', price: 999 })
   const currentPrice = priceDetails.price;
   const currentSymbol = priceDetails.symbol;
-  const strikeoutPrice = Math.round(currentPrice / 0.5);
+  const strikeoutPrice = currentPrice === 999 ? 1999 : currentPrice * 2;
+  const saveAmount = strikeoutPrice - currentPrice;
 
   useEffect(() => {
     const getCookie = (name: string) => {
@@ -33,10 +34,7 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
 
   const handleBookNow = () => {
     setIsProcessing(true);
-    // Button stays in processing state for exactly 5 seconds, then resets
-    setTimeout(() => {
-      setIsProcessing(false);
-    }, 5000);
+    window.location.href = 'https://www.astroved.com/prediction-services-personalized-kundali-report-P88426.aspx';
   };
 
   const name = birthDetails?.name || 'You';
@@ -129,9 +127,18 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
               <Lock className="w-3 h-3 shrink-0" />
               <span className="truncate">Total Order Price</span>
             </span>
-            <div className="flex items-baseline gap-2 sm:gap-3 flex-wrap">
-              <span className="text-[#8FBC8F] line-through text-lg sm:text-xl font-bold decoration-[#8FBC8F]/50 decoration-2">{currentSymbol}{strikeoutPrice}</span>
-              <span className="text-2xl sm:text-3xl font-black text-[#006400] tracking-tight">{currentSymbol}{currentPrice}</span>
+            <div className="flex flex-col gap-0.5">
+              <div className="flex items-baseline gap-2">
+                <span className="text-[#8FBC8F] line-through text-base sm:text-lg font-bold decoration-[#8FBC8F]/50 decoration-2">
+                  {currentSymbol} {strikeoutPrice.toFixed(2)}
+                </span>
+                <span className="text-[#00C950] text-sm sm:text-base font-bold">
+                  You Save: {currentSymbol} {saveAmount.toFixed(2)} (50%)
+                </span>
+              </div>
+              <span className="text-2xl sm:text-3xl font-black text-[#006400] tracking-tight">
+                {currentSymbol} {currentPrice.toFixed(2)}
+              </span>
             </div>
           </div>
           <div className="bg-[#00C950] text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2.5 sm:px-3 py-1.5 rounded-full shadow-soft whitespace-nowrap flex-shrink-0 text-center">
@@ -152,7 +159,7 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
             </>
           ) : (
             <>
-              Proceed to Pay {currentSymbol}{currentPrice}
+              Proceed to Pay {currentSymbol} {currentPrice.toFixed(2)}
             </>
           )}
         </button>
