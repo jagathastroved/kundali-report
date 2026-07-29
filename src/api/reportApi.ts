@@ -18,7 +18,7 @@ export interface ReportApiRequest {
 export const fetchReportFull = async (payload: ReportApiRequest) => {
   const baseUrl = import.meta.env.VITE_API_URL || '';
   const url = `${baseUrl}/api/v1/report/full`;
-
+  console.log("payload", payload)
   try {
     const response = await axios.post(url, payload, {
       headers: {
