@@ -197,8 +197,8 @@ export const BirthDetailsForm: React.FC = () => {
       city: city.trim(),
       state: stateName,
       country: country,
-      latitude,
-      longitude,
+      latitude: latitude,
+      longitude: longitude,
       ayanamsa: 'LAHIRI',
       house_system: 'WHOLE_SIGN'
     };

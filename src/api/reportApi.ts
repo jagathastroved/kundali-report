@@ -1,3 +1,4 @@
+import axios from 'axios';
 import fallbackReport from '../mocks/fallBackReport.json';
 
 export interface ReportApiRequest {
@@ -19,22 +20,15 @@ export const fetchReportFull = async (payload: ReportApiRequest) => {
   const url = `${baseUrl}/api/v1/report/full`;
 
   try {
-    const response = await fetch(url, {
-      method: 'POST',
+    const response = await axios.post(url, payload, {
       headers: {
         'Content-Type': 'application/json',
         'ngrok-skip-browser-warning': 'true'
-      },
-      body: JSON.stringify(payload)
+      }
     });
 
-    if (!response.ok) {
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
-    }
-
-    const apiData = await response.json();
-    console.log(apiData)
-    return apiData;
+    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error('API failed.', error);
     throw error;
