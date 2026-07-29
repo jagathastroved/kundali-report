@@ -1,12 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useReport } from '../context/ReportContext';
-import { Loader2, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Loader2, Sparkles, CheckCircle2, Lock } from 'lucide-react';
 import bookImage from '../assets/Kundali_Report_book.png';
 
 
 export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const { birthDetails } = useReport();
   const [isProcessing, setIsProcessing] = useState(false);
+  const [priceDetails, setPriceDetails] = useState({ symbol: '₹', price: 999 })
+  const currentPrice = priceDetails.price;
+  const currentSymbol = priceDetails.symbol;
+  const strikeoutPrice = Math.round(currentPrice / 0.5);
+
+  useEffect(() => {
+    const getCookie = (name: string) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop()?.split(';').shift();
+      return null;
+    };
+
+    const currency = getCookie('currentcurrency')?.toUpperCase();
+
+    if (currency === 'MYR') {
+      setPriceDetails({ symbol: 'RM', price: 100 });
+    } else if (currency === 'USD' || currency === 'US') {
+      setPriceDetails({ symbol: '$', price: 30 });
+    } else {
+      setPriceDetails({ symbol: '₹', price: 999 });
+    }
+  }, []);
 
   const handleBookNow = () => {
     setIsProcessing(true);
@@ -101,15 +124,18 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
       <div className="pt-8 space-y-4 max-w-2xl mx-auto">
         {/* Pricing Box */}
         <div className="bg-[#EFFFF6] border border-[#C6F1D6] rounded-xl p-3 sm:p-4 flex flex-row flex-wrap sm:flex-nowrap justify-between items-center gap-2 sm:gap-2">
-          <div className="flex-1 min-w-[120px]">
-            <p className="text-[9px] sm:text-[10px] font-bold text-[#2E8B57] uppercase tracking-widest mb-0.5">TOTAL ORDER PRICE</p>
-            <div className="flex items-baseline gap-1.5 sm:gap-2">
-              <span className="text-base sm:text-lg text-[#8FBC8F] font-bold line-through">₹2499</span>
-              <span className="text-2xl sm:text-3xl font-black text-[#006400] tracking-tight">₹899</span>
+          <div className="flex flex-col relative z-10 min-w-0 flex-1">
+            <span className="text-[10px] sm:text-[11px] font-black text-[#2E8B57] uppercase tracking-widest mb-1 flex items-center gap-1.5 truncate">
+              <Lock className="w-3 h-3 shrink-0" />
+              <span className="truncate">Total Order Price</span>
+            </span>
+            <div className="flex items-baseline gap-2 sm:gap-3 flex-wrap">
+              <span className="text-[#8FBC8F] line-through text-lg sm:text-xl font-bold decoration-[#8FBC8F]/50 decoration-2">{currentSymbol}{strikeoutPrice}</span>
+              <span className="text-2xl sm:text-3xl font-black text-[#006400] tracking-tight">{currentSymbol}{currentPrice}</span>
             </div>
           </div>
           <div className="bg-[#00C950] text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2.5 sm:px-3 py-1.5 rounded-full shadow-soft whitespace-nowrap flex-shrink-0 text-center">
-            SAVE 64% TODAY
+            SAVE 50% TODAY
           </div>
         </div>
 
@@ -126,7 +152,7 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
             </>
           ) : (
             <>
-              Proceed to Pay ₹899
+              Proceed to Pay {currentSymbol}{currentPrice}
             </>
           )}
         </button>
