@@ -9,6 +9,7 @@ import fallBackReport from '../../mocks/fallBackReport.json';
 
 import CustomSelect from '../ui/CustomSelect';
 import { fetchCountries, searchLocation } from '../../api/locationApi';
+import { getTimezoneCountryName } from '../../utils/locationCurrencyUtils';
 
 const MONTHS = [
   { name: 'Jan', val: '1' },
@@ -33,18 +34,17 @@ export const BirthDetailsForm: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [gender, setGender] = useState('Male');
+  const [gender, setGender] = useState('');
   const [day, setDay] = useState('1');
   const [month, setMonth] = useState('1');
   const [year, setYear] = useState('2026');
   const [hour12, setHour12] = useState('12');
   const [minute, setMinute] = useState('0');
   const [ampm, setAmpm] = useState<'AM' | 'PM'>('AM');
-  const [country, setCountry] = useState('India');
+  const [country, setCountry] = useState(getTimezoneCountryName());
   const [city, setCity] = useState('');
   const [stateName, setStateName] = useState('Unknown');
   const [language, setLanguage] = useState<'english' | 'hindi'>('english');
-
   const [allCountries, setAllCountries] = useState<{ value: string; label: string }[]>([]);
   const [apiCities, setApiCities] = useState<{ name: string; displayName: string; stateName: string }[]>([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -71,11 +71,13 @@ export const BirthDetailsForm: React.FC = () => {
           setAllCountries(formatted);
         } else {
           // fallback
-          setAllCountries([{ value: 'India', label: 'India' }]);
+          const defaultCountry = getTimezoneCountryName();
+          setAllCountries([{ value: defaultCountry, label: defaultCountry }]);
         }
       } catch (error) {
         console.error("Failed to load countries", error);
-        setAllCountries([{ value: 'India', label: 'India' }]);
+        const defaultCountry = getTimezoneCountryName();
+        setAllCountries([{ value: defaultCountry, label: defaultCountry }]);
       }
     };
     loadCountries();
@@ -141,6 +143,11 @@ export const BirthDetailsForm: React.FC = () => {
     }
     setEmailError('');
 
+    if (!gender) {
+      alert("Please select a gender.");
+      return;
+    }
+
     if (country && (!city || !isValidCity)) {
       alert("Please select a valid city from the suggested list.");
       return;
@@ -149,6 +156,12 @@ export const BirthDetailsForm: React.FC = () => {
     let finalHour = Number(hour12);
     if (ampm === 'PM' && finalHour < 12) finalHour += 12;
     if (ampm === 'AM' && finalHour === 12) finalHour = 0;
+
+    const selectedDate = new Date(Number(year), Number(month) - 1, Number(day), finalHour, Number(minute));
+    if (selectedDate > new Date()) {
+      alert("Future date and time are not allowed.");
+      return;
+    }
 
     const birthData: BirthDetails = {
       name: name.trim(),

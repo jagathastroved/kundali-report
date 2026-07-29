@@ -1,35 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useReport } from '../context/ReportContext';
-import { Loader2, Sparkles, CheckCircle2, Lock } from 'lucide-react';
+import { Loader2, Sparkles, CheckCircle2, Lock, Download } from 'lucide-react';
 import bookImage from '../assets/Kundali_Report_book.png';
 
+
+import { getCountryCode, getCurrencyInfo } from '../utils/locationCurrencyUtils';
 
 export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx: number) => void }> = () => {
   const { birthDetails } = useReport();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [priceDetails, setPriceDetails] = useState({ symbol: '₹', price: 999 })
+  const [priceDetails, setPriceDetails] = useState({ symbol: '₹', price: 999 });
+
   const currentPrice = priceDetails.price;
   const currentSymbol = priceDetails.symbol;
   const strikeoutPrice = currentPrice === 999 ? 1999 : currentPrice * 2;
   const saveAmount = strikeoutPrice - currentPrice;
 
   useEffect(() => {
-    const getCookie = (name: string) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop()?.split(';').shift();
-      return null;
-    };
-
-    const currency = getCookie('currentcurrency')?.toUpperCase();
-
-    if (currency === 'MYR') {
-      setPriceDetails({ symbol: 'RM', price: 100 });
-    } else if (currency === 'USD' || currency === 'US') {
-      setPriceDetails({ symbol: '$', price: 30 });
-    } else {
-      setPriceDetails({ symbol: '₹', price: 999 });
-    }
+    const countryCode = getCountryCode();
+    const currencyInfo = getCurrencyInfo(countryCode);
+    setPriceDetails({
+      symbol: currencyInfo.currencySymbol,
+      price: currencyInfo.price || 30
+    });
   }, []);
 
   const handleBookNow = () => {
@@ -163,6 +156,17 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
             </>
           )}
         </button>
+
+        {/* Sample Report Button */}
+        <a
+          href="https://www.astroved.com/reacthome/reports/Sample%20Detailed%20Kundli%20Premium%20Report.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 font-bold text-[15px] py-3.5 px-6 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 mt-3"
+        >
+          <Download size={18} />
+          View Sample Report
+        </a>
       </div>
 
     </div>

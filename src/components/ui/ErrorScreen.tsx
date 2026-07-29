@@ -25,7 +25,7 @@ export const ErrorScreen: React.FC<ErrorScreenProps> = ({ errorMsg, onRetry }) =
         <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-blue-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-indigo-900/10 blur-[100px] rounded-full mix-blend-screen pointer-events-none" />
-        
+
         {/* Twinkling Stars Background */}
         {stars.map((star) => (
           <motion.div
@@ -53,7 +53,7 @@ export const ErrorScreen: React.FC<ErrorScreenProps> = ({ errorMsg, onRetry }) =
       </div>
 
       {/* Glassmorphism Card (matching the image) */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -62,24 +62,24 @@ export const ErrorScreen: React.FC<ErrorScreenProps> = ({ errorMsg, onRetry }) =
         {/* Inner glow on top edge of the card */}
         <div className="absolute top-0 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-indigo-300/50 to-transparent" />
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-indigo-400/30 blur-xl rounded-full" />
-        
+
         {/* Intricate Centerpiece (Astrological Hourglass) */}
         <div className="relative w-48 h-48 sm:w-56 sm:h-56 mb-6 flex items-center justify-center">
-          
+
           {/* Orbital arcs (ellipses representing planetary orbits) */}
           <div className="absolute inset-[-10%] border border-indigo-200/10 rounded-full rotate-45 transform scale-y-[0.4]" />
           <div className="absolute inset-[-10%] border border-purple-200/10 rounded-full -rotate-45 transform scale-y-[0.4]" />
 
           {/* Outer glowing dashed ring */}
-          <motion.div 
+          <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
             className="absolute inset-2 rounded-full border border-indigo-300/30 border-dashed"
             style={{ borderWidth: '2px' }}
           />
-          
+
           {/* Middle solid ring with glowing planets */}
-          <motion.div 
+          <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             className="absolute inset-6 rounded-full border border-purple-300/20"
@@ -91,7 +91,7 @@ export const ErrorScreen: React.FC<ErrorScreenProps> = ({ errorMsg, onRetry }) =
           </motion.div>
 
           {/* Inner ring with astrological symbols */}
-          <motion.div 
+          <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
             className="absolute inset-10 rounded-full border border-blue-200/10 flex items-center justify-center"
@@ -122,9 +122,9 @@ export const ErrorScreen: React.FC<ErrorScreenProps> = ({ errorMsg, onRetry }) =
         <h1 className="font-serif text-2xl md:text-[26px] text-transparent bg-clip-text bg-gradient-to-b from-white to-amber-100/80 font-normal mb-4 tracking-[0.1em] md:tracking-[0.15em] uppercase drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
           Under Maintenance
         </h1>
-        
+
         <p className="text-indigo-100/70 text-xs md:text-sm leading-relaxed mb-6 font-light max-w-sm px-2">
-          {errorMsg || "Our celestial patterns are aligning. We are currently performing maintenance to ensure the stars are in perfect sync for your journey. Please try again soon."}
+          Our celestial patterns are aligning. We are currently performing maintenance to ensure the stars are in perfect sync for your journey. Please try again soon.
         </p>
 
         <h3 className="text-white/90 text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-6">

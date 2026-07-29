@@ -34,8 +34,7 @@ export const fetchReportFull = async (payload: ReportApiRequest) => {
     console.log(apiData)
     return apiData;
   } catch (error) {
-    console.error('API failed, using fallback report.', error);
-
-    return fallbackReport;
+    console.error('API failed.', error);
+    throw error;
   }
 };
