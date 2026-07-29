@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useReport } from '../context/ReportContext';
-import { Loader2, Sparkles, CheckCircle2, Lock, Download } from 'lucide-react';
+import { Loader2, Sparkles, CheckCircle2, Lock, FileText } from 'lucide-react';
 import bookImage from '../assets/Kundali_Report_book.png';
 
 
@@ -143,30 +143,38 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
         <button
           onClick={handleBookNow}
           disabled={isProcessing}
-          className="w-full bg-[#FF8C00] hover:bg-[#E67E00] text-white font-bold text-[16px] py-4 px-6 rounded-xl shadow-[0_4px_14px_rgba(255,140,0,0.3)] transition-all transform hover:scale-[1.01] active:scale-[0.99] disabled:opacity-80 disabled:cursor-wait disabled:scale-100 flex items-center justify-center gap-2"
+          className="w-full py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-400 hover:to-rose-400 text-white font-black text-sm sm:text-lg tracking-wide rounded-xl shadow-[0_8px_20px_-10px_rgba(244,63,94,0.6)] active:scale-[0.98] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 sm:gap-3 relative overflow-hidden group border border-orange-400/50"
         >
+          <div className="absolute inset-0 opacity-20 mix-blend-overlay"></div>
           {isProcessing ? (
             <>
-              <Loader2 size={20} className="animate-spin" />
-              Processing Secure Payment...
+              <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin text-white relative z-10" />
+              <span className="relative z-10">Processing...</span>
             </>
           ) : (
             <>
-              Proceed to Pay {currentSymbol} {currentPrice.toFixed(2)}
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 relative z-10 transition-transform group-hover:scale-110" />
+              <span className="relative z-10">
+                Unlock Complete Report for {currentSymbol} {currentPrice.toFixed(2)}
+              </span>
             </>
           )}
         </button>
 
-        {/* Sample Report Button */}
+        {/* View Sample Report Button */}
         <a
           href="https://www.astroved.com/reacthome/reports/Sample%20Detailed%20Kundli%20Premium%20Report.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 font-bold text-[15px] py-3.5 px-6 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 mt-3"
+          className="w-full py-3 sm:py-4 bg-white/50 hover:bg-white text-indigo-600 font-bold text-sm sm:text-base tracking-wide rounded-xl border border-indigo-200 hover:border-indigo-300 transition-all duration-300 flex items-center justify-center gap-2 mt-3"
         >
-          <Download size={18} />
+          <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
           View Sample Report
         </a>
+
+        <p className="text-center text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center justify-center gap-1 sm:gap-1.5 mt-2 sm:mt-3">
+          <Lock className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> 100% Secure Checkout
+        </p>
       </div>
 
     </div>

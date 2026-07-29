@@ -9,6 +9,8 @@ export interface BirthDetails {
   minute: number;
   country: string;
   city: string;
+  latitude?: number;
+  longitude?: number;
   language: 'english' | 'hindi';
   focusArea?: string;
 }

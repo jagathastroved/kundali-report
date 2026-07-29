@@ -8,6 +8,8 @@ export interface ReportApiRequest {
   city: string;
   state: string;
   country: string;
+  latitude: number;
+  longitude: number;
   ayanamsa: string
   house_system: string;
 }

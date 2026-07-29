@@ -44,9 +44,11 @@ export const BirthDetailsForm: React.FC = () => {
   const [country, setCountry] = useState(getTimezoneCountryName());
   const [city, setCity] = useState('');
   const [stateName, setStateName] = useState('Unknown');
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
   const [language, setLanguage] = useState<'english' | 'hindi'>('english');
   const [allCountries, setAllCountries] = useState<{ value: string; label: string }[]>([]);
-  const [apiCities, setApiCities] = useState<{ name: string; displayName: string; stateName: string }[]>([]);
+  const [apiCities, setApiCities] = useState<{ name: string; displayName: string; stateName: string; lat: number; lng: number }[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [isValidCity, setIsValidCity] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -103,10 +105,12 @@ export const BirthDetailsForm: React.FC = () => {
           displayName: item.City
             ? `${item.City}, ${item.StateorProvince ? item.StateorProvince + ', ' : ''}${item.Country}`
             : item.display_name,
-          stateName: item.StateorProvince || 'Unknown'
+          stateName: item.StateorProvince || 'Unknown',
+          lat: item.Latitude ? parseFloat(item.Latitude) : 0,
+          lng: item.Longitude ? parseFloat(item.Longitude) : 0
         }));
 
-        const uniqueCities = Array.from(new Map(formattedCities.map((item: any) => [item.name, item])).values()) as { name: string, displayName: string, stateName: string }[];
+        const uniqueCities = Array.from(new Map(formattedCities.map((item: any) => [item.name, item])).values()) as { name: string, displayName: string, stateName: string, lat: number, lng: number }[];
         setApiCities(uniqueCities);
       } catch (error) {
         console.error("Error fetching cities:", error);
@@ -174,6 +178,8 @@ export const BirthDetailsForm: React.FC = () => {
       minute: Number(minute),
       country,
       city: city.trim() || 'New Delhi',
+      latitude,
+      longitude,
       language
     };
 
@@ -191,6 +197,8 @@ export const BirthDetailsForm: React.FC = () => {
       city: city.trim(),
       state: stateName,
       country: country,
+      latitude,
+      longitude,
       ayanamsa: 'LAHIRI',
       house_system: 'WHOLE_SIGN'
     };
@@ -522,6 +530,8 @@ export const BirthDetailsForm: React.FC = () => {
                             onClick={() => {
                               setCity(c.name);
                               setStateName(c.stateName);
+                              setLatitude(c.lat);
+                              setLongitude(c.lng);
                               setIsValidCity(true);
                               setShowSuggestions(false);
                             }}
