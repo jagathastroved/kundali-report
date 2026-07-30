@@ -19,8 +19,7 @@ export const BirthStarPage: React.FC<{ pageIdx: number, setPage: (idx: number) =
           <span className="text-4xl filter drop-shadow-soft relative z-10">⭐</span>
         </div>
         <h2 className="text-2xl md:text-3xl font-semibold page-text tracking-tight leading-tight max-w-xl mx-auto">
-          Your Birth Star is
-          {birthStar?.nkName} Nakshatra
+          Your Birth Star is {birthStar?.nkName} Nakshatra
         </h2>
         <p className="text-sm font-bold text-muted uppercase tracking-widest">
           Associated with the Deity {birthStar?.associatedDeity}
