@@ -55,9 +55,11 @@ export const BirthStarPage: React.FC<{ pageIdx: number, setPage: (idx: number) =
             <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center shadow-inner border border-white p-2.5">
               <img src={elementImages.fire} alt="Fire Energy" className="w-full h-full object-contain opacity-80" />
             </div>
-            <p className="page-text text-[14px] sm:text-[15px] leading-relaxed font-medium flex-1 pt-1">
-              {`As a ${birthStar?.nkName}, you are naturally curious and possess a great desire for knowledge. You have an excellent memory and love to learn new things. You are also a good listener and are sensitive to the needs of others. You are respectful of tradition and often hold a position of authority or leadership within your community.`}
-            </p>
+            <div className="flex-1 min-w-0 pt-1">
+              <p className="page-text text-[14px] sm:text-[15px] leading-relaxed font-medium break-words">
+                {`As a ${birthStar?.nkName}, you are naturally curious and possess a great desire for knowledge. You have an excellent memory and love to learn new things. You are also a good listener and are sensitive to the needs of others. You are respectful of tradition and often hold a position of authority or leadership within your community.`}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -70,12 +72,12 @@ export const BirthStarPage: React.FC<{ pageIdx: number, setPage: (idx: number) =
             <div className="flex-shrink-0 w-14 h-14 rounded-full bg-indigo-100 flex items-center justify-center shadow-inner border border-white p-2.5">
               <img src={elementImages.water} alt="Water Flow" className="w-full h-full object-contain opacity-80" />
             </div>
-            <div className="space-y-5 flex-1 pt-1">
+            <div className="space-y-5 flex-1 min-w-0 pt-1">
               <div>
                 <span className="text-emerald-700 font-bold mb-1.5 flex items-center text-[13px] uppercase tracking-wider">
                   <CheckCircle className="w-4 h-4 mr-1.5" /> Your Strengths
                 </span>
-                <p className="page-text text-[14px] sm:text-[15px] leading-relaxed font-medium">
+                <p className="page-text text-[14px] sm:text-[15px] leading-relaxed font-medium break-words">
                   {birthStar?.strengths}
                 </p>
               </div>
@@ -84,7 +86,7 @@ export const BirthStarPage: React.FC<{ pageIdx: number, setPage: (idx: number) =
                 <span className="text-rose-600 font-bold mb-1.5 flex items-center text-[13px] uppercase tracking-wider">
                   <AlertCircle className="w-4 h-4 mr-1.5" /> Areas for Growth
                 </span>
-                <p className="page-text text-[14px] sm:text-[15px] leading-relaxed font-medium">
+                <p className="page-text text-[14px] sm:text-[15px] leading-relaxed font-medium break-words">
                   {birthStar?.weaknesses}
                 </p>
               </div>

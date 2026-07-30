@@ -103,9 +103,9 @@ export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: numb
       </div>
 
       <div className="pt-4 px-1 sm:px-0">
-        <button
-          onClick={() => navigate('/report/premium-deliverables')}
-          className="w-full relative group overflow-hidden bg-slate-900 text-white font-bold text-[15px] sm:text-lg py-4 sm:py-5 rounded-2xl shadow-xl flex items-center justify-center gap-2 sm:gap-3 transition-transform hover:-translate-y-1 active:scale-95"
+        <a
+          href="https://www.astroved.com/prediction-services-personalized-kundali-report-P88426.aspx?promo=SL_Kundali_Report"
+          className="w-full block relative group overflow-hidden bg-slate-900 text-white font-bold text-[15px] sm:text-lg py-4 sm:py-5 rounded-2xl shadow-xl flex items-center justify-center gap-2 sm:gap-3 transition-transform hover:-translate-y-1 active:scale-95"
         >
           {/* Animated gradient background for button */}
           <div className="absolute inset-0 bg-linear-to-r from-orange-500 via-rose-500 to-indigo-500 opacity-90 group-hover:opacity-100 transition-opacity"></div>
@@ -114,7 +114,7 @@ export const ReportFeaturesPage: React.FC<{ pageIdx: number, setPage: (idx: numb
             <span className="text-center leading-tight">Get Your Kundli Report</span>
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform shrink-0" />
           </span>
-        </button>
+        </a>
       </div>
 
     </div>

@@ -27,7 +27,7 @@ export const PremiumDeliverablesPage: React.FC<{ pageIdx: number, setPage: (idx:
 
   const handleBookNow = () => {
     setIsProcessing(true);
-    window.location.href = 'https://www.astroved.com/prediction-services-personalized-kundali-report-P88426.aspx';
+    window.location.href = 'https://www.astroved.com/prediction-services-personalized-kundali-report-P88426.aspx?promo=SL_Kundali_Report';
   };
 
   const name = birthDetails?.name || 'You';

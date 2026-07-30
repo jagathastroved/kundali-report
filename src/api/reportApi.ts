@@ -16,7 +16,7 @@ export interface ReportApiRequest {
 }
 
 export const fetchReportFull = async (payload: ReportApiRequest) => {
-  const baseUrl = import.meta.env.VITE_API_URL || '';
+  const baseUrl = import.meta.env.VITE_API_URL || 'https://astropedia-ai.astroved.com/kundali-report';
   const url = `${baseUrl}/api/v1/report/full`;
   console.log("payload", payload)
   try {
